@@ -1,8 +1,7 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { 
-  Plane, 
+import {
   Mail, 
   Phone, 
   MapPin,
@@ -13,17 +12,18 @@ import {
   Linkedin,
   ArrowRight
 } from 'lucide-react';
+import Logo from '@/assets/logo';
 
 const Footer = () => {
   const footerSections = [
     {
       title: 'Company',
       links: [
-        { label: 'About Us', href: '#' },
-        { label: 'Careers', href: '#' },
-        { label: 'Press', href: '#' },
-        { label: 'Investor Relations', href: '#' },
-        { label: 'Sustainability', href: '#' },
+        { label: 'About Us', href: '/about-us' },
+        { label: 'Careers', href: '/careers' },
+        { label: 'Press', href: '/press' },
+        { label: 'Investor Relations', href: '/investor-relations' },
+        { label: 'Sustainability', href: '/sustainability' },
       ]
     },
     {
@@ -49,11 +49,11 @@ const Footer = () => {
     {
       title: 'Support',
       links: [
-        { label: 'Help Center', href: '#' },
-        { label: 'Contact Us', href: '#' },
-        { label: 'Feedback', href: '#' },
-        { label: 'Special Assistance', href: '#' },
-        { label: 'Lost & Found', href: '#' },
+        { label: 'Help Center', href: '/help-center' },
+        { label: 'Contact Us', href: '/contact-us' },
+        { label: 'Feedback', href: '/feedback' },
+        { label: 'Special Assistance', href: '/special-assistance' },
+        { label: 'Lost & Found', href: '/lost-and-found' },
       ]
     }
   ];
@@ -172,10 +172,7 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <div className="flex items-center space-x-2 mb-6">
-              <div className="bg-gradient-to-br from-purple-600 to-indigo-600 p-2 rounded-lg">
-                <Plane className="h-6 w-6 text-white" />
-              </div>
-              <span className="text-2xl font-bold">SkyWings</span>
+             <Logo />
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
               Experience world-class service and luxury travel with SkyWings. 
@@ -237,16 +234,16 @@ const Footer = () => {
               © 2025 SkyWings Airlines. All rights reserved.
             </div>
             <div className="flex flex-wrap gap-6 text-sm">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a href="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">
                 Privacy Policy
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a href="/terms-of-service" className="text-gray-400 hover:text-white transition-colors">
                 Terms of Service
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a href="/cookies-policy" className="text-gray-400 hover:text-white transition-colors">
                 Cookies Policy
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a href="/accessibility" className="text-gray-400 hover:text-white transition-colors">
                 Accessibility
               </a>
             </div>

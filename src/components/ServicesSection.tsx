@@ -19,7 +19,7 @@ const ServicesSection = () => {
       icon: Plane,
       title: 'Book Flights',
       description: 'Find and book flights to over 160 destinations worldwide with competitive prices and flexible options.',
-      image: 'https://images.unsplash.com/photo-1544967882-6abec37be2d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      image: 'https://th.bing.com/th/id/OIP.dGG3x_HLSMSk769I1BDATAHaFj?w=207&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7',
       features: ['160+ Destinations', 'Flexible Booking', 'Best Prices']
     },
     {

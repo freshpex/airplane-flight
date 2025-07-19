@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X, Plane, User, Globe } from 'lucide-react';
+import { Menu, X, User, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import Logo from '@/assets/logo';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -44,15 +45,12 @@ const Header = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <div className="bg-gradient-to-br from-purple-600 to-indigo-600 p-2 rounded-lg">
-              <Plane className="h-6 w-6 text-white" />
-            </div>
-            <span className={cn(
-              'text-xl font-bold transition-colors duration-300',
-              isScrolled ? 'text-gray-900' : 'text-white'
-            )}>
-              SkyWings
-            </span>
+            <Logo
+              startStopColor={isScrolled ? "#42A5F5" : "#ffffff94"}
+              endStopColor={isScrolled ? "#1E3A8A" : "#FFFFFF"}
+              textFill={isScrolled ? "#1E3A8A" : "#FFFFFF"}
+              planeColor={isScrolled ? "#FFFFFF" : "#075985"}
+            />
           </motion.div>
 
           {/* Desktop Navigation */}
