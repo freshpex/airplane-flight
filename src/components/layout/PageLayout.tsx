@@ -9,18 +9,24 @@ interface PageLayoutProps {
   subtitle?: string;
   children: ReactNode;
   backLink?: string;
+  backgroundImage?: string;
 }
 
-const PageLayout = ({ title, subtitle, children, backLink = '/' }: PageLayoutProps) => {
+const PageLayout = ({ title, subtitle, children, backLink = '/', backgroundImage }: PageLayoutProps) => {
   return (
     <div className="min-h-screen flex flex-col">
       <main className="flex-grow">
         {/* Header */}
         <motion.div 
-          className="bg-gradient-to-r from-purple-800 to-indigo-700 text-white py-12 sm:py-16"
+          className={`text-white py-12 sm:py-16 ${backgroundImage ? 'relative' : 'bg-gradient-to-r from-purple-800 to-indigo-700'}`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
+          style={backgroundImage ? {
+            backgroundImage: `linear-gradient(rgba(76, 29, 149, 0.8), rgba(67, 56, 202, 0.8)), url('${backgroundImage}')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          } : undefined}
         >
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             {backLink && (
