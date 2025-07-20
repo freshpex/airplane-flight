@@ -29,21 +29,22 @@ const Footer = () => {
     {
       title: 'Travel',
       links: [
-        { label: 'Flight Status', href: '#' },
-        { label: 'Manage Booking', href: '#' },
-        { label: 'Check-in', href: '#' },
-        { label: 'Baggage Info', href: '#' },
-        { label: 'Travel Requirements', href: '#' },
+        { label: 'Flight Status', href: '/travel/flight-status' },
+        { label: 'Manage Booking', href: '/travel/manage-booking' },
+        { label: 'Check-in', href: '/travel/check-in' },
+        { label: 'Baggage Info', href: '/travel/baggage-info' },
+        { label: 'Travel Requirements', href: '/travel/travel-requirements' },
       ]
     },
     {
       title: 'Experience',
       links: [
-        { label: 'Destinations', href: '#' },
-        { label: 'SkyWings Hotels', href: '#' },
-        { label: 'Car Rental', href: '#' },
-        { label: 'Travel Insurance', href: '#' },
-        { label: 'Business Travel', href: '#' },
+        { label: 'Destinations', href: '/flight-search' },
+        { label: 'SkyWings Hotels', href: '/hotels' },
+        { label: 'Car Rental', href: '/car-rentals' },
+        { label: 'Travel Insurance', href: '/travel-insurance' },
+        { label: 'Business Travel', href: '/experience/business-travel' },
+        { label: 'Loyalty Program', href: '/experience/loyalty-program' },
       ]
     },
     {
