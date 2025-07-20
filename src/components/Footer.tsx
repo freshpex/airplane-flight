@@ -29,21 +29,22 @@ const Footer = () => {
     {
       title: 'Travel',
       links: [
-        { label: 'Flight Status', href: '#' },
-        { label: 'Manage Booking', href: '#' },
-        { label: 'Check-in', href: '#' },
-        { label: 'Baggage Info', href: '#' },
-        { label: 'Travel Requirements', href: '#' },
+        { label: 'Flight Status', href: '/travel/flight-status' },
+        { label: 'Manage Booking', href: '/travel/manage-booking' },
+        { label: 'Check-in', href: '/travel/check-in' },
+        { label: 'Baggage Info', href: '/travel/baggage-info' },
+        { label: 'Travel Requirements', href: '/travel/travel-requirements' },
       ]
     },
     {
       title: 'Experience',
       links: [
-        { label: 'Destinations', href: '#' },
-        { label: 'SkyWings Hotels', href: '#' },
-        { label: 'Car Rental', href: '#' },
-        { label: 'Travel Insurance', href: '#' },
-        { label: 'Business Travel', href: '#' },
+        { label: 'Destinations', href: '/flight-search' },
+        { label: 'SkyWays Hotels', href: '/hotels' },
+        { label: 'Car Rental', href: '/car-rentals' },
+        { label: 'Travel Insurance', href: '/travel-insurance' },
+        { label: 'Business Travel', href: '/experience/business-travel' },
+        { label: 'Loyalty Program', href: '/experience/loyalty-program' },
       ]
     },
     {
@@ -76,7 +77,7 @@ const Footer = () => {
     {
       icon: Mail,
       title: 'Email Us',
-      details: 'support@skywings.com',
+      details: 'support@skyWays.com',
       subtitle: 'We reply within 24 hours'
     },
     {
@@ -175,7 +176,7 @@ const Footer = () => {
              <Logo />
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              Experience world-class service and luxury travel with SkyWings. 
+              Experience world-class service and luxury travel with SkyWays. 
               We connect you to over 160 destinations worldwide with unmatched comfort and reliability.
             </p>
             
@@ -231,7 +232,7 @@ const Footer = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-gray-400 text-sm">
-              © 2025 SkyWings Airlines. All rights reserved.
+              © 2025 SkyWays Airlines. All rights reserved.
             </div>
             <div className="flex flex-wrap gap-6 text-sm">
               <a href="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">

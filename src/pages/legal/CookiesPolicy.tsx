@@ -31,7 +31,7 @@ const CookiesPolicy = () => {
           <section>
             <h2 className="text-xl font-bold text-gray-900 mb-4">How We Use Cookies</h2>
             <p className="mb-4">
-              SkyWings Airlines uses cookies and similar technologies for various purposes, including:
+              SkyWays Airlines uses cookies and similar technologies for various purposes, including:
             </p>
             
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Essential Cookies</h3>
@@ -85,7 +85,7 @@ const CookiesPolicy = () => {
                   </tr>
                   <tr>
                     <td className="px-4 py-2 border border-gray-300">First-Party Cookies</td>
-                    <td className="px-4 py-2 border border-gray-300">Set directly by SkyWings for essential website functionality</td>
+                    <td className="px-4 py-2 border border-gray-300">Set directly by SkyWays for essential website functionality</td>
                     <td className="px-4 py-2 border border-gray-300">Varies</td>
                   </tr>
                   <tr className="bg-gray-50">
@@ -163,8 +163,8 @@ const CookiesPolicy = () => {
               If you have any questions about our use of cookies or this Cookie Policy, please contact us at:
             </p>
             <div className="mt-4 bg-gray-50 p-4 rounded-lg">
-              <p className="font-semibold">SkyWings Privacy Team</p>
-              <p>Email: privacy@skywings.com</p>
+              <p className="font-semibold">SkyWays Privacy Team</p>
+              <p>Email: privacy@skyWays.com</p>
               <p>Phone: +1 (555) 123-4567</p>
             </div>
           </section>

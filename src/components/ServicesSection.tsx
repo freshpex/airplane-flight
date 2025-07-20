@@ -19,7 +19,7 @@ const ServicesSection = () => {
       icon: Plane,
       title: 'Book Flights',
       description: 'Find and book flights to over 160 destinations worldwide with competitive prices and flexible options.',
-      image: 'https://th.bing.com/th/id/OIP.dGG3x_HLSMSk769I1BDATAHaFj?w=207&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7',
+      image: 'https://www.qatarairways.com/content/dam/images/mobile/aircraft/codeshare-partners/m-virgin-australia-qr-aircrafts.jpg',
       features: ['160+ Destinations', 'Flexible Booking', 'Best Prices']
     },
     {

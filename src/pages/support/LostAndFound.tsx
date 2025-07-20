@@ -298,7 +298,7 @@ const LostAndFound = () => {
               <p className="mb-3 text-gray-600">
                 If you need immediate assistance or have questions about the lost item reporting process:
               </p>
-              <p className="font-medium">lost.found@skywings.com</p>
+              <p className="font-medium">lost.found@skyWays.com</p>
               <p className="mb-3">+1 (555) 456-7890</p>
               <p className="text-sm text-gray-500">
                 Available 24/7. Please have your booking details ready when you call.

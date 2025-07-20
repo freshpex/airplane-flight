@@ -164,11 +164,11 @@ const InvestorRelations = () => {
           
           <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
             <p className="text-gray-700 mb-4">
-              For investor inquiries or questions related to SkyWings' financial performance, please contact our Investor Relations team:
+              For investor inquiries or questions related to SkyWays' financial performance, please contact our Investor Relations team:
             </p>
             <div className="space-y-2">
               <p className="font-semibold">Investor Relations Department</p>
-              <p>Email: investors@skywings.com</p>
+              <p>Email: investors@skyWays.com</p>
               <p>Phone: +1 (555) 789-0123</p>
             </div>
           </div>

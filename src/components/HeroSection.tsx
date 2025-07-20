@@ -5,13 +5,24 @@ import { ArrowRight, Play } from 'lucide-react';
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Video/Image */}
+      {/* Background YouTube Video */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-purple-900/80 via-indigo-900/70 to-blue-900/80 z-10" />
-        <img
-          src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80"
-          alt="Aircraft in the sky"
-          className="w-full h-full object-cover"
+        <iframe
+          src="https://www.youtube.com/embed/Bw6MwHRCUHY?autoplay=1&mute=1&loop=1&playlist=Bw6MwHRCUHY&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1"
+          title="Background Video"
+          className="w-full h-full object-cover scale-150"
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%) scale(1.5)',
+            minWidth: '100%',
+            minHeight: '100%',
+          }}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
         />
       </div>
 
@@ -68,7 +79,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             Experience world-class service, luxury amenities, and seamless travel
-            to over 160 destinations worldwide with SkyWings.
+            to over 160 destinations worldwide with SkyWays.
           </motion.p>
 
           <motion.div
