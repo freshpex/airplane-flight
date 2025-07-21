@@ -1,82 +1,20 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Clock, Compass, Luggage, Plane, Star, Shield, Wifi } from 'lucide-react';
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { cn } from '@/lib/utils';
-import { Slider } from '@/components/ui/slider';
-import { Badge } from '@/components/ui/badge';
+import { Plane } from 'lucide-react';
 import { toast } from 'sonner';
 
-// Mock data interfaces
-interface Airline {
-  code: string;
-  name: string;
-  logo: string;
-}
+// Import our components
+import FilterPanel from './search-results/FilterPanel';
+import MobileFilterPanel from './search-results/MobileFilterPanel';
+import TabLayout from './search-results/TabLayout';
+import BookingBar from './search-results/BookingBar';
 
-interface FlightSegment {
-  departureAirport: string;
-  departureCity: string;
-  departureTime: string;
-  departureDate: string;
-  arrivalAirport: string;
-  arrivalCity: string;
-  arrivalTime: string;
-  arrivalDate: string;
-  flightNumber: string;
-  duration: string;
-  aircraft: string;
-  airline: Airline;
-}
+// Import our types
+import type { FlightOption, Hotel, CarRental } from '@/types/flight';
 
-interface FlightOption {
-  id: string;
-  price: number;
-  currency: string;
-  segments: FlightSegment[];
-  totalDuration: string;
-  stops: number;
-  cabinClass: string;
-  seatsAvailable: number;
-  fareType: 'Economy' | 'Economy Plus' | 'Business' | 'First';
-  refundable: boolean;
-  baggageAllowance: {
-    carryOn: string;
-    checked: string;
-  };
-  features: string[];
-  co2Emission: string;
-  onTimePerformance: number;
-}
-
-interface Hotel {
-  id: string;
-  name: string;
-  address: string;
-  price: number;
-  currency: string;
-  rating: number;
-  image: string;
-  amenities: string[];
-  description: string;
-  distanceFromAirport: string;
-}
-
-interface CarRental {
-  id: string;
-  company: string;
-  model: string;
-  category: string;
-  image: string;
-  price: number;
-  currency: string;
-  features: string[];
-  passengerCapacity: number;
-  location: string;
-  availableAt: string;
-}
+// All types are imported from types/flight.ts
+import type { Airline, FlightSegment } from '../types/flight';
 
 // Sample logo URLs for airlines
 const airlineLogos: Record<string, string> = {
@@ -198,6 +136,7 @@ const generateFlightOptions = (from: string, to: string, date: string, _passenge
       currency: 'USD',
       segments,
       totalDuration: `${durationHours}h ${durationMinutes}m`,
+      duration: `${durationHours}h ${durationMinutes}m`, // Add duration for FlightOption type
       stops,
       cabinClass: fareType,
       seatsAvailable: Math.floor(Math.random() * 20) + 1,
@@ -222,7 +161,7 @@ const generateHotels = (city: string): Hotel[] => {
     'Golden Palms Hotel', 'The Metropolitan', 'Park View Inn', 'Seaside Resort'
   ];
 
-  const amenities = [
+  const features = [
     'Free Wi-Fi', 'Swimming Pool', 'Fitness Center', 'Restaurant', 'Bar', 'Spa', 
     'Business Center', 'Concierge', '24-hour Front Desk', 'Room Service',
     'Airport Shuttle', 'Parking'
@@ -231,19 +170,44 @@ const generateHotels = (city: string): Hotel[] => {
   return Array.from({ length: 8 }, (_, i) => {
     const name = hotelNames[Math.floor(Math.random() * hotelNames.length)];
     const rating = (Math.floor(Math.random() * 15) + 30) / 10; // 3.0 to 4.5
-    const price = Math.floor(Math.random() * 300) + 100; // $100 to $400
+    const priceAmount = Math.floor(Math.random() * 300) + 100; // $100 to $400
 
     return {
       id: `hotel-${i}`,
       name,
-      address: `${Math.floor(Math.random() * 200) + 1} Main Street, ${city}`,
-      price,
-      currency: 'USD',
+      location: `${city}, Downtown Area`,
+      price: {
+        amount: priceAmount,
+        currency: 'USD',
+        period: 'night'
+      },
       rating,
       image: `https://source.unsplash.com/random/300x200?hotel,${i}`,
-      amenities: [...amenities].sort(() => 0.5 - Math.random()).slice(0, 5 + Math.floor(Math.random() * 5)),
-      description: 'Experience luxury and comfort in the heart of the city. This hotel offers spacious rooms with stunning views, exceptional service, and convenient access to attractions.',
-      distanceFromAirport: `${Math.floor(Math.random() * 15) + 1} km`
+      features: [...features].sort(() => 0.5 - Math.random()).slice(0, 5 + Math.floor(Math.random() * 5)),
+      distance: {
+        value: Math.floor(Math.random() * 15) + 1,
+        unit: 'km',
+        landmark: 'city center'
+      },
+      reviews: Math.floor(Math.random() * 1000) + 100,
+      availability: {
+        checkIn: '14:00',
+        checkOut: '12:00'
+      },
+      rooms: [
+        {
+          type: 'Standard',
+          amenities: ['TV', 'Air Conditioning', 'Safe'],
+          capacity: 2,
+          pricePerNight: priceAmount
+        },
+        {
+          type: 'Deluxe',
+          amenities: ['TV', 'Air Conditioning', 'Safe', 'Mini Bar', 'Sea View'],
+          capacity: 2,
+          pricePerNight: priceAmount * 1.5
+        }
+      ]
     };
   });
 };
@@ -265,20 +229,44 @@ const generateCarRentals = (city: string): CarRental[] => {
     const company = carCompanies[Math.floor(Math.random() * carCompanies.length)];
     const model = carModels[Math.floor(Math.random() * carModels.length)];
     const category = categories[Math.floor(Math.random() * categories.length)];
-    const price = Math.floor(Math.random() * 70) + 30; // $30 to $100 per day
+    const priceAmount = Math.floor(Math.random() * 70) + 30; // $30 to $100 per day
 
     return {
       id: `car-${i}`,
       company,
-      model,
-      category,
-      image: `https://source.unsplash.com/random/300x200?car,${model}`,
-      price,
-      currency: 'USD',
-      features: [...features].sort(() => 0.5 - Math.random()).slice(0, 4 + Math.floor(Math.random() * 3)),
-      passengerCapacity: 2 + Math.floor(Math.random() * 6), // 2 to 7 passengers
-      location: `${city} Airport`,
-      availableAt: '09:00 AM'
+      logo: `https://logo.clearbit.com/${company.toLowerCase().replace(' ', '')}.com`,
+      vehicle: {
+        name: model,
+        type: category,
+        image: `https://source.unsplash.com/random/300x200?car,${model}`,
+        features: [...features].sort(() => 0.5 - Math.random()).slice(0, 4 + Math.floor(Math.random() * 3)),
+        capacity: {
+          passengers: 2 + Math.floor(Math.random() * 6),
+          bags: 1 + Math.floor(Math.random() * 3)
+        }
+      },
+      location: {
+        pickup: `${city} Airport`
+      },
+      availability: {
+        pickupDate: new Date().toISOString().split('T')[0],
+        pickupTime: '09:00',
+        dropoffDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+        dropoffTime: '09:00'
+      },
+      price: {
+        amount: priceAmount,
+        currency: 'USD',
+        period: 'day'
+      },
+      mileage: {
+        limit: 'Unlimited'
+      },
+      included: ['Third Party Insurance', 'Theft Protection'],
+      policies: {
+        cancellation: 'Free cancellation up to 24 hours before pickup',
+        fuelPolicy: 'Full to Full'
+      }
     };
   });
 };
@@ -427,13 +415,6 @@ const SearchResults = () => {
     // In a real app, this would navigate to checkout
     toast.success("Your booking has been added to cart! Proceed to checkout.");
   };
-  
-  // Helper to format time display
-  const formatTimeDisplay = (hour: number) => {
-    if (hour === 0) return '12 AM';
-    if (hour === 12) return '12 PM';
-    return hour < 12 ? `${hour} AM` : `${hour - 12} PM`;
-  };
 
   // Price range slider max value based on available flights
   const maxPrice = Math.max(...flightOptions.map(f => f.price), 5000);
@@ -466,592 +447,69 @@ const SearchResults = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-50 py-10 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
+        {/* Mobile Filter Panel */}
+        <MobileFilterPanel 
+          priceRange={priceRange}
+          setPriceRange={setPriceRange}
+          selectedStops={selectedStops}
+          setSelectedStops={setSelectedStops}
+          selectedAirlines={selectedAirlines}
+          setSelectedAirlines={setSelectedAirlines}
+          selectedTimeRange={selectedTimeRange}
+          setSelectedTimeRange={setSelectedTimeRange}
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+          availableAirlines={availableAirlines}
+          flightOptions={flightOptions}
+          maxPrice={maxPrice}
+        />
+        
         <div className="flex flex-col md:flex-row justify-between items-start gap-8">
-          {/* Search filters sidebar */}
-          <div className="w-full md:w-64 lg:w-72 bg-white rounded-lg shadow-lg p-5 sticky top-24">
-            <h2 className="text-xl font-bold mb-5 text-gray-800">Filters</h2>
-            
-            {/* Price range */}
-            <div className="mb-6">
-              <h3 className="text-md font-semibold mb-3 text-gray-700">Price Range</h3>
-              <div className="px-2">
-                <Slider 
-                  defaultValue={[0, maxPrice]}
-                  max={maxPrice}
-                  step={50}
-                  onValueChange={(values) => setPriceRange(values as [number, number])}
-                  className="mb-4"
-                />
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-gray-600">${priceRange[0]}</span>
-                  <span className="text-sm font-medium text-gray-600">${priceRange[1]}</span>
-                </div>
-              </div>
-            </div>
-            
-            {/* Stops */}
-            <div className="mb-6">
-              <h3 className="text-md font-semibold mb-3 text-gray-700">Stops</h3>
-              <div className="space-y-2">
-                {[0, 1, 2].map((stops) => (
-                  <div key={stops} className="flex items-center">
-                    <input
-                      type="checkbox"
-                      id={`stops-${stops}`}
-                      className="rounded text-purple-600 focus:ring-purple-500 h-4 w-4 cursor-pointer"
-                      checked={selectedStops.includes(stops)}
-                      onChange={() => {
-                        if (selectedStops.includes(stops)) {
-                          setSelectedStops(selectedStops.filter(s => s !== stops));
-                        } else {
-                          setSelectedStops([...selectedStops, stops]);
-                        }
-                      }}
-                    />
-                    <label htmlFor={`stops-${stops}`} className="ml-2 text-gray-700 cursor-pointer">
-                      {stops === 0 ? 'Direct' : stops === 1 ? '1 Stop' : `${stops} Stops`}
-                    </label>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            {/* Airlines */}
-            <div className="mb-6">
-              <h3 className="text-md font-semibold mb-3 text-gray-700">Airlines</h3>
-              <div className="space-y-2">
-                {availableAirlines.map((airline) => {
-                  const airlineInfo = flightOptions.find(f => f.segments[0].airline.code === airline)?.segments[0].airline;
-                  return (
-                    <div key={airline} className="flex items-center">
-                      <input
-                        type="checkbox"
-                        id={`airline-${airline}`}
-                        className="rounded text-purple-600 focus:ring-purple-500 h-4 w-4 cursor-pointer"
-                        checked={selectedAirlines.includes(airline)}
-                        onChange={() => {
-                          if (selectedAirlines.includes(airline)) {
-                            setSelectedAirlines(selectedAirlines.filter(a => a !== airline));
-                          } else {
-                            setSelectedAirlines([...selectedAirlines, airline]);
-                          }
-                        }}
-                      />
-                      <label htmlFor={`airline-${airline}`} className="ml-2 text-gray-700 flex items-center gap-2 cursor-pointer">
-                        <span>{airlineInfo?.name}</span>
-                      </label>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-            
-            {/* Departure time */}
-            <div className="mb-6">
-              <h3 className="text-md font-semibold mb-3 text-gray-700">Departure Time</h3>
-              <div className="px-2">
-                <Slider 
-                  defaultValue={[0, 24]}
-                  min={0}
-                  max={24}
-                  step={1}
-                  onValueChange={(values) => setSelectedTimeRange(values as [number, number])}
-                  className="mb-4"
-                />
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-gray-600">{formatTimeDisplay(selectedTimeRange[0])}</span>
-                  <span className="text-sm font-medium text-gray-600">{formatTimeDisplay(selectedTimeRange[1])}</span>
-                </div>
-              </div>
-            </div>
-            
-            {/* Sort by */}
-            <div className="mb-6">
-              <h3 className="text-md font-semibold mb-3 text-gray-700">Sort By</h3>
-              <select 
-                className="w-full border-gray-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500"
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-              >
-                <option value="price">Price (Lowest first)</option>
-                <option value="duration">Duration (Shortest first)</option>
-                <option value="departure">Departure (Earliest first)</option>
-                <option value="arrival">Arrival (Earliest first)</option>
-                <option value="rating">Rating (Highest first)</option>
-              </select>
-            </div>
+          {/* Desktop Search filters sidebar - hidden on mobile */}
+          <div className="hidden md:block">
+            <FilterPanel 
+              priceRange={priceRange}
+              setPriceRange={setPriceRange}
+              selectedStops={selectedStops}
+              setSelectedStops={setSelectedStops}
+              selectedAirlines={selectedAirlines}
+              setSelectedAirlines={setSelectedAirlines}
+              selectedTimeRange={selectedTimeRange}
+              setSelectedTimeRange={setSelectedTimeRange}
+              sortBy={sortBy}
+              setSortBy={setSortBy}
+              availableAirlines={availableAirlines}
+              flightOptions={flightOptions}
+              maxPrice={maxPrice}
+            />
           </div>
           
-          {/* Main content */}
-          <div className="flex-1">
-            <Tabs defaultValue="flights" className="w-full">
-              <TabsList className="grid w-full grid-cols-3 mb-8">
-                <TabsTrigger value="flights" className="text-lg">
-                  Flights ({filteredFlights.length})
-                </TabsTrigger>
-                {searchParams.includeHotels && (
-                  <TabsTrigger value="hotels" className="text-lg">
-                    Hotels ({hotels.length})
-                  </TabsTrigger>
-                )}
-                {searchParams.includeCarRentals && (
-                  <TabsTrigger value="cars" className="text-lg">
-                    Car Rentals ({carRentals.length})
-                  </TabsTrigger>
-                )}
-              </TabsList>
-              
-              {/* Flights Tab */}
-              <TabsContent value="flights">
-                <div className="bg-white rounded-lg shadow-lg p-4 mb-6">
-                  <h2 className="text-xl font-bold mb-2">
-                    {searchParams.from} to {searchParams.to}
-                  </h2>
-                  <div className="text-gray-600">
-                    {searchParams.departDate} • {searchParams.passengers.adults} Adult{searchParams.passengers.adults !== 1 ? 's' : ''}
-                    {searchParams.passengers.children > 0 && `, ${searchParams.passengers.children} Child${searchParams.passengers.children !== 1 ? 'ren' : ''}`}
-                    {searchParams.passengers.infants > 0 && `, ${searchParams.passengers.infants} Infant${searchParams.passengers.infants !== 1 ? 's' : ''}`}
-                    • {searchParams.cabinClass}
-                  </div>
-                </div>
-                
-                {filteredFlights.length === 0 ? (
-                  <div className="bg-white rounded-lg shadow-lg p-8 text-center">
-                    <Compass className="h-12 w-12 mx-auto text-gray-400 mb-3" />
-                    <h3 className="text-xl font-semibold mb-2">No flights found</h3>
-                    <p className="text-gray-600">
-                      Try adjusting your filters or search criteria to see more results.
-                    </p>
-                  </div>
-                ) : (
-                  <div className="space-y-4">
-                    {filteredFlights.map((flight) => (
-                      <motion.div
-                        key={flight.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className={cn(
-                          "bg-white rounded-lg shadow-lg overflow-hidden",
-                          selectedFlight === flight.id && "ring-2 ring-purple-500"
-                        )}
-                      >
-                        {/* Airline header */}
-                        <div className="bg-gray-50 p-4 flex justify-between items-center border-b">
-                          <div className="flex items-center">
-                            <div className="h-8 w-8 mr-3 relative">
-                              <img 
-                                src={flight.segments[0].airline.logo} 
-                                alt={flight.segments[0].airline.name}
-                                className="object-contain h-full w-full"
-                              />
-                            </div>
-                            <div>
-                              <h3 className="font-semibold">{flight.segments[0].airline.name}</h3>
-                              <p className="text-sm text-gray-600">
-                                {flight.segments.map(s => s.flightNumber).join(' · ')}
-                              </p>
-                            </div>
-                          </div>
-                          <div className="text-right">
-                            <div className="text-lg font-bold text-purple-700">
-                              ${flight.price}
-                            </div>
-                            <div className="text-sm text-gray-600">per person</div>
-                          </div>
-                        </div>
-                        
-                        <div className="p-4">
-                          {/* Flight route summary */}
-                          <div className="flex items-center justify-between mb-6">
-                            <div className="text-center">
-                              <div className="text-2xl font-bold">
-                                {flight.segments[0].departureTime}
-                              </div>
-                              <div className="text-sm text-gray-600">
-                                {flight.segments[0].departureAirport}
-                              </div>
-                            </div>
-                            
-                            <div className="flex-grow mx-4">
-                              <div className="relative flex items-center">
-                                <div className="h-0.5 flex-grow bg-gray-300"></div>
-                                <div className="absolute inset-0 flex items-center justify-center">
-                                  <div className="bg-white px-2 text-sm text-gray-600 whitespace-nowrap">
-                                    {flight.totalDuration}
-                                    {flight.stops > 0 && (
-                                      <span className="ml-2 text-orange-600">
-                                        • {flight.stops} {flight.stops === 1 ? 'stop' : 'stops'}
-                                      </span>
-                                    )}
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            
-                            <div className="text-center">
-                              <div className="text-2xl font-bold">
-                                {flight.segments[flight.segments.length - 1].arrivalTime}
-                              </div>
-                              <div className="text-sm text-gray-600">
-                                {flight.segments[flight.segments.length - 1].arrivalAirport}
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Flight details with accordion */}
-                          <div className="mb-4">
-                            <details className="group">
-                              <summary className="flex items-center justify-between cursor-pointer list-none">
-                                <div className="flex items-center text-sm text-gray-600">
-                                  <Luggage className="h-4 w-4 mr-1" />
-                                  <span>{flight.cabinClass} • </span>
-                                  <span className="ml-1">{flight.baggageAllowance.checked} checked</span>
-                                  <Wifi className="h-4 w-4 mx-1" />
-                                  <span>{flight.features.includes('Wi-Fi') ? 'Wi-Fi available' : 'No Wi-Fi'}</span>
-                                </div>
-                                <div className="text-sm text-purple-600 font-medium group-open:rotate-180 transition-transform">
-                                  ▼
-                                </div>
-                              </summary>
-                              
-                              <div className="mt-4 pt-4 border-t border-gray-200">
-                                {/* Detailed flight segments */}
-                                {flight.segments.map((segment, index) => (
-                                  <div key={index} className="mb-4">
-                                    {index > 0 && (
-                                      <div className="flex items-center my-3 py-2 px-3 bg-amber-50 text-amber-800 rounded-md">
-                                        <Clock className="h-4 w-4 mr-2" />
-                                        <span className="text-sm">
-                                          Layover in {segment.departureCity} • 
-                                          {' '}
-                                          {(() => {
-                                            const prevArrTime = flight.segments[index - 1].arrivalTime;
-                                            const depTime = segment.departureTime;
-                                            const [prevHour, prevMin] = prevArrTime.split(':').map(Number);
-                                            const [depHour, depMin] = depTime.split(':').map(Number);
-                                            let hourDiff = depHour - prevHour;
-                                            let minDiff = depMin - prevMin;
-                                            
-                                            if (minDiff < 0) {
-                                              hourDiff--;
-                                              minDiff += 60;
-                                            }
-                                            
-                                            if (hourDiff < 0) hourDiff += 24;
-                                            
-                                            return `${hourDiff}h ${minDiff}m`;
-                                          })()}
-                                        </span>
-                                      </div>
-                                    )}
-                                    
-                                    <div className="flex justify-between">
-                                      <div className="flex-1">
-                                        <div className="flex items-center">
-                                          <div className="w-16 text-right text-gray-900 font-medium">
-                                            {segment.departureTime}
-                                          </div>
-                                          <div className="ml-4">
-                                            <div className="font-medium">{segment.departureCity} ({segment.departureAirport})</div>
-                                            <div className="text-sm text-gray-600">{segment.departureDate}</div>
-                                          </div>
-                                        </div>
-                                        
-                                        <div className="ml-16 my-1 border-l-2 border-gray-300 h-8 pl-4 text-xs text-gray-500">
-                                          {segment.duration}
-                                        </div>
-                                        
-                                        <div className="flex items-center">
-                                          <div className="w-16 text-right text-gray-900 font-medium">
-                                            {segment.arrivalTime}
-                                          </div>
-                                          <div className="ml-4">
-                                            <div className="font-medium">{segment.arrivalCity} ({segment.arrivalAirport})</div>
-                                            <div className="text-sm text-gray-600">{segment.arrivalDate}</div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      
-                                      <div className="w-40 flex flex-col items-end">
-                                        <div className="mb-1 text-sm">
-                                          <span className="font-medium">{segment.airline.code} {segment.flightNumber}</span>
-                                        </div>
-                                        <div className="text-xs text-gray-600">
-                                          {segment.aircraft}
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                ))}
-                                
-                                {/* Features and baggage */}
-                                <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                                  <div>
-                                    <h4 className="font-medium mb-2">Features</h4>
-                                    <ul className="text-sm text-gray-600 space-y-1">
-                                      {flight.features.map((feature, i) => (
-                                        <li key={i} className="flex items-center">
-                                          <span className="text-green-600 mr-1">✓</span> {feature}
-                                        </li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                  <div>
-                                    <h4 className="font-medium mb-2">Baggage Allowance</h4>
-                                    <ul className="text-sm text-gray-600 space-y-1">
-                                      <li>Carry-on: {flight.baggageAllowance.carryOn}</li>
-                                      <li>Checked: {flight.baggageAllowance.checked}</li>
-                                      {flight.refundable && (
-                                        <li className="flex items-center text-green-600">
-                                          <Shield className="h-3 w-3 mr-1" /> Refundable fare
-                                        </li>
-                                      )}
-                                    </ul>
-                                  </div>
-                                </div>
-                                
-                                {/* Flight info footer */}
-                                <div className="flex justify-between items-center mt-4 pt-3 border-t border-gray-200 text-sm">
-                                  <div className="flex items-center text-gray-600">
-                                    <span className="mr-4">CO₂: {flight.co2Emission}</span>
-                                    <span>On-time Performance: {flight.onTimePerformance}%</span>
-                                  </div>
-                                  <div className="text-sm">
-                                    <span className="font-medium text-gray-800">
-                                      {flight.seatsAvailable} seat{flight.seatsAvailable !== 1 ? 's' : ''} left
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                            </details>
-                          </div>
-                          
-                          {/* Flight selection */}
-                          <div className="flex justify-between items-center pt-3 border-t">
-                            <div>
-                              <Badge variant={flight.fareType === 'Economy' ? 'outline' : flight.fareType === 'Economy Plus' ? 'secondary' : 'default'}>
-                                {flight.fareType}
-                              </Badge>
-                            </div>
-                            <div className="flex items-center gap-3">
-                              <Button 
-                                variant={selectedFlight === flight.id ? "default" : "outline"}
-                                onClick={() => setSelectedFlight(flight.id)}
-                                className="min-w-[100px]"
-                              >
-                                {selectedFlight === flight.id ? 'Selected' : 'Select'}
-                              </Button>
-                            </div>
-                          </div>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                )}
-              </TabsContent>
-              
-              {/* Hotels Tab */}
-              {searchParams.includeHotels && (
-                <TabsContent value="hotels">
-                  <div className="space-y-4">
-                    {hotels.map((hotel) => (
-                      <motion.div
-                        key={hotel.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className={cn(
-                          "bg-white rounded-lg shadow-lg overflow-hidden",
-                          selectedHotel === hotel.id && "ring-2 ring-purple-500"
-                        )}
-                      >
-                        <div className="flex flex-col md:flex-row">
-                          <div className="md:w-1/3 h-60 md:h-auto relative">
-                            <img 
-                              src={hotel.image} 
-                              alt={hotel.name}
-                              className="object-cover w-full h-full"
-                            />
-                            <div className="absolute top-3 right-3 bg-white rounded-full p-2 shadow-md">
-                              <div className="flex items-center">
-                                <Star className="h-4 w-4 text-yellow-500 mr-1 fill-yellow-500" />
-                                <span className="text-sm font-bold">{hotel.rating.toFixed(1)}</span>
-                              </div>
-                            </div>
-                          </div>
-                          
-                          <div className="p-4 md:p-6 flex-1 flex flex-col">
-                            <div className="flex-1">
-                              <h3 className="text-xl font-bold mb-2">{hotel.name}</h3>
-                              <p className="text-gray-600 text-sm mb-3">{hotel.address}</p>
-                              <p className="text-gray-700 mb-4">{hotel.description}</p>
-                              
-                              <div className="flex flex-wrap gap-2 mb-4">
-                                {hotel.amenities.map((amenity, i) => (
-                                  <span key={i} className="text-xs px-2 py-1 bg-gray-100 rounded-full text-gray-700">
-                                    {amenity}
-                                  </span>
-                                ))}
-                              </div>
-                              
-                              <div className="text-sm text-gray-600">
-                                <span className="flex items-center">
-                                  <Plane className="h-3 w-3 mr-1" /> {hotel.distanceFromAirport} from airport
-                                </span>
-                              </div>
-                            </div>
-                            
-                            <div className="flex justify-between items-center pt-4 border-t mt-4">
-                              <div className="text-lg font-bold text-purple-700">
-                                ${hotel.price} <span className="text-sm font-normal text-gray-600">per night</span>
-                              </div>
-                              
-                              <Button 
-                                variant={selectedHotel === hotel.id ? "default" : "outline"}
-                                onClick={() => setSelectedHotel(hotel.id)}
-                              >
-                                {selectedHotel === hotel.id ? 'Selected' : 'Select'}
-                              </Button>
-                            </div>
-                          </div>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </TabsContent>
-              )}
-              
-              {/* Car Rentals Tab */}
-              {searchParams.includeCarRentals && (
-                <TabsContent value="cars">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {carRentals.map((car) => (
-                      <motion.div
-                        key={car.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className={cn(
-                          "bg-white rounded-lg shadow-lg overflow-hidden",
-                          selectedCar === car.id && "ring-2 ring-purple-500"
-                        )}
-                      >
-                        <div className="h-40 relative">
-                          <img 
-                            src={car.image} 
-                            alt={car.model}
-                            className="object-cover w-full h-full"
-                          />
-                          <div className="absolute top-3 left-3 bg-white bg-opacity-90 rounded-md px-2 py-1">
-                            <span className="font-bold">{car.company}</span>
-                          </div>
-                        </div>
-                        
-                        <div className="p-4">
-                          <h3 className="text-lg font-bold mb-1">{car.model}</h3>
-                          <p className="text-sm text-gray-600 mb-3">{car.category}</p>
-                          
-                          <div className="grid grid-cols-2 gap-y-2 text-sm mb-4">
-                            <div className="flex items-center">
-                              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                              </svg>
-                              <span>{car.passengerCapacity} Passengers</span>
-                            </div>
-                            <div className="flex items-center">
-                              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                              </svg>
-                              <span>{car.location}</span>
-                            </div>
-                            <div className="flex items-center">
-                              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-                              </svg>
-                              <span>Available at {car.availableAt}</span>
-                            </div>
-                          </div>
-                          
-                          <div className="flex flex-wrap gap-1 mb-4">
-                            {car.features.slice(0, 3).map((feature, i) => (
-                              <span key={i} className="text-xs px-2 py-0.5 bg-gray-100 rounded-full text-gray-700">
-                                {feature}
-                              </span>
-                            ))}
-                            {car.features.length > 3 && (
-                              <span className="text-xs px-2 py-0.5 bg-gray-100 rounded-full text-gray-700">
-                                +{car.features.length - 3} more
-                              </span>
-                            )}
-                          </div>
-                          
-                          <div className="flex justify-between items-center pt-2 border-t">
-                            <div className="text-lg font-bold text-purple-700">
-                              ${car.price} <span className="text-sm font-normal text-gray-600">per day</span>
-                            </div>
-                            
-                            <Button 
-                              variant={selectedCar === car.id ? "default" : "outline"}
-                              onClick={() => setSelectedCar(car.id)}
-                              size="sm"
-                            >
-                              {selectedCar === car.id ? 'Selected' : 'Select'}
-                            </Button>
-                          </div>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </TabsContent>
-              )}
-            </Tabs>
-            
-            {/* Bottom booking bar */}
-            <div className="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] p-4 z-10">
-              <div className="max-w-7xl mx-auto flex justify-between items-center">
-                <div>
-                  {selectedFlight && (
-                    <div className="flex items-center">
-                      <div className="mr-4">
-                        <p className="font-semibold">Flight selected:</p>
-                        <p className="text-sm text-gray-600">
-                          {flightOptions.find(f => f.id === selectedFlight)?.segments[0].airline.name} • ${flightOptions.find(f => f.id === selectedFlight)?.price}
-                        </p>
-                      </div>
-                      {selectedHotel && (
-                        <div className="mr-4">
-                          <p className="font-semibold">Hotel selected:</p>
-                          <p className="text-sm text-gray-600">
-                            {hotels.find(h => h.id === selectedHotel)?.name} • ${hotels.find(h => h.id === selectedHotel)?.price}/night
-                          </p>
-                        </div>
-                      )}
-                      {selectedCar && (
-                        <div>
-                          <p className="font-semibold">Car selected:</p>
-                          <p className="text-sm text-gray-600">
-                            {carRentals.find(c => c.id === selectedCar)?.model} • ${carRentals.find(c => c.id === selectedCar)?.price}/day
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-                <Button 
-                  size="lg" 
-                  disabled={!selectedFlight}
-                  onClick={handleBookNow}
-                  className="min-w-[150px]"
-                >
-                  Book Now
-                </Button>
-              </div>
-            </div>
-            
-          </div>
+          {/* Main content with tabs */}
+          <TabLayout 
+            searchParams={searchParams}
+            filteredFlights={filteredFlights}
+            hotels={hotels}
+            carRentals={carRentals}
+            selectedFlight={selectedFlight}
+            setSelectedFlight={setSelectedFlight}
+            selectedHotel={selectedHotel}
+            setSelectedHotel={setSelectedHotel}
+            selectedCar={selectedCar}
+            setSelectedCar={setSelectedCar}
+          />
         </div>
       </div>
+      
+      {/* Bottom booking bar */}
+      <BookingBar 
+        selectedFlight={selectedFlight}
+        selectedHotel={selectedHotel}
+        selectedCar={selectedCar}
+        flightOptions={flightOptions}
+        hotels={hotels}
+        carRentals={carRentals}
+        onBookNow={handleBookNow}
+      />
     </div>
   );
 };

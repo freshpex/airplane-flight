@@ -11,8 +11,7 @@ import { format } from 'date-fns';
 import { 
   Plane, 
   Calendar, 
-  Users, 
-  MapPin, 
+  Users,
   ArrowRight, 
   Search, 
   ChevronsUpDown, 
@@ -22,6 +21,8 @@ import {
   Luggage,
   Clock
 } from 'lucide-react';
+import AirportSelect from '@/components/travel/AirportSelect';
+import type { Airport } from '@/data/airports';
 
 const FlightSearch = () => {
   const [tripType, setTripType] = useState('roundtrip');
@@ -29,6 +30,8 @@ const FlightSearch = () => {
   const [returnDate, setReturnDate] = useState(format(new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), 'yyyy-MM-dd'));
   const [passengerCount, setPassengerCount] = useState(1);
   const [cabinClass, setCabinClass] = useState('Economy');
+  const [origin, setOrigin] = useState<Airport | null>(null);
+  const [destination, setDestination] = useState<Airport | null>(null);
 
   return (
     <PageLayout 
@@ -88,27 +91,21 @@ const FlightSearch = () => {
                   {/* Origin & Destination */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div className="relative">
-                      <Label htmlFor="origin" className="block text-sm font-medium text-gray-700 mb-1">From</Label>
-                      <div className="relative">
-                        <MapPin className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                        <Input 
-                          id="origin" 
-                          placeholder="City or Airport" 
-                          className="pl-10"
-                        />
-                      </div>
+                      <AirportSelect
+                        label="From"
+                        placeholder="City or Airport"
+                        icon="plane"
+                        onSelect={setOrigin}
+                      />
                     </div>
                     
                     <div className="relative">
-                      <Label htmlFor="destination" className="block text-sm font-medium text-gray-700 mb-1">To</Label>
-                      <div className="relative">
-                        <MapPin className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                        <Input 
-                          id="destination" 
-                          placeholder="City or Airport" 
-                          className="pl-10"
-                        />
-                      </div>
+                      <AirportSelect
+                        label="To"
+                        placeholder="City or Airport"
+                        icon="mappin"
+                        onSelect={setDestination}
+                      />
                     </div>
                     
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden md:block">
@@ -194,7 +191,25 @@ const FlightSearch = () => {
                   
                   {/* Search Button */}
                   <div className="flex justify-center">
-                    <Button variant="qatar" size="lg" className="w-full md:w-auto md:px-12 group">
+                    <Button 
+                      variant="qatar" 
+                      size="lg" 
+                      className="w-full md:w-auto md:px-12 group"
+                      disabled={!origin || !destination}
+                      onClick={() => {
+                        const searchData = {
+                          origin,
+                          destination,
+                          departureDate,
+                          returnDate: tripType === 'oneway' ? null : returnDate,
+                          passengerCount,
+                          cabinClass,
+                          tripType
+                        };
+                        console.log('Search data:', searchData);
+                        // Add navigation to results page here
+                      }}
+                    >
                       <Search className="mr-2 h-5 w-5" /> Search Flights
                     </Button>
                   </div>
