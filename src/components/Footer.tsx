@@ -34,6 +34,11 @@ const Footer = () => {
         { label: 'Check-in', href: '/travel/check-in' },
         { label: 'Baggage Info', href: '/travel/baggage-info' },
         { label: 'Travel Requirements', href: '/travel/travel-requirements' },
+        { label: 'Flight Status', href: '/travel/flight-status' },
+        { label: 'Manage Booking', href: '/travel/manage-booking' },
+        { label: 'Check-in', href: '/travel/check-in' },
+        { label: 'Baggage Info', href: '/travel/baggage-info' },
+        { label: 'Travel Requirements', href: '/travel/travel-requirements' },
       ]
     },
     {
