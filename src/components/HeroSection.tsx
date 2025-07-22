@@ -79,7 +79,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             Experience world-class service, luxury amenities, and seamless travel
-            to over 160 destinations worldwide with SkyWings.
+            to over 160 destinations worldwide with SkyWays.
           </motion.p>
 
           <motion.div

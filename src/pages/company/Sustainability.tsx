@@ -54,7 +54,7 @@ const Sustainability = () => {
           <div className="bg-green-50 border border-green-100 rounded-xl p-6 md:p-8">
             <h2 className="text-2xl font-bold mb-4 text-gray-900">Our Environmental Commitment</h2>
             <p className="text-gray-700 mb-6 leading-relaxed">
-              At SkyWings, we recognize the impact aviation has on the environment and are committed to leading the industry 
+              At SkyWays, we recognize the impact aviation has on the environment and are committed to leading the industry 
               towards a more sustainable future. We've developed a comprehensive sustainability strategy with clear targets 
               and initiatives to reduce our carbon footprint, minimize waste, conserve resources, and engage with communities.
             </p>
@@ -173,7 +173,7 @@ const Sustainability = () => {
             </div>
             <div className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
               <h3 className="text-lg font-semibold mb-3 text-gray-900">Carbon Calculator</h3>
-              <p className="text-gray-700 mb-4">Calculate and offset the carbon footprint of your flights with SkyWings.</p>
+              <p className="text-gray-700 mb-4">Calculate and offset the carbon footprint of your flights with SkyWays.</p>
               <Button variant="outline" className="w-full border-purple-800 text-purple-800 hover:bg-purple-50">
                 Calculate Now
               </Button>

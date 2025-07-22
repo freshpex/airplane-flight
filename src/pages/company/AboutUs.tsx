@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const AboutUs = () => {
   return (
     <PageLayout 
-      title="About SkyWings" 
+      title="About SkyWays" 
       subtitle="Our story, vision, and commitment to excellence"
     >
       <div className="max-w-4xl">
@@ -23,7 +23,7 @@ const AboutUs = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            Founded in 2005, SkyWings has grown from a small regional carrier to one of the world's most respected airlines. 
+            Founded in 2005, SkyWays has grown from a small regional carrier to one of the world's most respected airlines. 
             Our journey began with just three aircraft serving five destinations. Today, we connect passengers to over 160 
             destinations worldwide with a modern fleet of more than 200 aircraft.
           </motion.p>
@@ -34,7 +34,7 @@ const AboutUs = () => {
             transition={{ delay: 0.5 }}
           >
             Throughout our growth, we've remained committed to our founding principles: exceptional service, operational excellence, 
-            and a genuine care for our passengers. Each year, millions of travelers choose SkyWings for their journeys, 
+            and a genuine care for our passengers. Each year, millions of travelers choose SkyWays for their journeys, 
             whether for business or pleasure.
           </motion.p>
         </section>
@@ -54,7 +54,7 @@ const AboutUs = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7 }}
           >
-            At SkyWings, we envision a world where travel is not merely about moving from one place to another, but about 
+            At SkyWays, we envision a world where travel is not merely about moving from one place to another, but about 
             creating meaningful experiences. We strive to make every journey with us memorable, comfortable, and seamless.
           </motion.p>
           <motion.p 

@@ -296,7 +296,7 @@ const CarRentalPage = () => {
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl font-bold mb-8 text-center">Why Rent with SkyWings</h2>
+          <h2 className="text-2xl font-bold mb-8 text-center">Why Rent with SkyWays</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
@@ -318,7 +318,7 @@ const CarRentalPage = () => {
               {
                 icon: ArrowRight,
                 title: 'Earn Miles',
-                description: 'Collect SkyWings miles on every rental to redeem for future travel'
+                description: 'Collect SkyWays miles on every rental to redeem for future travel'
               }
             ].map((benefit, index) => {
               const Icon = benefit.icon;
@@ -354,7 +354,7 @@ const CarRentalPage = () => {
             <div className="p-8 flex flex-col justify-center text-white">
               <h2 className="text-2xl font-bold mb-4">Premium Vehicle Selection</h2>
               <p className="mb-6">
-                Enjoy exclusive rates on luxury and premium vehicles when you book with your SkyWings membership.
+                Enjoy exclusive rates on luxury and premium vehicles when you book with your SkyWays membership.
                 Experience the thrill of driving top-tier models from prestigious brands.
               </p>
               <Button 

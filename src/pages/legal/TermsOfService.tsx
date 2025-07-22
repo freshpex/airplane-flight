@@ -17,7 +17,7 @@ const TermsOfService = () => {
           <section>
             <h2 className="text-xl font-bold text-gray-900 mb-4">1. Introduction</h2>
             <p className="mb-4">
-              Welcome to SkyWings Airlines. These Terms of Service ("Terms") govern your use of our website, mobile application, 
+              Welcome to SkyWays Airlines. These Terms of Service ("Terms") govern your use of our website, mobile application, 
               and related services (collectively, the "Services"). By accessing or using our Services, you agree to be bound by 
               these Terms and our Privacy Policy.
             </p>
@@ -30,10 +30,10 @@ const TermsOfService = () => {
           <section>
             <h2 className="text-xl font-bold text-gray-900 mb-4">2. Definitions</h2>
             <ul className="list-disc pl-5 space-y-2">
-              <li><strong>"SkyWings,"</strong> "we," "our," or "us" refers to SkyWings Airlines, its subsidiaries, affiliates, and authorized agents.</li>
+              <li><strong>"SkyWays,"</strong> "we," "our," or "us" refers to SkyWays Airlines, its subsidiaries, affiliates, and authorized agents.</li>
               <li><strong>"You"</strong> or "your" refers to the individual or entity accessing or using our Services.</li>
-              <li><strong>"Services"</strong> refers to our website, mobile application, online booking platform, and any other related services offered by SkyWings.</li>
-              <li><strong>"Conditions of Carriage"</strong> refers to the separate document that governs the terms and conditions of air transportation provided by SkyWings.</li>
+              <li><strong>"Services"</strong> refers to our website, mobile application, online booking platform, and any other related services offered by SkyWays.</li>
+              <li><strong>"Conditions of Carriage"</strong> refers to the separate document that governs the terms and conditions of air transportation provided by SkyWays.</li>
             </ul>
           </section>
 
@@ -89,7 +89,7 @@ const TermsOfService = () => {
             <h2 className="text-xl font-bold text-gray-900 mb-4">6. Intellectual Property Rights</h2>
             <p className="mb-4">
               All content on our Services, including but not limited to text, graphics, logos, images, audio clips, digital 
-              downloads, and software, is the property of SkyWings or its content suppliers and is protected by international 
+              downloads, and software, is the property of SkyWays or its content suppliers and is protected by international 
               copyright, trademark, and other intellectual property laws.
             </p>
             <p>
@@ -117,7 +117,7 @@ const TermsOfService = () => {
           <section>
             <h2 className="text-xl font-bold text-gray-900 mb-4">8. Limitation of Liability</h2>
             <p className="mb-4">
-              To the maximum extent permitted by applicable law, SkyWings and its affiliates, officers, directors, employees, 
+              To the maximum extent permitted by applicable law, SkyWays and its affiliates, officers, directors, employees, 
               and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising 
               from or related to your use of our Services.
             </p>
@@ -130,7 +130,7 @@ const TermsOfService = () => {
           <section>
             <h2 className="text-xl font-bold text-gray-900 mb-4">9. Indemnification</h2>
             <p>
-              You agree to indemnify, defend, and hold harmless SkyWings and its affiliates, officers, directors, employees, 
+              You agree to indemnify, defend, and hold harmless SkyWays and its affiliates, officers, directors, employees, 
               and agents from and against any claims, liabilities, damages, losses, costs, expenses, or fees (including reasonable 
               attorneys' fees) arising from your violation of these Terms, your use of our Services, or your violation of any 
               rights of another person or entity.
@@ -165,9 +165,9 @@ const TermsOfService = () => {
               If you have any questions or concerns about these Terms, please contact our Customer Service department:
             </p>
             <div className="mt-4 bg-gray-50 p-4 rounded-lg">
-              <p className="font-semibold">SkyWings Customer Service</p>
-              <p>Email: legal@skywings.com</p>
-              <p>Address: SkyWings Airlines, 123 Aviation Blvd, Sky City</p>
+              <p className="font-semibold">SkyWays Customer Service</p>
+              <p>Email: legal@skyWays.com</p>
+              <p>Address: SkyWays Airlines, 123 Aviation Blvd, Sky City</p>
               <p>Phone: +1 (555) 987-6543</p>
             </div>
           </section>

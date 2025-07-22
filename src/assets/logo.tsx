@@ -58,7 +58,7 @@ const Logo: React.FC<LogoProps> = ({
         letterSpacing="0.05em"
         fill={textFill}
       >
-        SkyWings
+        SkyWays
       </text>
     </svg>
   );

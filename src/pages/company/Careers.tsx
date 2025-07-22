@@ -39,7 +39,7 @@ const jobOpenings = [
 const Careers = () => {
   return (
     <PageLayout 
-      title="Careers at SkyWings" 
+      title="Careers at SkyWays" 
       subtitle="Join our team and help shape the future of air travel"
     >
       <div className="max-w-5xl">
@@ -51,7 +51,7 @@ const Careers = () => {
         >
           <h2 className="text-2xl font-bold mb-4 text-gray-900">Why Work With Us</h2>
           <p className="text-gray-700 mb-4 leading-relaxed">
-            At SkyWings, we believe our employees are our greatest asset. We're committed to creating an 
+            At SkyWays, we believe our employees are our greatest asset. We're committed to creating an 
             environment where talented individuals can thrive, develop their skills, and build rewarding careers. 
             Working with us means being part of a diverse global team that's passionate about connecting people 
             and delivering exceptional experiences.

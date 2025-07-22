@@ -34,7 +34,7 @@ const BusinessTravelPage = () => {
               <div className="p-8 lg:p-12 flex flex-col justify-center">
                 <h2 className="text-2xl md:text-3xl font-bold mb-4">Streamline Your Business Travel</h2>
                 <p className="text-gray-600 mb-6">
-                  SkyWings Business Travel offers end-to-end corporate travel management with 
+                  SkyWays Business Travel offers end-to-end corporate travel management with 
                   customized solutions, dedicated support, and powerful expense tracking tools.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
@@ -181,7 +181,7 @@ const BusinessTravelPage = () => {
           </div>
         </div>
 
-        {/* Why Choose SkyWings Section */}
+        {/* Why Choose SkyWays Section */}
         <motion.div 
           className="mb-16 bg-gray-50 p-8 rounded-xl"
           initial={{ opacity: 0, y: 40 }}
@@ -189,7 +189,7 @@ const BusinessTravelPage = () => {
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl font-bold mb-10 text-center">Why Companies Choose SkyWings Business Travel</h2>
+          <h2 className="text-2xl font-bold mb-10 text-center">Why Companies Choose SkyWays Business Travel</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white p-6 rounded-xl shadow-sm">
@@ -258,7 +258,7 @@ const BusinessTravelPage = () => {
           </div>
         </motion.div>
 
-        {/* SkyWings Business Portal */}
+        {/* SkyWays Business Portal */}
         <motion.div 
           className="mb-16 bg-white rounded-xl overflow-hidden shadow-sm"
           initial={{ opacity: 0, y: 40 }}
@@ -268,7 +268,7 @@ const BusinessTravelPage = () => {
         >
           <div className="grid grid-cols-1 lg:grid-cols-2">
             <div className="p-8">
-              <h2 className="text-2xl font-bold mb-4">SkyWings Business Portal</h2>
+              <h2 className="text-2xl font-bold mb-4">SkyWays Business Portal</h2>
               <p className="text-gray-600 mb-6">
                 Our comprehensive business travel platform puts you in control of your company's 
                 travel program with powerful management tools and real-time reporting.
@@ -406,13 +406,13 @@ const BusinessTravelPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
-                quote: "SkyWings Business Travel has transformed our corporate travel program. The dedicated account team understands our needs and the platform has helped us reduce travel costs by 23% while improving traveler satisfaction.",
+                quote: "SkyWays Business Travel has transformed our corporate travel program. The dedicated account team understands our needs and the platform has helped us reduce travel costs by 23% while improving traveler satisfaction.",
                 author: "Sarah Johnson",
                 role: "Travel Manager",
                 company: "TechCorp Industries"
               },
               {
-                quote: "The seamless integration with our expense management system and the quality of customer support have made SkyWings an invaluable partner for our growing business. Their service is truly exceptional.",
+                quote: "The seamless integration with our expense management system and the quality of customer support have made SkyWays an invaluable partner for our growing business. Their service is truly exceptional.",
                 author: "David Chen",
                 role: "Chief Financial Officer",
                 company: "GreenPath Solutions"
@@ -472,7 +472,7 @@ const BusinessTravelPage = () => {
               <div className="flex gap-4">
                 <div className="flex items-center gap-2">
                   <Plane className="h-5 w-5" />
-                  <span>businesstravel@skywings.com</span>
+                  <span>businesstravel@skyWays.com</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar className="h-5 w-5" />
@@ -549,7 +549,7 @@ const BusinessTravelPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
-                question: "How do I set up a corporate account with SkyWings?",
+                question: "How do I set up a corporate account with SkyWays?",
                 answer: "Setting up a corporate account is simple. Complete our business request form, and a dedicated account manager will contact you to discuss your needs, travel patterns, and requirements. We'll then create a customized program proposal for your review."
               },
               {
@@ -562,7 +562,7 @@ const BusinessTravelPage = () => {
               },
               {
                 question: "What kind of reporting is available?",
-                answer: "SkyWings offers comprehensive reporting capabilities including spending by department, policy compliance, carbon emissions, traveler location, and savings opportunities. Reports can be customized, scheduled, and exported in various formats."
+                answer: "SkyWays offers comprehensive reporting capabilities including spending by department, policy compliance, carbon emissions, traveler location, and savings opportunities. Reports can be customized, scheduled, and exported in various formats."
               }
             ].map((faq, index) => (
               <div key={index} className="bg-white p-6 rounded-xl shadow-sm">

@@ -19,7 +19,7 @@ const Feedback = () => {
           {/* Introduction section */}
           <section className="text-gray-700">
             <p className="mb-4">
-              At SkyWings Airlines, we are committed to providing exceptional service to all our passengers. 
+              At SkyWays Airlines, we are committed to providing exceptional service to all our passengers. 
               Your feedback is invaluable in helping us understand what we're doing well and where we can improve.
             </p>
             <p>
@@ -268,7 +268,7 @@ const Feedback = () => {
                 <p className="mb-2 text-gray-600">
                   Contact our dedicated customer support team:
                 </p>
-                <p className="text-gray-800">feedback@skywings.com</p>
+                <p className="text-gray-800">feedback@skyWays.com</p>
                 <p className="text-gray-800">+1 (555) 123-4567</p>
               </div>
               

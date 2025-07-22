@@ -6,33 +6,33 @@ import { Button } from '@/components/ui/button';
 const pressReleases = [
   {
     id: 1,
-    title: "SkyWings Announces New Routes to Southeast Asia",
+    title: "SkyWays Announces New Routes to Southeast Asia",
     date: "July 10, 2025",
-    excerpt: "SkyWings Airlines is expanding its network with new direct flights to Bangkok, Bali, and Ho Chi Minh City starting September 2025.",
+    excerpt: "SkyWays Airlines is expanding its network with new direct flights to Bangkok, Bali, and Ho Chi Minh City starting September 2025.",
   },
   {
     id: 2,
-    title: "SkyWings Receives \"Best In-flight Entertainment\" Award",
+    title: "SkyWays Receives \"Best In-flight Entertainment\" Award",
     date: "June 22, 2025",
-    excerpt: "SkyWings has been recognized for its innovative in-flight entertainment system at the annual Airline Excellence Awards.",
+    excerpt: "SkyWays has been recognized for its innovative in-flight entertainment system at the annual Airline Excellence Awards.",
   },
   {
     id: 3,
-    title: "SkyWings Signs Sustainable Fuel Agreement",
+    title: "SkyWays Signs Sustainable Fuel Agreement",
     date: "May 15, 2025",
-    excerpt: "In a move toward carbon neutrality, SkyWings has signed an agreement with GreenFuel to use sustainable aviation fuel on 30% of flights by 2027.",
+    excerpt: "In a move toward carbon neutrality, SkyWays has signed an agreement with GreenFuel to use sustainable aviation fuel on 30% of flights by 2027.",
   },
   {
     id: 4,
-    title: "SkyWings Unveils New Business Class Experience",
+    title: "SkyWays Unveils New Business Class Experience",
     date: "April 3, 2025",
-    excerpt: "SkyWings introduces \"SkyLuxe,\" a completely redesigned business class experience featuring private suites and enhanced dining options.",
+    excerpt: "SkyWays introduces \"SkyLuxe,\" a completely redesigned business class experience featuring private suites and enhanced dining options.",
   },
   {
     id: 5,
-    title: "SkyWings Celebrates 20 Years of Operation",
+    title: "SkyWays Celebrates 20 Years of Operation",
     date: "March 12, 2025",
-    excerpt: "SkyWings marks two decades of connecting the world with special anniversary promotions and events throughout the year.",
+    excerpt: "SkyWays marks two decades of connecting the world with special anniversary promotions and events throughout the year.",
   },
 ];
 
@@ -92,13 +92,13 @@ const Press = () => {
             <div className="bg-gray-50 rounded-xl p-6">
               <h3 className="text-lg font-semibold mb-2 text-gray-900">Media Inquiries</h3>
               <p className="text-gray-700 mb-4">For press and media inquiries, please contact:</p>
-              <p className="font-medium">media@skywings.com</p>
+              <p className="font-medium">media@skyWays.com</p>
               <p>+1 (555) 234-5678</p>
             </div>
             <div className="bg-gray-50 rounded-xl p-6">
               <h3 className="text-lg font-semibold mb-2 text-gray-900">Corporate Communications</h3>
               <p className="text-gray-700 mb-4">For corporate and investor relations:</p>
-              <p className="font-medium">corporate@skywings.com</p>
+              <p className="font-medium">corporate@skyWays.com</p>
               <p>+1 (555) 876-5432</p>
             </div>
           </div>

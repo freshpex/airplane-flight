@@ -19,7 +19,7 @@ const Accessibility = () => {
           <section>
             <h2 className="text-xl font-bold text-gray-900 mb-4">Our Commitment</h2>
             <p className="mb-4">
-              At SkyWings Airlines, we believe that air travel should be accessible to everyone. We are committed to providing 
+              At SkyWays Airlines, we believe that air travel should be accessible to everyone. We are committed to providing 
               an inclusive and supportive travel experience for all our passengers, including those with disabilities or 
               mobility challenges.
             </p>
@@ -106,7 +106,7 @@ const Accessibility = () => {
                   <p className="mb-4">
                     Our dedicated team is available to help with any questions or arrangements for your journey.
                   </p>
-                  <p className="font-medium">special.assistance@skywings.com</p>
+                  <p className="font-medium">special.assistance@skyWays.com</p>
                   <p className="mb-4">+1 (555) 234-5678</p>
                   <Button variant="qatar" className="group">
                     Request Assistance
@@ -152,7 +152,7 @@ const Accessibility = () => {
             </p>
             <div className="mt-4 bg-gray-50 p-4 rounded-lg">
               <p className="font-semibold">Accessibility Feedback</p>
-              <p>Email: accessibility@skywings.com</p>
+              <p>Email: accessibility@skyWays.com</p>
               <p>Phone: +1 (555) 987-6543</p>
               <p>Online: <a href="#" className="text-purple-800 hover:underline">Submit Feedback Form</a></p>
             </div>

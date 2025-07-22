@@ -30,7 +30,7 @@ interface Hotel {
 const hotels = [
   {
     id: 1,
-    name: 'SkyWings Grand Hotel',
+    name: 'SkyWays Grand Hotel',
     location: 'Paris, France',
     rating: 5,
     price: '€250',
@@ -40,7 +40,7 @@ const hotels = [
   },
   {
     id: 2,
-    name: 'SkyWings Resort & Spa',
+    name: 'SkyWays Resort & Spa',
     location: 'Santorini, Greece',
     rating: 5,
     price: '€380',
@@ -50,7 +50,7 @@ const hotels = [
   },
   {
     id: 3,
-    name: 'SkyWings Business Center',
+    name: 'SkyWays Business Center',
     location: 'London, UK',
     rating: 4.5,
     price: '£189',
@@ -60,7 +60,7 @@ const hotels = [
   },
   {
     id: 4,
-    name: 'SkyWings Beach Resort',
+    name: 'SkyWays Beach Resort',
     location: 'Maldives',
     rating: 5,
     price: '$520',
@@ -70,7 +70,7 @@ const hotels = [
   },
   {
     id: 5,
-    name: 'SkyWings Urban Boutique',
+    name: 'SkyWays Urban Boutique',
     location: 'Tokyo, Japan',
     rating: 4.5,
     price: '¥32,000',
@@ -80,7 +80,7 @@ const hotels = [
   },
   {
     id: 6,
-    name: 'SkyWings Desert Retreat',
+    name: 'SkyWays Desert Retreat',
     location: 'Dubai, UAE',
     rating: 5,
     price: 'AED 1,200',
@@ -124,7 +124,7 @@ const HotelsPage = () => {
 
   return (
     <PageLayout 
-      title="SkyWings Hotels" 
+      title="SkyWays Hotels" 
       subtitle="Luxury accommodations in top destinations worldwide"
     >
       <div className="max-w-7xl mx-auto">
@@ -197,7 +197,7 @@ const HotelsPage = () => {
         {/* Featured Hotels */}
         <div className="mb-16">
           <div className="flex justify-between items-center mb-8">
-            <h2 className="text-2xl font-bold">Featured SkyWings Hotels</h2>
+            <h2 className="text-2xl font-bold">Featured SkyWays Hotels</h2>
             <Button variant="outline" className="border-purple-800 text-purple-800 hover:bg-purple-50">
               View All Hotels
             </Button>
@@ -223,7 +223,7 @@ const HotelsPage = () => {
           </motion.div>
         </div>
 
-        {/* SkyWings Hotels Benefits */}
+        {/* SkyWays Hotels Benefits */}
         <motion.div 
           className="mb-16 bg-white p-8 rounded-xl shadow-sm"
           initial={{ opacity: 0, y: 40 }}
@@ -231,14 +231,14 @@ const HotelsPage = () => {
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl font-bold mb-8 text-center">Why Book with SkyWings Hotels</h2>
+          <h2 className="text-2xl font-bold mb-8 text-center">Why Book with SkyWays Hotels</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
                 icon: Star,
                 title: 'Exclusive Member Rates',
-                description: 'Save up to 15% on hotel bookings with your SkyWings membership'
+                description: 'Save up to 15% on hotel bookings with your SkyWays membership'
               },
               {
                 icon: Check,
@@ -347,7 +347,7 @@ const HotelsPage = () => {
         >
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="mb-6 md:mb-0">
-              <h2 className="text-2xl font-bold mb-2">Join SkyWings Elite Hotel Program</h2>
+              <h2 className="text-2xl font-bold mb-2">Join SkyWays Elite Hotel Program</h2>
               <p className="max-w-2xl">
                 Enjoy exclusive benefits, earn points with every stay, and unlock premium perks like room upgrades,
                 late check-out, and complimentary services.
@@ -417,8 +417,8 @@ const HotelsPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
-                question: 'How do I earn points with SkyWings Hotels?',
-                answer: 'You earn points for every qualified stay at any SkyWings Hotel. Elite members earn bonus points based on their tier status. Points can be redeemed for free nights, room upgrades, or transferred to your flight miles.'
+                question: 'How do I earn points with SkyWays Hotels?',
+                answer: 'You earn points for every qualified stay at any SkyWays Hotel. Elite members earn bonus points based on their tier status. Points can be redeemed for free nights, room upgrades, or transferred to your flight miles.'
               },
               {
                 question: 'What is the cancellation policy?',
@@ -430,7 +430,7 @@ const HotelsPage = () => {
               },
               {
                 question: 'Are breakfast and Wi-Fi included?',
-                answer: 'Most SkyWings Hotels offer complimentary Wi-Fi. Breakfast inclusion varies by property and rate. Elite members often receive breakfast as a status benefit.'
+                answer: 'Most SkyWays Hotels offer complimentary Wi-Fi. Breakfast inclusion varies by property and rate. Elite members often receive breakfast as a status benefit.'
               }
             ].map((faq, index) => (
               <div key={index} className="border-b border-gray-200 pb-4">
@@ -451,7 +451,7 @@ const HotelsPage = () => {
         >
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-3/5 mb-6 md:mb-0">
-              <h2 className="text-2xl font-bold mb-2">Download the SkyWings App</h2>
+              <h2 className="text-2xl font-bold mb-2">Download the SkyWays App</h2>
               <p className="text-gray-600 mb-6">
                 Book and manage your hotel stays on the go. Enjoy mobile check-in, room selection,
                 and exclusive mobile-only deals.

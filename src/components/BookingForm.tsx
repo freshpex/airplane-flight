@@ -1,31 +1,199 @@
-import { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { 
-  Plane, 
-  Calendar, 
-  Users, 
-  ArrowRight, 
-  MapPin,
-  ArrowUpDown
-} from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { useNavigate } from 'react-router-dom';
+
+import { Card, CardContent } from './ui/card';
+import { cn } from '../lib/utils';
+import { amadeusService } from '../utils/amadeus';
+import type { AirportLocation } from '../utils/amadeus';
+
+// Import sub-components
+import TripTypeSelector from './booking/TripTypeSelector';
+import AirportSearchInput, { formatAirportDisplay } from './booking/AirportSearchInput';
+import DateSelector from './booking/DateSelector';
+import PassengerSelector from './booking/PassengerSelector';
+import CabinClassSelector from './booking/CabinClassSelector';
+import HotelSection from './booking/HotelSection';
+import CarRentalSection from './booking/CarRentalSection';
+import ActivitiesSection from './booking/ActivitiesSection';
+import QuickOptions from './booking/QuickOptions';
+import SearchButton from './booking/SearchButton';
 
 const BookingForm = () => {
   const [tripType, setTripType] = useState<'roundtrip' | 'oneway' | 'multicity'>('roundtrip');
-  const [passengers] = useState({
+  
+  // Date selection state
+  const [departureDate, setDepartureDate] = useState('');
+  const [returnDate, setReturnDate] = useState('');
+  
+  // Cabin class selection
+  const [cabinClass, setCabinClass] = useState('Economy');
+  
+  // Airport search state
+  const [departureQuery, setDepartureQuery] = useState('');
+  const [departureResults, setDepartureResults] = useState<AirportLocation[]>([]);
+  const [selectedDeparture, setSelectedDeparture] = useState<AirportLocation | null>(null);
+  
+  const [arrivalQuery, setArrivalQuery] = useState('');
+  const [arrivalResults, setArrivalResults] = useState<AirportLocation[]>([]);
+  const [selectedArrival, setSelectedArrival] = useState<AirportLocation | null>(null);
+  
+  // Loading states
+  const [isDepartureLoading, setIsDepartureLoading] = useState(false);
+  const [isArrivalLoading, setIsArrivalLoading] = useState(false);
+  
+  // Passengers state
+  const [passengers, setPassengers] = useState({
     adults: 1,
     children: 0,
     infants: 0,
   });
+  
+  // Add-on sections visibility
+  const [showHotelSection, setShowHotelSection] = useState(false);
+  const [showCarRentalSection, setShowCarRentalSection] = useState(false);
+  const [showActivitiesSection, setShowActivitiesSection] = useState(false);
+  
+  // Hotel state
+  const [hotelCheckIn, setHotelCheckIn] = useState('');
+  const [hotelCheckOut, setHotelCheckOut] = useState('');
+  const [rooms, setRooms] = useState(1);
+  const [hotelRating, setHotelRating] = useState(0);
+  
+  // Car rental state
+  const [carPickupDate, setCarPickupDate] = useState('');
+  const [carDropoffDate, setCarDropoffDate] = useState('');
+  const [carType, setCarType] = useState('any');
+  const [driverAge, setDriverAge] = useState(25);
+  
+  // Activities state
+  const [activityDate, setActivityDate] = useState('');
+  const [activityType, setActivityType] = useState('any');
+  const [activityParticipants, setActivityParticipants] = useState(2);
+  
+  // Search state
+  const [isSearching, setIsSearching] = useState(false);
+  
+  // Import useNavigate hook from React Router
+  const navigate = useNavigate();
 
-  const tripTypes = [
-    { id: 'roundtrip', label: 'Round Trip', icon: ArrowUpDown },
-    { id: 'oneway', label: 'One Way', icon: ArrowRight },
-    { id: 'multicity', label: 'Multi City', icon: MapPin },
-  ];
+  // Handle search functionality
+  const handleSearch = (e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    if (!selectedDeparture || !selectedArrival) {
+      return;
+    }
+    
+    setIsSearching(true);
+    
+    // Prepare search parameters
+    const searchParams = {
+      from: formatAirportDisplay(selectedDeparture),
+      to: formatAirportDisplay(selectedArrival),
+      departDate: departureDate,
+      returnDate: returnDate,
+      passengers: {
+        adults: passengers.adults,
+        children: passengers.children,
+        infants: passengers.infants
+      },
+      cabinClass: cabinClass,
+      tripType: tripType,
+      includeHotels: showHotelSection,
+      includeCarRentals: showCarRentalSection,
+      includeActivities: showActivitiesSection,
+      // Additional details
+      hotel: showHotelSection ? {
+        checkIn: hotelCheckIn,
+        checkOut: hotelCheckOut,
+        rooms,
+        rating: hotelRating
+      } : null,
+      car: showCarRentalSection ? {
+        pickupDate: carPickupDate,
+        dropoffDate: carDropoffDate,
+        type: carType,
+        driverAge
+      } : null,
+      activities: showActivitiesSection ? {
+        date: activityDate,
+        type: activityType,
+        participants: activityParticipants
+      } : null
+    };
+    
+    console.log('Search parameters:', searchParams);
+    
+    // Simulate a small delay for better user experience
+    setTimeout(() => {
+      setIsSearching(false);
+      // Navigate to search results with search parameters
+      navigate('/search-results', { state: searchParams });
+    }, 1000);
+  };
+
+  // Search for departure airports with error handling
+  const searchDepartureAirports = useCallback(async (query: string) => {
+    if (query.length < 2) return;
+    setIsDepartureLoading(true);
+    try {
+      const results = await amadeusService.searchAirports(query);
+      if (results.length === 0) {
+        console.log('No departure airports found for query:', query);
+      }
+      setDepartureResults(results);
+    } catch (error) {
+      console.error('Error searching departure airports:', error);
+      // The amadeusService now handles errors internally and returns mock data
+    } finally {
+      setIsDepartureLoading(false);
+    }
+  }, []);
+
+  // Search for arrival airports with error handling
+  const searchArrivalAirports = useCallback(async (query: string) => {
+    if (query.length < 2) return;
+    setIsArrivalLoading(true);
+    try {
+      const results = await amadeusService.searchAirports(query);
+      if (results.length === 0) {
+        console.log('No arrival airports found for query:', query);
+      }
+      setArrivalResults(results);
+    } catch (error) {
+      console.error('Error searching arrival airports:', error);
+      // The amadeusService now handles errors internally and returns mock data
+    } finally {
+      setIsArrivalLoading(false);
+    }
+  }, []);
+
+  // Debounce search for departure airports
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      if (departureQuery.length >= 2) {
+        searchDepartureAirports(departureQuery);
+      }
+    }, 300);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [departureQuery, searchDepartureAirports]);
+
+  // Debounce search for arrival airports
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      if (arrivalQuery.length >= 2) {
+        searchArrivalAirports(arrivalQuery);
+      }
+    }, 300);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [arrivalQuery, searchArrivalAirports]);
 
   return (
     <section className="relative -mt-32 z-30 px-4 sm:px-6 lg:px-8">
@@ -38,90 +206,57 @@ const BookingForm = () => {
           <Card className="backdrop-blur-sm bg-white/95 shadow-2xl border-0">
             <CardContent className="p-6 lg:p-8">
               {/* Trip Type Selector */}
-              <div className="flex flex-wrap gap-2 mb-6">
-                {tripTypes.map((type) => {
-                  const Icon = type.icon;
-                  return (
-                    <motion.button
-                      key={type.id}
-                      onClick={() => setTripType(type.id as any)}
-                      className={cn(
-                        'flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200',
-                        tripType === type.id
-                          ? 'bg-purple-600 text-white shadow-lg'
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                      )}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Icon className="h-4 w-4" />
-                      <span>{type.label}</span>
-                    </motion.button>
-                  );
-                })}
-              </div>
+              <TripTypeSelector tripType={tripType} setTripType={setTripType} />
 
               {/* Booking Form */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6">
                 {/* From */}
                 <div className="lg:col-span-3">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    From
-                  </label>
-                  <div className="relative">
-                    <Plane className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                    <Input
-                      placeholder="Departure city"
-                      className="pl-10 h-12 text-base"
-                      defaultValue="New York (NYC)"
-                    />
-                  </div>
+                  <AirportSearchInput
+                    label="From"
+                    placeholder="Departure city or airport"
+                    query={departureQuery}
+                    setQuery={setDepartureQuery}
+                    results={departureResults}
+                    isLoading={isDepartureLoading}
+                    selectedAirport={selectedDeparture}
+                    setSelectedAirport={setSelectedDeparture}
+                    icon="plane"
+                  />
                 </div>
 
                 {/* To */}
                 <div className="lg:col-span-3">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    To
-                  </label>
-                  <div className="relative">
-                    <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                    <Input
-                      placeholder="Destination city"
-                      className="pl-10 h-12 text-base"
-                      defaultValue="Dubai (DXB)"
-                    />
-                  </div>
+                  <AirportSearchInput
+                    label="To"
+                    placeholder="Destination city or airport"
+                    query={arrivalQuery}
+                    setQuery={setArrivalQuery}
+                    results={arrivalResults}
+                    isLoading={isArrivalLoading}
+                    selectedAirport={selectedArrival}
+                    setSelectedAirport={setSelectedArrival}
+                    icon="mappin"
+                  />
                 </div>
 
                 {/* Departure Date */}
                 <div className="lg:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Departure
-                  </label>
-                  <div className="relative">
-                    <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                    <Input
-                      type="date"
-                      className="pl-10 h-12 text-base"
-                      defaultValue="2025-08-15"
-                    />
-                  </div>
+                  <DateSelector
+                    label="Departure"
+                    defaultValue="2025-08-15"
+                    onChange={setDepartureDate}
+                  />
                 </div>
 
-                {/* Return Date */}
+                {/* Return Date - only show if roundtrip */}
                 {tripType === 'roundtrip' && (
                   <div className="lg:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Return
-                    </label>
-                    <div className="relative">
-                      <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                      <Input
-                        type="date"
-                        className="pl-10 h-12 text-base"
-                        defaultValue="2025-08-25"
-                      />
-                    </div>
+                    <DateSelector
+                      label="Return"
+                      defaultValue="2025-08-25"
+                      onChange={setReturnDate}
+                    />
                   </div>
                 )}
 
@@ -129,63 +264,77 @@ const BookingForm = () => {
                 <div className={cn(
                   tripType === 'roundtrip' ? 'lg:col-span-2' : 'lg:col-span-4'
                 )}>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Passengers
-                  </label>
-                  <div className="relative">
-                    <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                    <Input
-                      readOnly
-                      className="pl-10 h-12 text-base cursor-pointer"
-                      value={`${passengers.adults + passengers.children + passengers.infants} Passenger${passengers.adults + passengers.children + passengers.infants !== 1 ? 's' : ''}`}
-                    />
-                  </div>
+                  <PassengerSelector 
+                    passengers={passengers}
+                    setPassengers={setPassengers}
+                  />
+                </div>
+
+                {/* Cabin Class */}
+                <div className="lg:col-span-2">
+                  <CabinClassSelector
+                    cabinClass={cabinClass}
+                    setCabinClass={setCabinClass}
+                  />
                 </div>
 
                 {/* Search Button */}
-                <div className="lg:col-span-12 lg:col-start-1 mt-4">
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <Button
-                      variant="qatar"
-                      size="xl"
-                      className="w-full lg:w-auto lg:px-12 group relative overflow-hidden"
-                    >
-                      <span className="relative z-10 flex items-center justify-center">
-                        Search Flights
-                        <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                      </span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
-                    </Button>
-                  </motion.div>
-                </div>
+                <SearchButton
+                  onClick={handleSearch}
+                  disabled={!selectedDeparture || !selectedArrival}
+                  isSearching={isSearching}
+                />
               </div>
 
               {/* Quick Options */}
-              <div className="mt-6 pt-6 border-t border-gray-200">
-                <div className="flex flex-wrap gap-4 text-sm">
-                  <motion.button
-                    className="text-purple-600 hover:text-purple-800 font-medium"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    + Add hotels
-                  </motion.button>
-                  <motion.button
-                    className="text-purple-600 hover:text-purple-800 font-medium"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    + Add car rental
-                  </motion.button>
-                  <motion.button
-                    className="text-purple-600 hover:text-purple-800 font-medium"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    + Add activities
-                  </motion.button>
-                </div>
-              </div>
+              <QuickOptions
+                showHotelSection={showHotelSection}
+                setShowHotelSection={setShowHotelSection}
+                showCarRentalSection={showCarRentalSection}
+                setShowCarRentalSection={setShowCarRentalSection}
+                showActivitiesSection={showActivitiesSection}
+                setShowActivitiesSection={setShowActivitiesSection}
+              />
+
+              {/* Hotel Section */}
+              {showHotelSection && (
+                <HotelSection
+                  hotelCheckIn={hotelCheckIn}
+                  setHotelCheckIn={setHotelCheckIn}
+                  hotelCheckOut={hotelCheckOut}
+                  setHotelCheckOut={setHotelCheckOut}
+                  rooms={rooms}
+                  setRooms={setRooms}
+                  hotelRating={hotelRating}
+                  setHotelRating={setHotelRating}
+                />
+              )}
+
+              {/* Car Rental Section */}
+              {showCarRentalSection && (
+                <CarRentalSection
+                  carPickupDate={carPickupDate}
+                  setCarPickupDate={setCarPickupDate}
+                  carDropoffDate={carDropoffDate}
+                  setCarDropoffDate={setCarDropoffDate}
+                  carType={carType}
+                  setCarType={setCarType}
+                  driverAge={driverAge}
+                  setDriverAge={setDriverAge}
+                />
+              )}
+
+              {/* Activities Section */}
+              {showActivitiesSection && (
+                <ActivitiesSection
+                  activityDate={activityDate}
+                  setActivityDate={setActivityDate}
+                  activityType={activityType}
+                  setActivityType={setActivityType}
+                  activityParticipants={activityParticipants}
+                  setActivityParticipants={setActivityParticipants}
+                />
+              )}
             </CardContent>
           </Card>
         </motion.div>

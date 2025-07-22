@@ -134,7 +134,7 @@ const TravelInsurancePage = () => {
               <div className="p-8 md:col-span-3 flex flex-col justify-center text-white">
                 <h2 className="text-2xl md:text-3xl font-bold mb-4">Travel with Confidence</h2>
                 <p className="mb-6 text-white/90">
-                  Protect your journey with SkyWings comprehensive travel insurance. Get coverage for medical emergencies, 
+                  Protect your journey with SkyWays comprehensive travel insurance. Get coverage for medical emergencies, 
                   trip cancellations, lost baggage, and more. Peace of mind, wherever you go.
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
@@ -428,7 +428,7 @@ const TravelInsurancePage = () => {
           </div>
         </motion.div>
 
-        {/* Why Choose SkyWings Insurance */}
+        {/* Why Choose SkyWays Insurance */}
         <motion.div 
           className="mb-16 bg-white p-8 rounded-xl shadow-sm"
           initial={{ opacity: 0, y: 40 }}
@@ -436,7 +436,7 @@ const TravelInsurancePage = () => {
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl font-bold mb-8 text-center">Why Choose SkyWings Travel Insurance</h2>
+          <h2 className="text-2xl font-bold mb-8 text-center">Why Choose SkyWays Travel Insurance</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[

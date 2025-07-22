@@ -17,7 +17,7 @@ const PrivacyPolicy = () => {
           <section>
             <h2 className="text-xl font-bold text-gray-900 mb-4">Introduction</h2>
             <p className="mb-4">
-              SkyWings Airlines ("we", "our", "us") is committed to protecting and respecting your privacy. This Privacy Policy 
+              SkyWays Airlines ("we", "our", "us") is committed to protecting and respecting your privacy. This Privacy Policy 
               explains how we collect, use, and safeguard your information when you visit our website, use our mobile 
               application, or interact with any of our services.
             </p>
@@ -151,8 +151,8 @@ const PrivacyPolicy = () => {
             </p>
             <div className="mt-4 bg-gray-50 p-4 rounded-lg">
               <p className="font-semibold">Privacy Officer</p>
-              <p>Email: privacy@skywings.com</p>
-              <p>Address: SkyWings Airlines, 123 Aviation Blvd, Sky City</p>
+              <p>Email: privacy@skyWays.com</p>
+              <p>Address: SkyWays Airlines, 123 Aviation Blvd, Sky City</p>
               <p>Phone: +1 (555) 123-4567</p>
             </div>
           </section>

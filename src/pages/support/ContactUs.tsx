@@ -49,9 +49,9 @@ const ContactUs = () => {
                 Send us an email and we'll respond within 24 hours.
               </p>
               <p className="font-semibold">Customer Support</p>
-              <p className="mb-2">support@skywings.com</p>
+              <p className="mb-2">support@skyWays.com</p>
               <p className="font-semibold">Corporate Inquiries</p>
-              <p>corporate@skywings.com</p>
+              <p>corporate@skyWays.com</p>
             </motion.div>
 
             <motion.div 
@@ -226,17 +226,17 @@ const ContactUs = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div>
               <h3 className="text-lg font-semibold mb-2">Corporate Partnerships</h3>
-              <p className="text-gray-600 mb-1">partnerships@skywings.com</p>
+              <p className="text-gray-600 mb-1">partnerships@skyWays.com</p>
               <p className="text-gray-600">+1 (555) 234-5678</p>
             </div>
             <div>
               <h3 className="text-lg font-semibold mb-2">Media Relations</h3>
-              <p className="text-gray-600 mb-1">press@skywings.com</p>
+              <p className="text-gray-600 mb-1">press@skyWays.com</p>
               <p className="text-gray-600">+1 (555) 345-6789</p>
             </div>
             <div>
               <h3 className="text-lg font-semibold mb-2">Investor Relations</h3>
-              <p className="text-gray-600 mb-1">investors@skywings.com</p>
+              <p className="text-gray-600 mb-1">investors@skyWays.com</p>
               <p className="text-gray-600">+1 (555) 456-7890</p>
             </div>
           </div>

@@ -127,7 +127,7 @@ const FlightStatus = () => {
   return (
     <PageLayout
       title="Flight Status"
-      subtitle="Track the real-time status of SkyWings flights around the world"
+      subtitle="Track the real-time status of SkyWays flights around the world"
       backgroundImage="https://images.unsplash.com/photo-1531299983330-093763e1d962?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
     >
       <div className="max-w-7xl mx-auto">
@@ -386,7 +386,7 @@ const FlightStatus = () => {
           <div className="bg-white rounded-xl p-6 shadow-sm">
             <h3 className="text-xl font-semibold mb-4">Flight Status Information</h3>
             <p className="text-gray-600 mb-4">
-              Our flight status tool provides real-time information about SkyWings flights. 
+              Our flight status tool provides real-time information about SkyWays flights. 
               Status updates include:
             </p>
             <ul className="space-y-2">

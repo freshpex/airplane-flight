@@ -22,7 +22,7 @@ import {
 const LoyaltyProgram = () => {
   return (
     <PageLayout
-      title="SkyWings Elite Rewards"
+      title="SkyWays Elite Rewards"
       subtitle="Experience exclusive privileges and benefits with our loyalty program"
     >
       <div className="max-w-7xl mx-auto">
@@ -43,7 +43,7 @@ const LoyaltyProgram = () => {
                 >
                   <div className="mb-4 flex items-center">
                     <Award className="h-8 w-8 mr-3 text-yellow-300" />
-                    <h2 className="text-3xl md:text-4xl font-bold">SkyWings Elite Rewards</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold">SkyWays Elite Rewards</h2>
                   </div>
                   <p className="text-lg mb-8 text-white/85">
                     Join our award-winning loyalty program and unlock a world of premium benefits,
@@ -97,7 +97,7 @@ const LoyaltyProgram = () => {
           <div className="text-center mb-10">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">How It Works</h2>
             <p className="text-gray-600 max-w-3xl mx-auto">
-              Earning and redeeming rewards is simple with SkyWings Elite. Just follow these steps to 
+              Earning and redeeming rewards is simple with SkyWays Elite. Just follow these steps to 
               maximize your benefits and enjoy premium travel experiences.
             </p>
           </div>
@@ -112,7 +112,7 @@ const LoyaltyProgram = () => {
               {
                 icon: Plane,
                 title: "Earn Miles",
-                description: "Fly with SkyWings or spend with our partners to accumulate miles."
+                description: "Fly with SkyWays or spend with our partners to accumulate miles."
               },
               {
                 icon: Award,
@@ -162,7 +162,7 @@ const LoyaltyProgram = () => {
           <div className="text-center mb-10">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">Elite Membership Tiers</h2>
             <p className="text-gray-600 max-w-3xl mx-auto">
-              As you fly more with SkyWings, you'll progress through our membership tiers, each offering 
+              As you fly more with SkyWays, you'll progress through our membership tiers, each offering 
               increasingly valuable benefits and exclusive privileges.
             </p>
           </div>
@@ -270,7 +270,7 @@ const LoyaltyProgram = () => {
             <div className="text-center mb-8">
               <h2 className="text-2xl md:text-3xl font-bold mb-4">Ways to Earn & Redeem</h2>
               <p className="text-gray-600 max-w-3xl mx-auto mb-6">
-                There are many ways to earn and use your SkyWings Elite miles. 
+                There are many ways to earn and use your SkyWays Elite miles. 
                 Choose what works best for you.
               </p>
               <TabsList className="bg-gray-100 p-1">
@@ -285,7 +285,7 @@ const LoyaltyProgram = () => {
                   {
                     icon: Plane,
                     title: "Flights",
-                    description: "Earn miles on every SkyWings flight and with our alliance partner airlines.",
+                    description: "Earn miles on every SkyWays flight and with our alliance partner airlines.",
                     items: [
                       "Based on fare and distance",
                       "Bonus miles for premium cabins",
@@ -386,12 +386,12 @@ const LoyaltyProgram = () => {
                   {
                     icon: Plane,
                     title: "Award Flights",
-                    description: "Use your miles to book flights on SkyWings and partner airlines.",
+                    description: "Use your miles to book flights on SkyWays and partner airlines.",
                     items: [
                       "One-way from 8,000 miles",
                       "Round-trip from 15,000 miles",
                       "Premium cabins available",
-                      "No blackout dates on SkyWings"
+                      "No blackout dates on SkyWays"
                     ]
                   },
                   {
@@ -655,7 +655,7 @@ const LoyaltyProgram = () => {
         >
           <div className="grid grid-cols-1 lg:grid-cols-2">
             <div className="p-8 lg:p-12 text-white">
-              <h2 className="text-2xl md:text-3xl font-bold mb-4">Download the SkyWings Mobile App</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">Download the SkyWays Mobile App</h2>
               <p className="mb-6">
                 Manage your Elite rewards, track your miles, and access your digital membership card 
                 anytime, anywhere with our mobile app.
@@ -713,8 +713,8 @@ const LoyaltyProgram = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
-                question: "How do I join SkyWings Elite Rewards?",
-                answer: "Joining is free and easy. You can sign up online through our website, through the mobile app, or at any SkyWings check-in counter. You'll receive your membership number instantly and can start earning miles right away."
+                question: "How do I join SkyWays Elite Rewards?",
+                answer: "Joining is free and easy. You can sign up online through our website, through the mobile app, or at any SkyWays check-in counter. You'll receive your membership number instantly and can start earning miles right away."
               },
               {
                 question: "When do my miles expire?",
@@ -722,7 +722,7 @@ const LoyaltyProgram = () => {
               },
               {
                 question: "Can I transfer miles to another member?",
-                answer: "Yes, you can transfer miles to other SkyWings Elite members. There is a small fee of $10 plus 1¢ per mile transferred. Gold and Platinum members receive one free transfer per year up to 50,000 miles."
+                answer: "Yes, you can transfer miles to other SkyWays Elite members. There is a small fee of $10 plus 1¢ per mile transferred. Gold and Platinum members receive one free transfer per year up to 50,000 miles."
               },
               {
                 question: "How do I reach elite status?",
@@ -766,7 +766,7 @@ const LoyaltyProgram = () => {
             <Award className="h-12 w-12 mx-auto mb-4 text-yellow-300" />
             <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to start earning rewards?</h2>
             <p className="max-w-2xl mx-auto mb-8">
-              Join SkyWings Elite Rewards today and start your journey towards premium travel experiences,
+              Join SkyWays Elite Rewards today and start your journey towards premium travel experiences,
               exclusive benefits, and extraordinary destinations.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">

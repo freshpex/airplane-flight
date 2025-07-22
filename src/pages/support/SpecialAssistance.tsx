@@ -20,7 +20,7 @@ const SpecialAssistance = () => {
           {/* Introduction */}
           <section className="text-gray-700">
             <p className="mb-4">
-              At SkyWings Airlines, we are committed to making air travel accessible and comfortable for all passengers, 
+              At SkyWays Airlines, we are committed to making air travel accessible and comfortable for all passengers, 
               including those who require special assistance. Our dedicated team is here to ensure that your journey is 
               as smooth and enjoyable as possible.
             </p>
@@ -423,7 +423,7 @@ const SpecialAssistance = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <p className="font-medium text-gray-900">Email</p>
-                  <p className="text-gray-700 mb-2">special.assistance@skywings.com</p>
+                  <p className="text-gray-700 mb-2">special.assistance@skyWays.com</p>
                   <p className="font-medium text-gray-900">Phone</p>
                   <p className="text-gray-700">+1 (555) 234-5678 (24/7 service)</p>
                 </div>

@@ -1,6 +1,7 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import LandingPage from "@/pages/LandingPage";
 import FlightSearch from "@/pages/FlightSearch";
+import SearchResults from "@/components/SearchResults";
 
 // Experience pages
 import BusinessTravel from "@/pages/experience/BusinessTravel";
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
   {
     path: "/flight-search",
     element: <DestinationsPage />,
+  },
+  {
+    path: "/search-results",
+    element: <SearchResults />,
   },
 
   // Experience pages

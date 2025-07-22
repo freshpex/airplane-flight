@@ -386,7 +386,7 @@ const LondonDestination = () => {
                     <div className="flex items-start">
                       <Info className="h-5 w-5 text-blue-500 mr-3 mt-0.5" />
                       <p className="text-sm text-blue-700">
-                        Book your London hotel through SkyWings and receive exclusive benefits including 
+                        Book your London hotel through SkyWays and receive exclusive benefits including 
                         free airport transfers, late checkout, and special room upgrades when available.
                       </p>
                     </div>
@@ -540,7 +540,7 @@ const LondonDestination = () => {
                 <h2 className="text-2xl font-bold mb-6">Flights to London</h2>
                 
                 <div className="bg-white p-6 rounded-xl shadow-sm mb-8">
-                  <h3 className="text-lg font-semibold mb-4">SkyWings Direct Flights to London</h3>
+                  <h3 className="text-lg font-semibold mb-4">SkyWays Direct Flights to London</h3>
                   
                   <div className="overflow-x-auto">
                     <table className="w-full">
@@ -671,7 +671,7 @@ const LondonDestination = () => {
                       <div className="flex items-start">
                         <CreditCard className="h-5 w-5 mr-3 text-gray-400 mt-0.5" />
                         <div>
-                          <h4 className="font-medium">SkyWings Benefits</h4>
+                          <h4 className="font-medium">SkyWays Benefits</h4>
                           <p className="text-sm text-gray-600">
                             Elite members receive priority check-in, extra baggage allowance, 
                             and access to lounges at all London airports.
@@ -781,7 +781,7 @@ const LondonDestination = () => {
             <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to Experience London?</h2>
             <p className="max-w-2xl mx-auto mb-8">
               From historic landmarks to vibrant culture, London has something for everyone.
-              Book your SkyWings flight today and start your London adventure!
+              Book your SkyWays flight today and start your London adventure!
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button variant="secondary" className="bg-white text-purple-800 hover:bg-gray-100">
