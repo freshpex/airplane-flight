@@ -15,6 +15,7 @@ import type { FlightOption, Hotel, CarRental } from '@/types/flight';
 
 // All types are imported from types/flight.ts
 import type { Airline, FlightSegment } from '../types/flight';
+import { getRandomImageByCategory } from '@/utils/UnsplashService';
 
 // Sample logo URLs for airlines
 const airlineLogos: Record<string, string> = {
@@ -154,7 +155,7 @@ const generateFlightOptions = (from: string, to: string, date: string, _passenge
 };
 
 // Generate mock hotel data
-const generateHotels = (city: string): Hotel[] => {
+const generateHotelOptions = (city: string): Hotel[] => {
   const hotelNames = [
     'Grand Luxury Hotel', 'Imperial Palace', 'The Royal Suites', 'Ocean View Resort',
     'Mountain Retreat', 'City Center Hotel', 'Skyline Towers', 'Sunrise Bay Resort',
@@ -182,7 +183,7 @@ const generateHotels = (city: string): Hotel[] => {
         period: 'night'
       },
       rating,
-      image: `https://source.unsplash.com/random/300x200?hotel,${i}`,
+      image: '',
       features: [...features].sort(() => 0.5 - Math.random()).slice(0, 5 + Math.floor(Math.random() * 5)),
       distance: {
         value: Math.floor(Math.random() * 15) + 1,
@@ -238,7 +239,7 @@ const generateCarRentals = (city: string): CarRental[] => {
       vehicle: {
         name: model,
         type: category,
-        image: `https://source.unsplash.com/random/300x200?car,${model}`,
+        image: '',
         features: [...features].sort(() => 0.5 - Math.random()).slice(0, 4 + Math.floor(Math.random() * 3)),
         capacity: {
           passengers: 2 + Math.floor(Math.random() * 6),
@@ -269,6 +270,25 @@ const generateCarRentals = (city: string): CarRental[] => {
       }
     };
   });
+};
+
+// Async wrapper to fetch images for hotels and cars
+export const generateHotelOptionsWithImages = async (city: string): Promise<Hotel[]> => {
+  const hotels = generateHotelOptions(city);
+  for (const hotel of hotels) {
+    // Use hotel name and city for specificity
+    hotel.image = await getRandomImageByCategory('hotel', `${hotel.name} hotel ${city}`);
+  }
+  return hotels;
+};
+
+export const generateCarRentalsWithImages = async (city: string): Promise<CarRental[]> => {
+  const cars = generateCarRentals(city);
+  for (const car of cars) {
+    // Use car model and category for specificity
+    car.vehicle.image = await getRandomImageByCategory('car', `${car.vehicle.name} ${car.vehicle.type}`);
+  }
+  return cars;
 };
 
 const SearchResults = () => {
@@ -309,34 +329,34 @@ const SearchResults = () => {
   const [selectedCar, setSelectedCar] = useState<string | null>(null);
 
   useEffect(() => {
-    // Simulate API calls to fetch results
+    let isMounted = true;
     setIsLoading(true);
-    
-    setTimeout(() => {
-      // Generate mock data based on search params
+    (async () => {
+      // Simulate API delay
+      await new Promise(res => setTimeout(res, 1500));
       const flights = generateFlightOptions(
         searchParams.from,
         searchParams.to,
         searchParams.departDate,
         searchParams.passengers.adults + searchParams.passengers.children
       );
-      
-      setFlightOptions(flights);
-      setFilteredFlights(flights);
-      
-      // Only generate hotels and car rentals if requested
+      if (isMounted) {
+        setFlightOptions(flights);
+        setFilteredFlights(flights);
+      }
       if (searchParams.includeHotels) {
         const destination = searchParams.to.split('(')[0].trim();
-        setHotels(generateHotels(destination));
+        const hotelsWithImages = await generateHotelOptionsWithImages(destination);
+        if (isMounted) setHotels(hotelsWithImages);
       }
-      
       if (searchParams.includeCarRentals) {
         const destination = searchParams.to.split('(')[0].trim();
-        setCarRentals(generateCarRentals(destination));
+        const carsWithImages = await generateCarRentalsWithImages(destination);
+        if (isMounted) setCarRentals(carsWithImages);
       }
-      
-      setIsLoading(false);
-    }, 1500); // Simulate loading delay
+      if (isMounted) setIsLoading(false);
+    })();
+    return () => { isMounted = false; };
   }, [searchParams]);
 
   // Apply filters to flight options
