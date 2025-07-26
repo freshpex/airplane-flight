@@ -2,6 +2,8 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import LandingPage from "@/pages/LandingPage";
 import FlightSearch from "@/pages/FlightSearch";
 import SearchResults from "@/components/SearchResults";
+import CheckoutPage from "@/components/checkout/CheckoutPage";
+import BookingConfirmationPage from "@/pages/BookingConfirmationPage";
 
 // Experience pages
 import BusinessTravel from "@/pages/experience/BusinessTravel";
@@ -23,24 +25,24 @@ import TravelRequirements from "@/pages/travel/TravelRequirements";
 import LondonDestination from "@/pages/destinations/London";
 
 // Company pages
-import AboutUs from '@/pages/company/AboutUs';
-import Careers from '@/pages/company/Careers';
-import Press from '@/pages/company/Press';
-import InvestorRelations from '@/pages/company/InvestorRelations';
-import Sustainability from '@/pages/company/Sustainability';
+import AboutUs from "@/pages/company/AboutUs";
+import Careers from "@/pages/company/Careers";
+import Press from "@/pages/company/Press";
+import InvestorRelations from "@/pages/company/InvestorRelations";
+import Sustainability from "@/pages/company/Sustainability";
 
 // Legal pages
-import PrivacyPolicy from '@/pages/legal/PrivacyPolicy';
-import TermsOfService from '@/pages/legal/TermsOfService';
-import CookiesPolicy from '@/pages/legal/CookiesPolicy';
-import Accessibility from '@/pages/legal/Accessibility';
+import PrivacyPolicy from "@/pages/legal/PrivacyPolicy";
+import TermsOfService from "@/pages/legal/TermsOfService";
+import CookiesPolicy from "@/pages/legal/CookiesPolicy";
+import Accessibility from "@/pages/legal/Accessibility";
 
 // Support pages
-import ContactUs from '@/pages/support/ContactUs';
-import Feedback from '@/pages/support/Feedback';
-import HelpCenter from '@/pages/support/HelpCenter';
-import SpecialAssistance from '@/pages/support/SpecialAssistance';
-import LostAndFound from '@/pages/support/LostAndFound';
+import ContactUs from "@/pages/support/ContactUs";
+import Feedback from "@/pages/support/Feedback";
+import HelpCenter from "@/pages/support/HelpCenter";
+import SpecialAssistance from "@/pages/support/SpecialAssistance";
+import LostAndFound from "@/pages/support/LostAndFound";
 
 export const router = createBrowserRouter([
   // Landing page
@@ -59,6 +61,14 @@ export const router = createBrowserRouter([
   {
     path: "/search-results",
     element: <SearchResults />,
+  },
+  {
+    path: "/checkout",
+    element: <CheckoutPage />,
+  },
+  {
+    path: "/booking-confirmation",
+    element: <BookingConfirmationPage />,
   },
 
   // Experience pages
@@ -108,7 +118,7 @@ export const router = createBrowserRouter([
     path: "/travel/travel-requirements",
     element: <TravelRequirements />,
   },
-  
+
   // Destination pages
   {
     path: "/destinations/london",
@@ -118,7 +128,7 @@ export const router = createBrowserRouter([
     path: "/flight-search-destinations",
     element: <FlightSearch />,
   },
-  
+
   // Company pages
   {
     path: "/about-us",
@@ -140,7 +150,7 @@ export const router = createBrowserRouter([
     path: "/sustainability",
     element: <Sustainability />,
   },
-  
+
   // Legal pages
   {
     path: "/privacy-policy",
@@ -158,7 +168,7 @@ export const router = createBrowserRouter([
     path: "/accessibility",
     element: <Accessibility />,
   },
-  
+
   // Support pages
   {
     path: "/contact-us",
@@ -180,7 +190,7 @@ export const router = createBrowserRouter([
     path: "/lost-and-found",
     element: <LostAndFound />,
   },
-  
+
   // Catch all other routes and redirect to home
   {
     path: "*",

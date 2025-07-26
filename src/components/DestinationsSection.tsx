@@ -1,78 +1,86 @@
-import { motion } from 'framer-motion';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { MapPin, Star, ArrowRight } from 'lucide-react';
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { MapPin, Star, ArrowRight } from "lucide-react";
 
 const DestinationsSection = () => {
   const popularDestinations = [
     {
-      city: 'Dubai',
-      country: 'United Arab Emirates',
-      image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      price: 'From $899',
+      city: "Dubai",
+      country: "United Arab Emirates",
+      image:
+        "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      price: "From $899",
       rating: 4.9,
-      description: 'Luxury shopping, ultramodern architecture, and vibrant nightlife.',
-      badge: 'Popular'
+      description:
+        "Luxury shopping, ultramodern architecture, and vibrant nightlife.",
+      badge: "Popular",
     },
     {
-      city: 'Paris',
-      country: 'France',
-      image: 'https://images.unsplash.com/photo-1431274172761-fca41d930114?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      price: 'From $1,299',
+      city: "Paris",
+      country: "France",
+      image:
+        "https://images.unsplash.com/photo-1431274172761-fca41d930114?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      price: "From $1,299",
       rating: 4.8,
-      description: 'The City of Light with iconic landmarks and world-class cuisine.',
-      badge: 'Trending'
+      description:
+        "The City of Light with iconic landmarks and world-class cuisine.",
+      badge: "Trending",
     },
     {
-      city: 'Tokyo',
-      country: 'Japan',
-      image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      price: 'From $1,099',
+      city: "Tokyo",
+      country: "Japan",
+      image:
+        "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      price: "From $1,099",
       rating: 4.9,
-      description: 'Where ancient traditions meet cutting-edge technology.',
-      badge: 'Hot Deal'
+      description: "Where ancient traditions meet cutting-edge technology.",
+      badge: "Hot Deal",
     },
     {
-      city: 'London',
-      country: 'United Kingdom',
-      image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      price: 'From $999',
+      city: "London",
+      country: "United Kingdom",
+      image:
+        "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      price: "From $999",
       rating: 4.7,
-      description: 'Rich history, royal palaces, and world-famous museums.',
-      badge: null
+      description: "Rich history, royal palaces, and world-famous museums.",
+      badge: null,
     },
     {
-      city: 'New York',
-      country: 'United States',
-      image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      price: 'From $799',
+      city: "New York",
+      country: "United States",
+      image:
+        "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      price: "From $799",
       rating: 4.8,
-      description: 'The city that never sleeps with endless entertainment.',
-      badge: 'Best Value'
+      description: "The city that never sleeps with endless entertainment.",
+      badge: "Best Value",
     },
     {
-      city: 'Singapore',
-      country: 'Singapore',
-      image: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      price: 'From $1,199',
+      city: "Singapore",
+      country: "Singapore",
+      image:
+        "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      price: "From $1,199",
       rating: 4.9,
-      description: 'Garden city with amazing food and futuristic attractions.',
-      badge: null
-    }
+      description: "Garden city with amazing food and futuristic attractions.",
+      badge: null,
+    },
   ];
 
   const getBadgeColor = (badge: string | null) => {
     switch (badge) {
-      case 'Popular':
-        return 'bg-red-500';
-      case 'Trending':
-        return 'bg-green-500';
-      case 'Hot Deal':
-        return 'bg-orange-500';
-      case 'Best Value':
-        return 'bg-blue-500';
+      case "Popular":
+        return "bg-red-500";
+      case "Trending":
+        return "bg-green-500";
+      case "Hot Deal":
+        return "bg-orange-500";
+      case "Best Value":
+        return "bg-blue-500";
       default:
-        return 'bg-purple-500';
+        return "bg-purple-500";
     }
   };
 
@@ -88,13 +96,14 @@ const DestinationsSection = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Discover Amazing{' '}
+            Discover Amazing{" "}
             <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
               Destinations
             </span>
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
-            Explore the world's most captivating cities with our carefully curated selection of destinations.
+            Explore the world's most captivating cities with our carefully
+            curated selection of destinations.
           </p>
           <Button variant="outline" size="lg" className="group">
             View All Destinations
@@ -121,10 +130,12 @@ const DestinationsSection = () => {
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  
+
                   {/* Badge */}
                   {destination.badge && (
-                    <div className={`absolute top-4 left-4 ${getBadgeColor(destination.badge)} text-white px-3 py-1 rounded-full text-sm font-medium`}>
+                    <div
+                      className={`absolute top-4 left-4 ${getBadgeColor(destination.badge)} text-white px-3 py-1 rounded-full text-sm font-medium`}
+                    >
                       {destination.badge}
                     </div>
                   )}
@@ -132,14 +143,18 @@ const DestinationsSection = () => {
                   {/* Rating */}
                   <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center space-x-1">
                     <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                    <span className="text-sm font-medium">{destination.rating}</span>
+                    <span className="text-sm font-medium">
+                      {destination.rating}
+                    </span>
                   </div>
 
                   {/* Location */}
                   <div className="absolute bottom-4 left-4 text-white">
                     <div className="flex items-center space-x-1 mb-1">
                       <MapPin className="h-4 w-4" />
-                      <span className="text-sm opacity-90">{destination.country}</span>
+                      <span className="text-sm opacity-90">
+                        {destination.country}
+                      </span>
                     </div>
                     <h3 className="text-2xl font-bold">{destination.city}</h3>
                   </div>
@@ -149,18 +164,20 @@ const DestinationsSection = () => {
                   <p className="text-gray-600 mb-4 leading-relaxed">
                     {destination.description}
                   </p>
-                  
+
                   <div className="flex items-center justify-between">
                     <div>
                       <span className="text-2xl font-bold text-purple-600">
                         {destination.price}
                       </span>
-                      <span className="text-gray-500 text-sm ml-1">per person</span>
+                      <span className="text-gray-500 text-sm ml-1">
+                        per person
+                      </span>
                     </div>
-                    
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       className="group/btn text-purple-600 hover:text-purple-700"
                     >
                       Book Now
@@ -186,10 +203,11 @@ const DestinationsSection = () => {
               Can't find your dream destination?
             </h3>
             <p className="text-lg mb-6 opacity-90">
-              We fly to over 160 destinations worldwide. Let us help you plan your perfect trip.
+              We fly to over 160 destinations worldwide. Let us help you plan
+              your perfect trip.
             </p>
-            <Button 
-              variant="secondary" 
+            <Button
+              variant="secondary"
               size="lg"
               className="bg-white text-purple-600 hover:bg-gray-100 group"
             >

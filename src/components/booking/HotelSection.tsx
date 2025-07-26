@@ -1,7 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Calendar } from 'lucide-react';
-import { Input } from '../ui/input';
+import React from "react";
+import { motion } from "framer-motion";
+import { Calendar } from "lucide-react";
+import { Input } from "../ui/input";
 
 interface HotelSectionProps {
   hotelCheckIn: string;
@@ -22,12 +22,12 @@ const HotelSection = ({
   rooms,
   setRooms,
   hotelRating,
-  setHotelRating
+  setHotelRating,
 }: HotelSectionProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, height: 0 }}
-      animate={{ opacity: 1, height: 'auto' }}
+      animate={{ opacity: 1, height: "auto" }}
       exit={{ opacity: 0, height: 0 }}
       transition={{ duration: 0.3 }}
       className="mt-6 pt-6 border-t border-gray-200"
@@ -48,7 +48,7 @@ const HotelSection = ({
             />
           </div>
         </div>
-        
+
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Check-out Date
@@ -63,7 +63,7 @@ const HotelSection = ({
             />
           </div>
         </div>
-        
+
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Rooms
@@ -74,13 +74,15 @@ const HotelSection = ({
               value={rooms}
               onChange={(e) => setRooms(parseInt(e.target.value))}
             >
-              {[1, 2, 3, 4, 5].map(num => (
-                <option key={num} value={num}>{num} Room{num !== 1 ? 's' : ''}</option>
+              {[1, 2, 3, 4, 5].map((num) => (
+                <option key={num} value={num}>
+                  {num} Room{num !== 1 ? "s" : ""}
+                </option>
               ))}
             </select>
           </div>
         </div>
-        
+
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Hotel Rating

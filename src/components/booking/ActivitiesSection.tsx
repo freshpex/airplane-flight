@@ -1,7 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Calendar } from 'lucide-react';
-import { Input } from '../ui/input';
+import React from "react";
+import { motion } from "framer-motion";
+import { Calendar } from "lucide-react";
+import { Input } from "../ui/input";
 
 interface ActivitiesSectionProps {
   activityDate: string;
@@ -18,12 +18,12 @@ const ActivitiesSection = ({
   activityType,
   setActivityType,
   activityParticipants,
-  setActivityParticipants
+  setActivityParticipants,
 }: ActivitiesSectionProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, height: 0 }}
-      animate={{ opacity: 1, height: 'auto' }}
+      animate={{ opacity: 1, height: "auto" }}
       exit={{ opacity: 0, height: 0 }}
       transition={{ duration: 0.3 }}
       className="mt-6 pt-6 border-t border-gray-200"
@@ -44,7 +44,7 @@ const ActivitiesSection = ({
             />
           </div>
         </div>
-        
+
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Activity Type
@@ -64,7 +64,7 @@ const ActivitiesSection = ({
             </select>
           </div>
         </div>
-        
+
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Number of Participants
@@ -73,10 +73,14 @@ const ActivitiesSection = ({
             <select
               className="w-full h-12 pl-4 pr-8 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
               value={activityParticipants}
-              onChange={(e) => setActivityParticipants(parseInt(e.target.value))}
+              onChange={(e) =>
+                setActivityParticipants(parseInt(e.target.value))
+              }
             >
-              {Array.from({ length: 10 }, (_, i) => i + 1).map(num => (
-                <option key={num} value={num}>{num} Person{num !== 1 ? 's' : ''}</option>
+              {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
+                <option key={num} value={num}>
+                  {num} Person{num !== 1 ? "s" : ""}
+                </option>
               ))}
             </select>
           </div>

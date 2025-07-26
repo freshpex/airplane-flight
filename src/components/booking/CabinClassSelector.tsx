@@ -1,11 +1,14 @@
-import React from 'react';
+import React from "react";
 
 interface CabinClassSelectorProps {
   cabinClass: string;
   setCabinClass: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const CabinClassSelector = ({ cabinClass, setCabinClass }: CabinClassSelectorProps) => {
+const CabinClassSelector = ({
+  cabinClass,
+  setCabinClass,
+}: CabinClassSelectorProps) => {
   return (
     <div>
       <label className="block text-sm font-medium text-gray-700 mb-2">

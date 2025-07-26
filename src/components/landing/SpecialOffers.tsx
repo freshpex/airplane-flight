@@ -1,6 +1,6 @@
-import { useRef, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Calendar, MapPin, Tag } from 'lucide-react';
+import { useRef, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Calendar, MapPin, Tag } from "lucide-react";
 
 interface Offer {
   id: string;
@@ -14,31 +14,34 @@ interface Offer {
 
 const offers: Offer[] = [
   {
-    id: '1',
-    title: 'Summer Escape',
-    destination: 'Bali, Indonesia',
-    image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1938&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    id: "1",
+    title: "Summer Escape",
+    destination: "Bali, Indonesia",
+    image:
+      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1938&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     price: 799,
     discountPercentage: 25,
-    validUntil: 'July 31, 2025',
+    validUntil: "July 31, 2025",
   },
   {
-    id: '2',
-    title: 'City Break',
-    destination: 'London, UK',
-    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    id: "2",
+    title: "City Break",
+    destination: "London, UK",
+    image:
+      "https://images.unsplash.com/photo-1486299267070-83823f5448dd?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     price: 599,
     discountPercentage: 20,
-    validUntil: 'August 15, 2025',
+    validUntil: "August 15, 2025",
   },
   {
-    id: '3',
-    title: 'Winter Wonderland',
-    destination: 'Zurich, Switzerland',
-    image: 'https://images.unsplash.com/photo-1576500712891-1a8caf2b3f89?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    id: "3",
+    title: "Winter Wonderland",
+    destination: "Zurich, Switzerland",
+    image:
+      "https://images.unsplash.com/photo-1576500712891-1a8caf2b3f89?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     price: 899,
     discountPercentage: 15,
-    validUntil: 'September 30, 2025',
+    validUntil: "September 30, 2025",
   },
 ];
 
@@ -50,21 +53,21 @@ export function SpecialOffers() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-up');
+            entry.target.classList.add("animate-fade-up");
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (containerRef.current) {
-      const cards = containerRef.current.querySelectorAll('.offer-card');
+      const cards = containerRef.current.querySelectorAll(".offer-card");
       cards.forEach((card) => observer.observe(card));
     }
 
     return () => {
       if (containerRef.current) {
-        const cards = containerRef.current.querySelectorAll('.offer-card');
+        const cards = containerRef.current.querySelectorAll(".offer-card");
         cards.forEach((card) => observer.unobserve(card));
       }
     };
@@ -82,23 +85,29 @@ export function SpecialOffers() {
             <Tag className="h-4 w-4 mr-2" />
             Limited Time Offers
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Special Deals & Promotions</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Special Deals & Promotions
+          </h2>
           <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-            Take advantage of our exclusive deals and save on your next adventure
+            Take advantage of our exclusive deals and save on your next
+            adventure
           </p>
         </div>
 
-        <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          ref={containerRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {offers.map((offer, index) => (
-            <div 
-              key={offer.id} 
+            <div
+              key={offer.id}
               className="offer-card opacity-0 bg-white rounded-xl overflow-hidden shadow-lg border border-neutral-200 transition-transform duration-300 hover:shadow-xl hover:scale-105"
               style={{ animationDelay: `${index * 150}ms` }}
             >
               {/* Image */}
               <div className="relative">
-                <img 
-                  src={offer.image} 
+                <img
+                  src={offer.image}
                   alt={offer.title}
                   className="w-full h-48 object-cover"
                 />
@@ -118,12 +127,20 @@ export function SpecialOffers() {
                 <div className="flex items-center justify-between mb-6">
                   <div>
                     <div className="flex items-center">
-                      <span className="text-2xl font-bold text-qatar-burgundy">${offer.price}</span>
+                      <span className="text-2xl font-bold text-qatar-burgundy">
+                        ${offer.price}
+                      </span>
                       <span className="ml-2 text-sm text-neutral-500 line-through">
-                        ${calculateOldPrice(offer.price, offer.discountPercentage)}
+                        $
+                        {calculateOldPrice(
+                          offer.price,
+                          offer.discountPercentage,
+                        )}
                       </span>
                     </div>
-                    <p className="text-sm text-neutral-500">Round trip, all inclusive</p>
+                    <p className="text-sm text-neutral-500">
+                      Round trip, all inclusive
+                    </p>
                   </div>
 
                   <div className="flex items-center text-sm text-neutral-600">
@@ -132,7 +149,10 @@ export function SpecialOffers() {
                   </div>
                 </div>
 
-                <Button variant="outline" className="w-full border-qatar-burgundy text-qatar-burgundy hover:bg-qatar-burgundy/10">
+                <Button
+                  variant="outline"
+                  className="w-full border-qatar-burgundy text-qatar-burgundy hover:bg-qatar-burgundy/10"
+                >
                   View Details
                 </Button>
               </div>

@@ -1,10 +1,11 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import SearchSummary from './SearchSummary';
-import FlightCard from './FlightCard';
-import HotelCard from './HotelCard';
-import CarRentalCard from './CarRentalCard';
-import { Compass } from 'lucide-react';
-import type { FlightOption, Hotel, CarRental } from '@/types/flight';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import SearchSummary from "./SearchSummary";
+import FlightCard from "./FlightCard";
+import HotelCard from "./HotelCard";
+import CarRentalCard from "./CarRentalCard";
+import ActivityCard from "./ActivityCard";
+import { Compass } from "lucide-react";
+import type { FlightOption, Hotel, CarRental, Activity } from "@/types/flight";
 
 interface TabLayoutProps {
   searchParams: {
@@ -25,12 +26,15 @@ interface TabLayoutProps {
   filteredFlights: FlightOption[];
   hotels: Hotel[];
   carRentals: CarRental[];
+  activities: Activity[];
   selectedFlight: string | null;
   setSelectedFlight: (id: string) => void;
   selectedHotel: string | null;
   setSelectedHotel: (id: string) => void;
   selectedCar: string | null;
   setSelectedCar: (id: string) => void;
+  selectedActivity: string | null;
+  setSelectedActivity: (id: string) => void;
 }
 
 const TabLayout = ({
@@ -38,12 +42,15 @@ const TabLayout = ({
   filteredFlights,
   hotels,
   carRentals,
+  activities,
   selectedFlight,
   setSelectedFlight,
   selectedHotel,
   setSelectedHotel,
   selectedCar,
-  setSelectedCar
+  setSelectedCar,
+  selectedActivity,
+  setSelectedActivity,
 }: TabLayoutProps) => {
   return (
     <div className="flex-1">
@@ -62,8 +69,11 @@ const TabLayout = ({
               Car Rentals ({carRentals.length})
             </TabsTrigger>
           )}
+          <TabsTrigger value="activities" className="text-lg">
+            Activities ({activities.length})
+          </TabsTrigger>
         </TabsList>
-        
+
         {/* Flights Tab */}
         <TabsContent value="flights">
           <SearchSummary
@@ -73,13 +83,14 @@ const TabLayout = ({
             passengers={searchParams.passengers}
             cabinClass={searchParams.cabinClass}
           />
-          
+
           {filteredFlights.length === 0 ? (
             <div className="bg-white rounded-lg shadow-lg p-8 text-center">
               <Compass className="h-12 w-12 mx-auto text-gray-400 mb-3" />
               <h3 className="text-xl font-semibold mb-2">No flights found</h3>
               <p className="text-gray-600">
-                Try adjusting your filters or search criteria to see more results.
+                Try adjusting your filters or search criteria to see more
+                results.
               </p>
             </div>
           ) : (
@@ -95,7 +106,7 @@ const TabLayout = ({
             </div>
           )}
         </TabsContent>
-        
+
         {/* Hotels Tab */}
         {searchParams.includeHotels && (
           <TabsContent value="hotels">
@@ -111,7 +122,7 @@ const TabLayout = ({
             </div>
           </TabsContent>
         )}
-        
+
         {/* Car Rentals Tab */}
         {searchParams.includeCarRentals && (
           <TabsContent value="cars">
@@ -127,6 +138,20 @@ const TabLayout = ({
             </div>
           </TabsContent>
         )}
+
+        {/* Activities Tab */}
+        <TabsContent value="activities">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {activities.map((activity) => (
+              <ActivityCard
+                key={activity.id}
+                activity={activity}
+                selectedActivity={selectedActivity}
+                setSelectedActivity={setSelectedActivity}
+              />
+            ))}
+          </div>
+        </TabsContent>
       </Tabs>
     </div>
   );

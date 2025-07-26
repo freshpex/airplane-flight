@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 export interface AmadeusTokenResponse {
   access_token: string;
@@ -10,7 +10,7 @@ export interface AirportLocation {
   iataCode: string;
   name: string;
   detailedName: string;
-  subType: 'AIRPORT' | 'CITY';
+  subType: "AIRPORT" | "CITY";
   address?: {
     cityName: string;
     cityCode?: string;
@@ -32,37 +32,45 @@ class AmadeusService {
   private tokenExpiration: number | null = null;
 
   constructor() {
-    this.apiKey = import.meta.env.VITE_AMADEUS_API_KEY || '';
-    this.apiSecret = import.meta.env.VITE_AMADEUS_API_SECRET || '';
-    this.baseURL = 'https://test.api.amadeus.com/v1';
-    
+    this.apiKey = import.meta.env.VITE_AMADEUS_API_KEY || "";
+    this.apiSecret = import.meta.env.VITE_AMADEUS_API_SECRET || "";
+    this.baseURL = "https://test.api.amadeus.com/v1";
+
     // Debug log to check if API keys are loaded (showing only first few chars for security)
-    console.log(`Amadeus API Key loaded: ${this.apiKey ? this.apiKey.substring(0, 4) + '...' : 'MISSING'}`);
-    console.log(`Amadeus API Secret loaded: ${this.apiSecret ? '****' : 'MISSING'}`);
+    console.log(
+      `Amadeus API Key loaded: ${this.apiKey ? this.apiKey.substring(0, 4) + "..." : "MISSING"}`,
+    );
+    console.log(
+      `Amadeus API Secret loaded: ${this.apiSecret ? "****" : "MISSING"}`,
+    );
   }
 
   // Get access token
   private async getToken(): Promise<string> {
     // Check if we have a valid token
-    if (this.token && this.tokenExpiration && Date.now() < this.tokenExpiration) {
+    if (
+      this.token &&
+      this.tokenExpiration &&
+      Date.now() < this.tokenExpiration
+    ) {
       return this.token;
     }
 
     try {
       const params = new URLSearchParams({
-        grant_type: 'client_credentials',
+        grant_type: "client_credentials",
         client_id: this.apiKey,
-        client_secret: this.apiSecret
+        client_secret: this.apiSecret,
       });
-      
+
       const response = await axios.post(
-        'https://test.api.amadeus.com/v1/security/oauth2/token',
+        "https://test.api.amadeus.com/v1/security/oauth2/token",
         params,
         {
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            "Content-Type": "application/x-www-form-urlencoded",
           },
-        }
+        },
       );
 
       const data: AmadeusTokenResponse = response.data;
@@ -73,15 +81,15 @@ class AmadeusService {
     } catch (error) {
       // Better error logging with more details
       if (axios.isAxiosError(error) && error.response) {
-        console.error('Amadeus authentication error:', {
+        console.error("Amadeus authentication error:", {
           status: error.response.status,
           statusText: error.response.statusText,
-          data: error.response.data
+          data: error.response.data,
         });
       } else {
-        console.error('Error getting Amadeus token:', error);
+        console.error("Error getting Amadeus token:", error);
       }
-      throw new Error('Failed to authenticate with Amadeus API');
+      throw new Error("Failed to authenticate with Amadeus API");
     }
   }
 
@@ -99,9 +107,9 @@ class AmadeusService {
           cityName: "New York",
           cityCode: "NYC",
           countryName: "United States",
-          countryCode: "US"
+          countryCode: "US",
         },
-        type: "location"
+        type: "location",
       },
       {
         id: "LHR",
@@ -113,9 +121,9 @@ class AmadeusService {
           cityName: "London",
           cityCode: "LON",
           countryName: "United Kingdom",
-          countryCode: "GB"
+          countryCode: "GB",
         },
-        type: "location"
+        type: "location",
       },
       {
         id: "LAX",
@@ -127,9 +135,9 @@ class AmadeusService {
           cityName: "Los Angeles",
           cityCode: "LAX",
           countryName: "United States",
-          countryCode: "US"
+          countryCode: "US",
         },
-        type: "location"
+        type: "location",
       },
       {
         id: "DXB",
@@ -141,9 +149,9 @@ class AmadeusService {
           cityName: "Dubai",
           cityCode: "DXB",
           countryName: "United Arab Emirates",
-          countryCode: "AE"
+          countryCode: "AE",
         },
-        type: "location"
+        type: "location",
       },
       {
         id: "LGW",
@@ -155,9 +163,9 @@ class AmadeusService {
           cityName: "London",
           cityCode: "LON",
           countryName: "United Kingdom",
-          countryCode: "GB"
+          countryCode: "GB",
         },
-        type: "location"
+        type: "location",
       },
       {
         id: "LOS",
@@ -168,10 +176,10 @@ class AmadeusService {
         address: {
           cityName: "Lagos",
           cityCode: "LOS",
-          countryName: "Nigeria",
-          countryCode: "NG"
+          countryName: "London",
+          countryCode: "NG",
         },
-        type: "location"
+        type: "location",
       },
       {
         id: "CDG",
@@ -183,46 +191,50 @@ class AmadeusService {
           cityName: "Paris",
           cityCode: "PAR",
           countryName: "France",
-          countryCode: "FR"
+          countryCode: "FR",
         },
-        type: "location"
-      }
+        type: "location",
+      },
     ];
 
     const lowercaseKeyword = keyword.toLowerCase();
-    return airports.filter(airport => 
-      airport.name.toLowerCase().includes(lowercaseKeyword) ||
-      airport.address.cityName.toLowerCase().includes(lowercaseKeyword) ||
-      airport.iataCode.toLowerCase().includes(lowercaseKeyword)
+    return airports.filter(
+      (airport) =>
+        airport.name.toLowerCase().includes(lowercaseKeyword) ||
+        airport.address.cityName.toLowerCase().includes(lowercaseKeyword) ||
+        airport.iataCode.toLowerCase().includes(lowercaseKeyword),
     );
   }
 
   // Search airports by keyword with fallback to mock data
   async searchAirports(keyword: string): Promise<AirportLocation[]> {
     if (!keyword || keyword.length < 2) return [];
-    
+
     try {
       // Rate limiting prevention
-      await new Promise(resolve => setTimeout(resolve, 300));
-      
+      await new Promise((resolve) => setTimeout(resolve, 300));
+
       const token = await this.getToken();
-      
-      const response = await axios.get(`${this.baseURL}/reference-data/locations`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+
+      const response = await axios.get(
+        `${this.baseURL}/reference-data/locations`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            subType: "AIRPORT,CITY",
+            keyword,
+            "page[limit]": 10,
+          },
         },
-        params: {
-          subType: 'AIRPORT,CITY',
-          keyword,
-          'page[limit]': 10,
-        },
-      });
-      
+      );
+
       const data: AirportSearchResponse = response.data;
       return data.data || [];
     } catch (error) {
-      console.warn('Using mock airport data due to API error:', error);
-      
+      console.warn("Using mock airport data due to API error:", error);
+
       // If API fails, use mock data
       return this.mockAirportData(keyword);
     }

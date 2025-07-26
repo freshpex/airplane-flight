@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
-import { searchAirports } from '../data/airports';
-import type { Airport } from '../data/airports';
+import { useState, useEffect, useCallback } from "react";
+import { searchAirports } from "../data/airports";
+import type { Airport } from "../data/airports";
 
 interface UseAirportSearchResult {
   results: Airport[];
@@ -12,7 +12,7 @@ interface UseAirportSearchResult {
 }
 
 export function useAirportSearch(): UseAirportSearchResult {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [results, setResults] = useState<Airport[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -36,7 +36,7 @@ export function useAirportSearch(): UseAirportSearchResult {
         setIsLoading(false);
       }, 200); // Simulate a short delay for a better UX
     } catch (err) {
-      setError('Error searching airports');
+      setError("Error searching airports");
       setIsLoading(false);
     }
   }, []);
@@ -59,6 +59,6 @@ export function useAirportSearch(): UseAirportSearchResult {
     error,
     setQuery,
     selectedAirport,
-    setSelectedAirport
+    setSelectedAirport,
   };
 }

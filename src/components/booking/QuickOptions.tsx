@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 interface QuickOptionsProps {
   showHotelSection: boolean;
@@ -16,7 +16,7 @@ const QuickOptions = ({
   showCarRentalSection,
   setShowCarRentalSection,
   showActivitiesSection,
-  setShowActivitiesSection
+  setShowActivitiesSection,
 }: QuickOptionsProps) => {
   return (
     <div className="mt-6 pt-6 border-t border-gray-200">
@@ -37,10 +37,10 @@ const QuickOptions = ({
               }
             }}
           >
-            {showHotelSection ? '- Remove hotels' : '+ Add hotels'}
+            {showHotelSection ? "- Remove hotels" : "+ Add hotels"}
           </motion.button>
         </div>
-        
+
         {/* Add car rental */}
         <div className="relative">
           <motion.button
@@ -57,10 +57,10 @@ const QuickOptions = ({
               }
             }}
           >
-            {showCarRentalSection ? '- Remove car rental' : '+ Add car rental'}
+            {showCarRentalSection ? "- Remove car rental" : "+ Add car rental"}
           </motion.button>
         </div>
-        
+
         {/* Add activities */}
         <div className="relative">
           <motion.button
@@ -77,7 +77,7 @@ const QuickOptions = ({
               }
             }}
           >
-            {showActivitiesSection ? '- Remove activities' : '+ Add activities'}
+            {showActivitiesSection ? "- Remove activities" : "+ Add activities"}
           </motion.button>
         </div>
       </div>

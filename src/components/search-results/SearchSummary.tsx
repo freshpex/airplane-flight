@@ -10,12 +10,12 @@ interface SearchSummaryProps {
   cabinClass: string;
 }
 
-const SearchSummary = ({ 
-  from, 
-  to, 
-  departDate, 
-  passengers, 
-  cabinClass 
+const SearchSummary = ({
+  from,
+  to,
+  departDate,
+  passengers,
+  cabinClass,
 }: SearchSummaryProps) => {
   return (
     <div className="bg-white rounded-lg shadow-lg p-4 mb-6">
@@ -23,9 +23,12 @@ const SearchSummary = ({
         {from} to {to}
       </h2>
       <div className="text-gray-600">
-        {departDate} • {passengers.adults} Adult{passengers.adults !== 1 ? 's' : ''}
-        {passengers.children > 0 && `, ${passengers.children} Child${passengers.children !== 1 ? 'ren' : ''}`}
-        {passengers.infants > 0 && `, ${passengers.infants} Infant${passengers.infants !== 1 ? 's' : ''}`}
+        {departDate} • {passengers.adults} Adult
+        {passengers.adults !== 1 ? "s" : ""}
+        {passengers.children > 0 &&
+          `, ${passengers.children} Child${passengers.children !== 1 ? "ren" : ""}`}
+        {passengers.infants > 0 &&
+          `, ${passengers.infants} Infant${passengers.infants !== 1 ? "s" : ""}`}
         • {cabinClass}
       </div>
     </div>

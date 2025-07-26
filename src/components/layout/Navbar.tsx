@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { cn } from '@/lib/utils';
-import { Menu, X, ChevronDown, Globe, Search } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { cn } from "@/lib/utils";
+import { Menu, X, ChevronDown, Globe, Search } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const navigationItems = [
-  { name: 'Book', href: '#', hasSubmenu: true },
-  { name: 'Manage', href: '#', hasSubmenu: true },
-  { name: 'Experience', href: '#', hasSubmenu: true },
-  { name: 'Privilege Club', href: '#', hasSubmenu: false },
-  { name: 'Help', href: '#', hasSubmenu: false },
+  { name: "Book", href: "#", hasSubmenu: true },
+  { name: "Manage", href: "#", hasSubmenu: true },
+  { name: "Experience", href: "#", hasSubmenu: true },
+  { name: "Privilege Club", href: "#", hasSubmenu: false },
+  { name: "Help", href: "#", hasSubmenu: false },
 ];
 
 export function Navbar() {
@@ -21,19 +21,19 @@ export function Navbar() {
       setIsScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
     <header
       className={cn(
-        'fixed w-full z-50 transition-all duration-300',
-        isScrolled 
-          ? 'bg-white/95 backdrop-blur-sm shadow-sm py-2' 
-          : 'bg-transparent py-4'
+        "fixed w-full z-50 transition-all duration-300",
+        isScrolled
+          ? "bg-white/95 backdrop-blur-sm shadow-sm py-2"
+          : "bg-transparent py-4",
       )}
     >
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -42,7 +42,7 @@ export function Navbar() {
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center">
               <span className="text-2xl font-bold text-qatar-burgundy">
-                Emma<span className="text-qatar-gold">Airways</span>
+                Skyways<span className="text-qatar-gold">Airways</span>
               </span>
             </Link>
           </div>
@@ -61,13 +61,22 @@ export function Navbar() {
                 {item.hasSubmenu && (
                   <div className="absolute z-10 left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                     <div className="py-1">
-                      <Link to="#" className="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100">
+                      <Link
+                        to="#"
+                        className="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100"
+                      >
                         Option 1
                       </Link>
-                      <Link to="#" className="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100">
+                      <Link
+                        to="#"
+                        className="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100"
+                      >
                         Option 2
                       </Link>
-                      <Link to="#" className="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100">
+                      <Link
+                        to="#"
+                        className="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100"
+                      >
                         Option 3
                       </Link>
                     </div>
@@ -85,8 +94,14 @@ export function Navbar() {
             <button className="p-2 rounded-full hover:bg-neutral-100 transition-colors">
               <Globe size={20} />
             </button>
-            <Button variant="gold" size="sm">Login</Button>
-            <Button variant="outline" size="sm" className="border-qatar-burgundy text-qatar-burgundy hover:bg-qatar-burgundy/10">
+            <Button variant="gold" size="sm">
+              Login
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-qatar-burgundy text-qatar-burgundy hover:bg-qatar-burgundy/10"
+            >
               Join Now
             </Button>
           </div>
@@ -104,10 +119,10 @@ export function Navbar() {
       </nav>
 
       {/* Mobile menu */}
-      <div 
+      <div
         className={cn(
-          "md:hidden transition-all duration-300 overflow-hidden", 
-          isMobileMenuOpen ? "max-h-screen" : "max-h-0"
+          "md:hidden transition-all duration-300 overflow-hidden",
+          isMobileMenuOpen ? "max-h-screen" : "max-h-0",
         )}
       >
         <div className="px-4 pt-2 pb-4 bg-white/95 backdrop-blur-sm border-t border-neutral-200">
@@ -126,7 +141,10 @@ export function Navbar() {
           </div>
           <div className="mt-4 pt-4 border-t border-neutral-200 flex flex-col space-y-2">
             <Button variant="gold">Login</Button>
-            <Button variant="outline" className="border-qatar-burgundy text-qatar-burgundy">
+            <Button
+              variant="outline"
+              className="border-qatar-burgundy text-qatar-burgundy"
+            >
               Join Now
             </Button>
           </div>

@@ -1,12 +1,12 @@
-import PageLayout from '@/components/layout/PageLayout';
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { MessageSquare, Phone, ArrowRight, HelpCircle } from 'lucide-react';
+import PageLayout from "@/components/layout/PageLayout";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { MessageSquare, Phone, ArrowRight, HelpCircle } from "lucide-react";
 
 const ContactUs = () => {
   return (
-    <PageLayout 
-      title="Contact Us" 
+    <PageLayout
+      title="Contact Us"
       subtitle="Get in touch with our team for support and inquiries"
     >
       <div className="max-w-6xl">
@@ -18,7 +18,7 @@ const ContactUs = () => {
         >
           {/* Contact Cards Section */}
           <div className="col-span-1 lg:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <motion.div 
+            <motion.div
               className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow duration-300"
               whileHover={{ y: -5 }}
               transition={{ type: "spring", stiffness: 300 }}
@@ -36,7 +36,7 @@ const ContactUs = () => {
               <p>+1 (555) 987-6543</p>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow duration-300"
               whileHover={{ y: -5 }}
               transition={{ type: "spring", stiffness: 300 }}
@@ -54,7 +54,7 @@ const ContactUs = () => {
               <p>corporate@skyWays.com</p>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow duration-300"
               whileHover={{ y: -5 }}
               transition={{ type: "spring", stiffness: 300 }}
@@ -67,7 +67,8 @@ const ContactUs = () => {
                 Chat with our support team for immediate assistance.
               </p>
               <Button variant="qatar" className="w-full group">
-                Start Chat <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                Start Chat{" "}
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </motion.div>
           </div>
@@ -79,49 +80,74 @@ const ContactUs = () => {
               <form className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label htmlFor="firstName" className="text-sm font-medium text-gray-700">First Name</label>
-                    <input 
-                      type="text" 
-                      id="firstName" 
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none" 
+                    <label
+                      htmlFor="firstName"
+                      className="text-sm font-medium text-gray-700"
+                    >
+                      First Name
+                    </label>
+                    <input
+                      type="text"
+                      id="firstName"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
                       placeholder="Enter your first name"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="lastName" className="text-sm font-medium text-gray-700">Last Name</label>
-                    <input 
-                      type="text" 
-                      id="lastName" 
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none" 
+                    <label
+                      htmlFor="lastName"
+                      className="text-sm font-medium text-gray-700"
+                    >
+                      Last Name
+                    </label>
+                    <input
+                      type="text"
+                      id="lastName"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
                       placeholder="Enter your last name"
                     />
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium text-gray-700">Email Address</label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none" 
+                  <label
+                    htmlFor="email"
+                    className="text-sm font-medium text-gray-700"
+                  >
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
                     placeholder="Enter your email address"
                   />
                 </div>
-                
+
                 <div className="space-y-2">
-                  <label htmlFor="phone" className="text-sm font-medium text-gray-700">Phone Number</label>
-                  <input 
-                    type="tel" 
-                    id="phone" 
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none" 
+                  <label
+                    htmlFor="phone"
+                    className="text-sm font-medium text-gray-700"
+                  >
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
                     placeholder="Enter your phone number"
                   />
                 </div>
-                
+
                 <div className="space-y-2">
-                  <label htmlFor="subject" className="text-sm font-medium text-gray-700">Subject</label>
-                  <select 
-                    id="subject" 
+                  <label
+                    htmlFor="subject"
+                    className="text-sm font-medium text-gray-700"
+                  >
+                    Subject
+                  </label>
+                  <select
+                    id="subject"
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
                   >
                     <option value="">Select a subject</option>
@@ -133,35 +159,45 @@ const ContactUs = () => {
                     <option value="other">Other</option>
                   </select>
                 </div>
-                
+
                 <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium text-gray-700">Message</label>
-                  <textarea 
-                    id="message" 
-                    rows={5} 
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none" 
+                  <label
+                    htmlFor="message"
+                    className="text-sm font-medium text-gray-700"
+                  >
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    rows={5}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
                     placeholder="Type your message here..."
                   ></textarea>
                 </div>
-                
+
                 <div className="flex items-start space-x-3">
-                  <input 
-                    type="checkbox" 
-                    id="terms" 
+                  <input
+                    type="checkbox"
+                    id="terms"
                     className="mt-1 h-4 w-4 text-purple-800 border-gray-300 rounded focus:ring-purple-500"
                   />
                   <label htmlFor="terms" className="text-sm text-gray-600">
-                    I agree to the processing of my personal data in accordance with the <a href="#" className="text-purple-800 hover:underline">Privacy Policy</a>
+                    I agree to the processing of my personal data in accordance
+                    with the{" "}
+                    <a href="#" className="text-purple-800 hover:underline">
+                      Privacy Policy
+                    </a>
                   </label>
                 </div>
-                
+
                 <Button variant="qatar" className="w-full group py-6 text-base">
-                  Submit Message <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  Submit Message{" "}
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </form>
             </div>
           </div>
-          
+
           {/* Location and FAQs Section */}
           <div className="lg:col-span-1 space-y-6">
             <div className="bg-white rounded-xl shadow-md p-6">
@@ -186,28 +222,43 @@ const ContactUs = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="bg-white rounded-xl shadow-md p-6">
-              <h3 className="text-lg font-bold mb-4">Frequently Asked Questions</h3>
+              <h3 className="text-lg font-bold mb-4">
+                Frequently Asked Questions
+              </h3>
               <ul className="space-y-3">
                 <li>
-                  <a href="#" className="text-purple-800 hover:underline block">How do I change my flight?</a>
+                  <a href="#" className="text-purple-800 hover:underline block">
+                    How do I change my flight?
+                  </a>
                 </li>
                 <li>
-                  <a href="#" className="text-purple-800 hover:underline block">What is the baggage allowance?</a>
+                  <a href="#" className="text-purple-800 hover:underline block">
+                    What is the baggage allowance?
+                  </a>
                 </li>
                 <li>
-                  <a href="#" className="text-purple-800 hover:underline block">Can I select my seat in advance?</a>
+                  <a href="#" className="text-purple-800 hover:underline block">
+                    Can I select my seat in advance?
+                  </a>
                 </li>
                 <li>
-                  <a href="#" className="text-purple-800 hover:underline block">How do I join the loyalty program?</a>
+                  <a href="#" className="text-purple-800 hover:underline block">
+                    How do I join the loyalty program?
+                  </a>
                 </li>
                 <li>
-                  <a href="#" className="text-purple-800 hover:underline block">What are the check-in procedures?</a>
+                  <a href="#" className="text-purple-800 hover:underline block">
+                    What are the check-in procedures?
+                  </a>
                 </li>
               </ul>
               <div className="mt-4">
-                <a href="#" className="inline-flex items-center text-purple-800 font-medium hover:underline">
+                <a
+                  href="#"
+                  className="inline-flex items-center text-purple-800 font-medium hover:underline"
+                >
                   View all FAQs <ArrowRight className="ml-1 h-4 w-4" />
                 </a>
               </div>
@@ -222,10 +273,14 @@ const ContactUs = () => {
           transition={{ delay: 0.3, duration: 0.5 }}
           className="mt-12 bg-gray-50 rounded-xl p-8"
         >
-          <h2 className="text-2xl font-bold mb-6">Business and Media Contacts</h2>
+          <h2 className="text-2xl font-bold mb-6">
+            Business and Media Contacts
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div>
-              <h3 className="text-lg font-semibold mb-2">Corporate Partnerships</h3>
+              <h3 className="text-lg font-semibold mb-2">
+                Corporate Partnerships
+              </h3>
               <p className="text-gray-600 mb-1">partnerships@skyWays.com</p>
               <p className="text-gray-600">+1 (555) 234-5678</p>
             </div>

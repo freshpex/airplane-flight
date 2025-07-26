@@ -1,96 +1,96 @@
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
-  Mail, 
-  Phone, 
+  Mail,
+  Phone,
   MapPin,
   Facebook,
   Twitter,
   Instagram,
   Youtube,
   Linkedin,
-  ArrowRight
-} from 'lucide-react';
-import Logo from '@/assets/logo';
+  ArrowRight,
+} from "lucide-react";
+import Logo from "@/assets/logo";
 
 const Footer = () => {
   const footerSections = [
     {
-      title: 'Company',
+      title: "Company",
       links: [
-        { label: 'About Us', href: '/about-us' },
-        { label: 'Careers', href: '/careers' },
-        { label: 'Press', href: '/press' },
-        { label: 'Investor Relations', href: '/investor-relations' },
-        { label: 'Sustainability', href: '/sustainability' },
-      ]
+        { label: "About Us", href: "/about-us" },
+        { label: "Careers", href: "/careers" },
+        { label: "Press", href: "/press" },
+        { label: "Investor Relations", href: "/investor-relations" },
+        { label: "Sustainability", href: "/sustainability" },
+      ],
     },
     {
-      title: 'Travel',
+      title: "Travel",
       links: [
-        { label: 'Flight Status', href: '/travel/flight-status' },
-        { label: 'Manage Booking', href: '/travel/manage-booking' },
-        { label: 'Check-in', href: '/travel/check-in' },
-        { label: 'Baggage Info', href: '/travel/baggage-info' },
-        { label: 'Travel Requirements', href: '/travel/travel-requirements' },
-        { label: 'Flight Status', href: '/travel/flight-status' },
-        { label: 'Manage Booking', href: '/travel/manage-booking' },
-        { label: 'Check-in', href: '/travel/check-in' },
-        { label: 'Baggage Info', href: '/travel/baggage-info' },
-        { label: 'Travel Requirements', href: '/travel/travel-requirements' },
-      ]
+        { label: "Flight Status", href: "/travel/flight-status" },
+        { label: "Manage Booking", href: "/travel/manage-booking" },
+        { label: "Check-in", href: "/travel/check-in" },
+        { label: "Baggage Info", href: "/travel/baggage-info" },
+        { label: "Travel Requirements", href: "/travel/travel-requirements" },
+        { label: "Flight Status", href: "/travel/flight-status" },
+        { label: "Manage Booking", href: "/travel/manage-booking" },
+        { label: "Check-in", href: "/travel/check-in" },
+        { label: "Baggage Info", href: "/travel/baggage-info" },
+        { label: "Travel Requirements", href: "/travel/travel-requirements" },
+      ],
     },
     {
-      title: 'Experience',
+      title: "Experience",
       links: [
-        { label: 'Destinations', href: '/flight-search' },
-        { label: 'SkyWays Hotels', href: '/hotels' },
-        { label: 'Car Rental', href: '/car-rentals' },
-        { label: 'Travel Insurance', href: '/travel-insurance' },
-        { label: 'Business Travel', href: '/experience/business-travel' },
-        { label: 'Loyalty Program', href: '/experience/loyalty-program' },
-      ]
+        { label: "Destinations", href: "/flight-search" },
+        { label: "SkyWays Hotels", href: "/hotels" },
+        { label: "Car Rental", href: "/car-rentals" },
+        { label: "Travel Insurance", href: "/travel-insurance" },
+        { label: "Business Travel", href: "/experience/business-travel" },
+        { label: "Loyalty Program", href: "/experience/loyalty-program" },
+      ],
     },
     {
-      title: 'Support',
+      title: "Support",
       links: [
-        { label: 'Help Center', href: '/help-center' },
-        { label: 'Contact Us', href: '/contact-us' },
-        { label: 'Feedback', href: '/feedback' },
-        { label: 'Special Assistance', href: '/special-assistance' },
-        { label: 'Lost & Found', href: '/lost-and-found' },
-      ]
-    }
+        { label: "Help Center", href: "/help-center" },
+        { label: "Contact Us", href: "/contact-us" },
+        { label: "Feedback", href: "/feedback" },
+        { label: "Special Assistance", href: "/special-assistance" },
+        { label: "Lost & Found", href: "/lost-and-found" },
+      ],
+    },
   ];
 
   const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Youtube, href: '#', label: 'YouTube' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
+    { icon: Facebook, href: "#", label: "Facebook" },
+    { icon: Twitter, href: "#", label: "Twitter" },
+    { icon: Instagram, href: "#", label: "Instagram" },
+    { icon: Youtube, href: "#", label: "YouTube" },
+    { icon: Linkedin, href: "#", label: "LinkedIn" },
   ];
 
   const contactInfo = [
     {
       icon: Phone,
-      title: 'Call Us',
-      details: '+1 (555) 123-4567',
-      subtitle: '24/7 Customer Support'
+      title: "Call Us",
+      details: "+1 (555) 123-4567",
+      subtitle: "24/7 Customer Support",
     },
     {
       icon: Mail,
-      title: 'Email Us',
-      details: 'support@skyWays.com',
-      subtitle: 'We reply within 24 hours'
+      title: "Email Us",
+      details: "support@skyWays.com",
+      subtitle: "We reply within 24 hours",
     },
     {
       icon: MapPin,
-      title: 'Visit Us',
-      details: '123 Aviation Blvd, Sky City',
-      subtitle: 'Main Headquarters'
-    }
+      title: "Visit Us",
+      details: "123 Aviation Blvd, Sky City",
+      subtitle: "Main Headquarters",
+    },
   ];
 
   return (
@@ -106,15 +106,16 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <h3 className="text-2xl lg:text-3xl font-bold mb-4">
-              Stay Updated with{' '}
+              Stay Updated with{" "}
               <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
                 Special Offers
               </span>
             </h3>
             <p className="text-gray-400 mb-8 text-lg">
-              Subscribe to our newsletter and be the first to know about exclusive deals, new destinations, and travel tips.
+              Subscribe to our newsletter and be the first to know about
+              exclusive deals, new destinations, and travel tips.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <Input
                 type="email"
@@ -126,9 +127,10 @@ const Footer = () => {
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
-            
+
             <p className="text-xs text-gray-500 mt-4">
-              By subscribing, you agree to our Privacy Policy and Terms of Service.
+              By subscribing, you agree to our Privacy Policy and Terms of
+              Service.
             </p>
           </motion.div>
         </div>
@@ -155,7 +157,9 @@ const Footer = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold text-lg">{contact.title}</h4>
-                      <p className="text-gray-400 text-sm">{contact.subtitle}</p>
+                      <p className="text-gray-400 text-sm">
+                        {contact.subtitle}
+                      </p>
                     </div>
                   </div>
                   <p className="text-white font-medium">{contact.details}</p>
@@ -178,13 +182,14 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <div className="flex items-center space-x-2 mb-6">
-             <Logo />
+              <Logo />
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              Experience world-class service and luxury travel with SkyWays. 
-              We connect you to over 160 destinations worldwide with unmatched comfort and reliability.
+              Experience world-class service and luxury travel with SkyWays. We
+              connect you to over 160 destinations worldwide with unmatched
+              comfort and reliability.
             </p>
-            
+
             {/* Social Links */}
             <div className="flex space-x-4">
               {socialLinks.map((social) => {
@@ -240,16 +245,28 @@ const Footer = () => {
               © 2025 SkyWays Airlines. All rights reserved.
             </div>
             <div className="flex flex-wrap gap-6 text-sm">
-              <a href="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">
+              <a
+                href="/privacy-policy"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
                 Privacy Policy
               </a>
-              <a href="/terms-of-service" className="text-gray-400 hover:text-white transition-colors">
+              <a
+                href="/terms-of-service"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
                 Terms of Service
               </a>
-              <a href="/cookies-policy" className="text-gray-400 hover:text-white transition-colors">
+              <a
+                href="/cookies-policy"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
                 Cookies Policy
               </a>
-              <a href="/accessibility" className="text-gray-400 hover:text-white transition-colors">
+              <a
+                href="/accessibility"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
                 Accessibility
               </a>
             </div>

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Plane } from 'lucide-react';
+import React from "react";
+import { Plane } from "lucide-react";
 
 interface LogoProps {
   width?: number | string;
@@ -16,7 +16,7 @@ const Logo: React.FC<LogoProps> = ({
   startStopColor = "#ffffff94",
   endStopColor = "#FFFFFF",
   textFill = "#FFFFFF",
-  planeColor = "#1E3A8A"
+  planeColor = "#1E3A8A",
 }) => {
   return (
     <svg
@@ -27,8 +27,8 @@ const Logo: React.FC<LogoProps> = ({
     >
       <defs>
         <linearGradient id="gradB" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor={startStopColor}/>
-          <stop offset="100%" stopColor={endStopColor}/>
+          <stop offset="0%" stopColor={startStopColor} />
+          <stop offset="100%" stopColor={endStopColor} />
         </linearGradient>
       </defs>
 

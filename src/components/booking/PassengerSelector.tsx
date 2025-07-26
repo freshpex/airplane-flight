@@ -1,8 +1,8 @@
-import React, { useRef, useState } from 'react';
-import { Users } from 'lucide-react';
-import { Input } from '../ui/input';
-import { cn } from '../../lib/utils';
-import { useClickOutside } from '../../hooks/useClickOutside';
+import React, { useRef, useState } from "react";
+import { Users } from "lucide-react";
+import { Input } from "../ui/input";
+import { cn } from "../../lib/utils";
+import { useClickOutside } from "../../hooks/useClickOutside";
 
 interface PassengerSelectorProps {
   passengers: {
@@ -10,23 +10,29 @@ interface PassengerSelectorProps {
     children: number;
     infants: number;
   };
-  setPassengers: React.Dispatch<React.SetStateAction<{
-    adults: number;
-    children: number;
-    infants: number;
-  }>>;
+  setPassengers: React.Dispatch<
+    React.SetStateAction<{
+      adults: number;
+      children: number;
+      infants: number;
+    }>
+  >;
 }
 
-const PassengerSelector = ({ passengers, setPassengers }: PassengerSelectorProps) => {
+const PassengerSelector = ({
+  passengers,
+  setPassengers,
+}: PassengerSelectorProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  
+
   // Total passenger count
-  const totalPassengers = passengers.adults + passengers.children + passengers.infants;
+  const totalPassengers =
+    passengers.adults + passengers.children + passengers.infants;
 
   // Format passenger display
   const formatPassengerCount = () => {
-    return `${totalPassengers} Passenger${totalPassengers !== 1 ? 's' : ''}`;
+    return `${totalPassengers} Passenger${totalPassengers !== 1 ? "s" : ""}`;
   };
 
   // Close dropdown when clicking outside
@@ -47,7 +53,7 @@ const PassengerSelector = ({ passengers, setPassengers }: PassengerSelectorProps
           value={formatPassengerCount()}
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         />
-        
+
         {/* Passenger dropdown */}
         {isDropdownOpen && (
           <div className="absolute z-10 mt-1 w-full bg-white shadow-lg rounded-md py-2 px-4 text-base ring-1 ring-black ring-opacity-5">
@@ -62,15 +68,15 @@ const PassengerSelector = ({ passengers, setPassengers }: PassengerSelectorProps
                   type="button"
                   className={cn(
                     "w-8 h-8 rounded-full flex items-center justify-center",
-                    passengers.adults > 1 
-                      ? "bg-gray-200 text-gray-700" 
-                      : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                    passengers.adults > 1
+                      ? "bg-gray-200 text-gray-700"
+                      : "bg-gray-100 text-gray-400 cursor-not-allowed",
                   )}
                   onClick={() => {
                     if (passengers.adults > 1) {
                       setPassengers({
                         ...passengers,
-                        adults: passengers.adults - 1
+                        adults: passengers.adults - 1,
                       });
                     }
                   }}
@@ -83,15 +89,15 @@ const PassengerSelector = ({ passengers, setPassengers }: PassengerSelectorProps
                   type="button"
                   className={cn(
                     "w-8 h-8 rounded-full flex items-center justify-center",
-                    passengers.adults < 9 
-                      ? "bg-gray-200 text-gray-700" 
-                      : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                    passengers.adults < 9
+                      ? "bg-gray-200 text-gray-700"
+                      : "bg-gray-100 text-gray-400 cursor-not-allowed",
                   )}
                   onClick={() => {
                     if (passengers.adults < 9 && totalPassengers < 9) {
                       setPassengers({
                         ...passengers,
-                        adults: passengers.adults + 1
+                        adults: passengers.adults + 1,
                       });
                     }
                   }}
@@ -101,7 +107,7 @@ const PassengerSelector = ({ passengers, setPassengers }: PassengerSelectorProps
                 </button>
               </div>
             </div>
-            
+
             {/* Children */}
             <div className="flex items-center justify-between py-3 border-b border-gray-100">
               <div>
@@ -113,15 +119,15 @@ const PassengerSelector = ({ passengers, setPassengers }: PassengerSelectorProps
                   type="button"
                   className={cn(
                     "w-8 h-8 rounded-full flex items-center justify-center",
-                    passengers.children > 0 
-                      ? "bg-gray-200 text-gray-700" 
-                      : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                    passengers.children > 0
+                      ? "bg-gray-200 text-gray-700"
+                      : "bg-gray-100 text-gray-400 cursor-not-allowed",
                   )}
                   onClick={() => {
                     if (passengers.children > 0) {
                       setPassengers({
                         ...passengers,
-                        children: passengers.children - 1
+                        children: passengers.children - 1,
                       });
                     }
                   }}
@@ -134,15 +140,15 @@ const PassengerSelector = ({ passengers, setPassengers }: PassengerSelectorProps
                   type="button"
                   className={cn(
                     "w-8 h-8 rounded-full flex items-center justify-center",
-                    totalPassengers < 9 
-                      ? "bg-gray-200 text-gray-700" 
-                      : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                    totalPassengers < 9
+                      ? "bg-gray-200 text-gray-700"
+                      : "bg-gray-100 text-gray-400 cursor-not-allowed",
                   )}
                   onClick={() => {
                     if (totalPassengers < 9) {
                       setPassengers({
                         ...passengers,
-                        children: passengers.children + 1
+                        children: passengers.children + 1,
                       });
                     }
                   }}
@@ -152,7 +158,7 @@ const PassengerSelector = ({ passengers, setPassengers }: PassengerSelectorProps
                 </button>
               </div>
             </div>
-            
+
             {/* Infants */}
             <div className="flex items-center justify-between py-3">
               <div>
@@ -164,15 +170,15 @@ const PassengerSelector = ({ passengers, setPassengers }: PassengerSelectorProps
                   type="button"
                   className={cn(
                     "w-8 h-8 rounded-full flex items-center justify-center",
-                    passengers.infants > 0 
-                      ? "bg-gray-200 text-gray-700" 
-                      : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                    passengers.infants > 0
+                      ? "bg-gray-200 text-gray-700"
+                      : "bg-gray-100 text-gray-400 cursor-not-allowed",
                   )}
                   onClick={() => {
                     if (passengers.infants > 0) {
                       setPassengers({
                         ...passengers,
-                        infants: passengers.infants - 1
+                        infants: passengers.infants - 1,
                       });
                     }
                   }}
@@ -185,25 +191,32 @@ const PassengerSelector = ({ passengers, setPassengers }: PassengerSelectorProps
                   type="button"
                   className={cn(
                     "w-8 h-8 rounded-full flex items-center justify-center",
-                    passengers.infants < passengers.adults && totalPassengers < 9
-                      ? "bg-gray-200 text-gray-700" 
-                      : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                    passengers.infants < passengers.adults &&
+                      totalPassengers < 9
+                      ? "bg-gray-200 text-gray-700"
+                      : "bg-gray-100 text-gray-400 cursor-not-allowed",
                   )}
                   onClick={() => {
-                    if (passengers.infants < passengers.adults && totalPassengers < 9) {
+                    if (
+                      passengers.infants < passengers.adults &&
+                      totalPassengers < 9
+                    ) {
                       setPassengers({
                         ...passengers,
-                        infants: passengers.infants + 1
+                        infants: passengers.infants + 1,
                       });
                     }
                   }}
-                  disabled={passengers.infants >= passengers.adults || totalPassengers >= 9}
+                  disabled={
+                    passengers.infants >= passengers.adults ||
+                    totalPassengers >= 9
+                  }
                 >
                   +
                 </button>
               </div>
             </div>
-            
+
             <div className="pt-3">
               <p className="text-xs text-gray-500 mb-2">
                 * Maximum 9 passengers per booking
