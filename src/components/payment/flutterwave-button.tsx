@@ -61,7 +61,7 @@ export function FlutterwaveButton({
     payment_options: paymentOptions || "card,mobilemoney,ussd",
     customer: {
       email: customerEmail,
-      phonenumber: customerPhone,
+      phone_number: customerPhone,
       name: customerName,
     },
     customizations: {
