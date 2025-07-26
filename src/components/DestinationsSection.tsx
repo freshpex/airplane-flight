@@ -2,8 +2,10 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MapPin, Star, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const DestinationsSection = () => {
+  const navigate = useNavigate();
   const popularDestinations = [
     {
       city: "Dubai",
@@ -105,7 +107,12 @@ const DestinationsSection = () => {
             Explore the world's most captivating cities with our carefully
             curated selection of destinations.
           </p>
-          <Button variant="outline" size="lg" className="group">
+          <Button 
+            variant="outline" 
+            size="lg" 
+            className="group"
+            onClick={() => navigate('/flight-search')}
+          >
             View All Destinations
             <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </Button>
@@ -179,6 +186,13 @@ const DestinationsSection = () => {
                       variant="ghost"
                       size="sm"
                       className="group/btn text-purple-600 hover:text-purple-700"
+                      onClick={() => navigate("/search-results", { 
+                        state: { 
+                          destination: destination.city,
+                          country: destination.country,
+                          preselectedDestination: true
+                        } 
+                      })}
                     >
                       Book Now
                       <ArrowRight className="ml-1 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
@@ -210,6 +224,7 @@ const DestinationsSection = () => {
               variant="secondary"
               size="lg"
               className="bg-white text-purple-600 hover:bg-gray-100 group"
+              onClick={() => navigate('/contact-us')}
             >
               Contact Travel Expert
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />

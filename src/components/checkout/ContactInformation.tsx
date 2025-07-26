@@ -10,7 +10,6 @@ import {
 import {
   Command,
   CommandEmpty,
-  CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
@@ -235,32 +234,35 @@ const ContactInformation = ({
               <Command>
                 <CommandInput placeholder="Search country..." />
                 <CommandEmpty>No country found.</CommandEmpty>
-                <CommandGroup>
-                  <CommandList>
-                    {countries.map((country) => (
-                      <CommandItem
-                        key={country.code}
-                        value={country.code}
-                        onSelect={(value) => {
+                <CommandList className="max-h-[300px] overflow-y-auto">
+                  {countries.map((country) => (
+                    <CommandItem
+                      key={country.code}
+                      value={country.name.toLowerCase()}
+                      onSelect={(currentValue) => {
+                        const selectedCountry = countries.find(
+                          (c) => c.name.toLowerCase() === currentValue,
+                        );
+                        if (selectedCountry) {
                           setFormData((prev) => ({
                             ...prev,
-                            country: value,
-                            countryCode: country.phoneCode || prev.countryCode,
+                            country: selectedCountry.code,
+                            countryCode:
+                              selectedCountry.phoneCode || prev.countryCode,
                           }));
-
                           if (errors.country) {
                             setErrors((prev) => ({
                               ...prev,
                               country: "",
                             }));
                           }
-                        }}
-                      >
-                        <span>{country.name}</span>
-                      </CommandItem>
-                    ))}
-                  </CommandList>
-                </CommandGroup>
+                        }
+                      }}
+                    >
+                      {country.name}
+                    </CommandItem>
+                  ))}
+                </CommandList>
               </Command>
             </PopoverContent>
           </Popover>

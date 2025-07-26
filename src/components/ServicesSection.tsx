@@ -13,7 +13,11 @@ import {
   ArrowRight,
 } from "lucide-react";
 
+import { useNavigate } from "react-router-dom";
+
 const ServicesSection = () => {
+  const navigate = useNavigate();
+  
   const services = [
     {
       icon: Plane,
@@ -23,6 +27,7 @@ const ServicesSection = () => {
       image:
         "https://www.qatarairways.com/content/dam/images/mobile/aircraft/codeshare-partners/m-virgin-australia-qr-aircrafts.jpg",
       features: ["160+ Destinations", "Flexible Booking", "Best Prices"],
+      path: "/flight-search-destinations",
     },
     {
       icon: Hotel,
@@ -32,6 +37,7 @@ const ServicesSection = () => {
       image:
         "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
       features: ["Luxury Properties", "Member Discounts", "24/7 Support"],
+      path: "/hotels",
     },
     {
       icon: MapPin,
@@ -41,6 +47,7 @@ const ServicesSection = () => {
       image:
         "https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
       features: ["Local Experiences", "Expert Guides", "Cultural Tours"],
+      path: "/experience/activities",
     },
     {
       icon: Car,
@@ -50,6 +57,7 @@ const ServicesSection = () => {
       image:
         "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
       features: ["Flexible Pickup", "Premium Vehicles", "Insurance Included"],
+      path: "/car-rentals",
     },
   ];
 
@@ -146,6 +154,7 @@ const ServicesSection = () => {
                     <Button
                       variant="ghost"
                       className="group/btn w-full justify-between"
+                      onClick={() => navigate(service.path)}
                     >
                       Learn More
                       <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />

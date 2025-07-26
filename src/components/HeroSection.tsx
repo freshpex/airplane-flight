@@ -92,18 +92,22 @@ const HeroSection = () => {
               variant="qatar"
               size="xl"
               className="group relative overflow-hidden"
+              asChild
             >
-              <span className="relative z-10 flex items-center">
-                Book Your Flight
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
+              <a href="#book">
+                <span className="relative z-10 flex items-center">
+                  Book Your Flight
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
+              </a>
             </Button>
 
             <Button
               variant="ghost"
               size="xl"
               className="text-white border-white/30 hover:bg-white/10 group"
+              onClick={() => window.open("https://www.youtube.com/watch?v=example-airline-promo", "_blank")}
             >
               <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
               Watch Video

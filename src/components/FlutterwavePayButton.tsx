@@ -40,7 +40,7 @@ export function FlutterwavePayButton({
     payment_options: "card,banktransfer",
     customer: {
       email: customerEmail,
-      phonenumber: phoneNumber || "",
+      phone_number: phoneNumber || "",
       name: customerName,
     },
     customizations: {
