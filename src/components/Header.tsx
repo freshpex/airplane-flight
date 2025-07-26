@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Menu, X, User, Globe } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import Logo from '@/assets/logo';
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Menu, X, User, Globe } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import Logo from "@/assets/logo";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,15 +14,15 @@ const Header = () => {
       setIsScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navigationItems = [
-    { label: 'Book', href: '#book' },
-    { label: 'Manage', href: '#manage' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Destinations', href: '#destinations' },
+    { label: "Book", href: "#book" },
+    { label: "Manage", href: "#manage" },
+    { label: "Experience", href: "#experience" },
+    { label: "Destinations", href: "#destinations" },
   ];
 
   return (
@@ -31,10 +31,10 @@ const Header = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-lg'
-          : 'bg-transparent'
+          ? "bg-white/95 backdrop-blur-md shadow-lg"
+          : "bg-transparent",
       )}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -60,8 +60,8 @@ const Header = () => {
                 key={item.label}
                 href={item.href}
                 className={cn(
-                  'text-sm font-medium transition-colors duration-300 hover:text-purple-600',
-                  isScrolled ? 'text-gray-700' : 'text-white'
+                  "text-sm font-medium transition-colors duration-300 hover:text-purple-600",
+                  isScrolled ? "text-gray-700" : "text-white",
                 )}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -79,8 +79,10 @@ const Header = () => {
               variant="ghost"
               size="sm"
               className={cn(
-                'hidden sm:flex items-center space-x-2 transition-colors duration-300',
-                isScrolled ? 'text-gray-700 hover:text-purple-600' : 'text-white hover:text-purple-200'
+                "hidden sm:flex items-center space-x-2 transition-colors duration-300",
+                isScrolled
+                  ? "text-gray-700 hover:text-purple-600"
+                  : "text-white hover:text-purple-200",
               )}
             >
               <Globe className="h-4 w-4" />
@@ -91,8 +93,10 @@ const Header = () => {
               variant="ghost"
               size="sm"
               className={cn(
-                'hidden sm:flex items-center space-x-2 transition-colors duration-300',
-                isScrolled ? 'text-gray-700 hover:text-purple-600' : 'text-white hover:text-purple-200'
+                "hidden sm:flex items-center space-x-2 transition-colors duration-300",
+                isScrolled
+                  ? "text-gray-700 hover:text-purple-600"
+                  : "text-white hover:text-purple-200",
               )}
             >
               <User className="h-4 w-4" />
@@ -104,8 +108,8 @@ const Header = () => {
               variant="ghost"
               size="sm"
               className={cn(
-                'lg:hidden transition-colors duration-300',
-                isScrolled ? 'text-gray-700' : 'text-white'
+                "lg:hidden transition-colors duration-300",
+                isScrolled ? "text-gray-700" : "text-white",
               )}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
@@ -122,7 +126,7 @@ const Header = () => {
         <motion.div
           initial={false}
           animate={{
-            height: isMobileMenuOpen ? 'auto' : 0,
+            height: isMobileMenuOpen ? "auto" : 0,
             opacity: isMobileMenuOpen ? 1 : 0,
           }}
           transition={{ duration: 0.3 }}

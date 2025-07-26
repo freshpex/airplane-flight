@@ -1,5 +1,5 @@
-import { Calendar } from 'lucide-react';
-import { Input } from '../ui/input';
+import { Calendar } from "lucide-react";
+import { Input } from "../ui/input";
 
 interface DateSelectorProps {
   label: string;
@@ -8,7 +8,12 @@ interface DateSelectorProps {
   onChange: (value: string) => void;
 }
 
-const DateSelector = ({ label, defaultValue, value, onChange }: DateSelectorProps) => {
+const DateSelector = ({
+  label,
+  defaultValue,
+  value,
+  onChange,
+}: DateSelectorProps) => {
   return (
     <div>
       <label className="block text-sm font-medium text-gray-700 mb-2">

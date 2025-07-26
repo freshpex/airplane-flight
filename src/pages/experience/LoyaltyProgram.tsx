@@ -1,23 +1,23 @@
-import PageLayout from '@/components/layout/PageLayout';
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { 
-  ArrowRight, 
-  Award, 
-  Star, 
-  Plane, 
-  Hotel, 
-  CreditCard, 
+import PageLayout from "@/components/layout/PageLayout";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  ArrowRight,
+  Award,
+  Star,
+  Plane,
+  Hotel,
+  CreditCard,
   Gift,
   User,
   Calculator,
   Globe,
   ShoppingCart,
   Check,
-  CircleAlert
-} from 'lucide-react';
+  CircleAlert,
+} from "lucide-react";
 
 const LoyaltyProgram = () => {
   return (
@@ -43,20 +43,23 @@ const LoyaltyProgram = () => {
                 >
                   <div className="mb-4 flex items-center">
                     <Award className="h-8 w-8 mr-3 text-yellow-300" />
-                    <h2 className="text-3xl md:text-4xl font-bold">SkyWays Elite Rewards</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold">
+                      SkyWays Elite Rewards
+                    </h2>
                   </div>
                   <p className="text-lg mb-8 text-white/85">
-                    Join our award-winning loyalty program and unlock a world of premium benefits,
-                    exclusive offers, and extraordinary experiences.
+                    Join our award-winning loyalty program and unlock a world of
+                    premium benefits, exclusive offers, and extraordinary
+                    experiences.
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6 mb-8">
                     {[
-                      'Earn miles on flights & partners',
-                      'Redeem for flights & upgrades',
-                      'Access to exclusive lounges',
-                      'Priority check-in & boarding',
-                      'Extra baggage allowance',
-                      'Exclusive member promotions'
+                      "Earn miles on flights & partners",
+                      "Redeem for flights & upgrades",
+                      "Access to exclusive lounges",
+                      "Priority check-in & boarding",
+                      "Extra baggage allowance",
+                      "Exclusive member promotions",
                     ].map((feature, index) => (
                       <div key={index} className="flex items-center">
                         <Check className="h-5 w-5 mr-2 text-yellow-300" />
@@ -65,19 +68,26 @@ const LoyaltyProgram = () => {
                     ))}
                   </div>
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <Button variant="secondary" className="group bg-white text-purple-800 hover:bg-gray-100">
-                      Join Now <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    <Button
+                      variant="secondary"
+                      className="group bg-white text-purple-800 hover:bg-gray-100"
+                    >
+                      Join Now{" "}
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
-                    <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white/10">
+                    <Button
+                      variant="outline"
+                      className="bg-transparent border-white text-white hover:bg-white/10"
+                    >
                       Already a Member? Sign In
                     </Button>
                   </div>
                 </motion.div>
               </div>
               <div className="hidden lg:block lg:col-span-2 relative overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                  alt="Business class experience" 
+                <img
+                  src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                  alt="Business class experience"
                   className="w-full h-full object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-700/50 to-transparent"></div>
@@ -87,7 +97,7 @@ const LoyaltyProgram = () => {
         </motion.div>
 
         {/* How It Works Section */}
-        <motion.div 
+        <motion.div
           className="mb-16"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -95,10 +105,13 @@ const LoyaltyProgram = () => {
           viewport={{ once: true }}
         >
           <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">How It Works</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              How It Works
+            </h2>
             <p className="text-gray-600 max-w-3xl mx-auto">
-              Earning and redeeming rewards is simple with SkyWays Elite. Just follow these steps to 
-              maximize your benefits and enjoy premium travel experiences.
+              Earning and redeeming rewards is simple with SkyWays Elite. Just
+              follow these steps to maximize your benefits and enjoy premium
+              travel experiences.
             </p>
           </div>
 
@@ -107,23 +120,27 @@ const LoyaltyProgram = () => {
               {
                 icon: User,
                 title: "Join the Program",
-                description: "Sign up for free and receive your membership number instantly."
+                description:
+                  "Sign up for free and receive your membership number instantly.",
               },
               {
                 icon: Plane,
                 title: "Earn Miles",
-                description: "Fly with SkyWays or spend with our partners to accumulate miles."
+                description:
+                  "Fly with SkyWays or spend with our partners to accumulate miles.",
               },
               {
                 icon: Award,
                 title: "Reach Elite Status",
-                description: "Progress through membership tiers to unlock premium benefits."
+                description:
+                  "Progress through membership tiers to unlock premium benefits.",
               },
               {
                 icon: Gift,
                 title: "Enjoy Rewards",
-                description: "Redeem miles for flights, upgrades, hotels, and exclusive experiences."
-              }
+                description:
+                  "Redeem miles for flights, upgrades, hotels, and exclusive experiences.",
+              },
             ].map((step, index) => {
               const Icon = step.icon;
               return (
@@ -152,7 +169,7 @@ const LoyaltyProgram = () => {
         </motion.div>
 
         {/* Membership Tiers */}
-        <motion.div 
+        <motion.div
           className="mb-16"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -160,10 +177,13 @@ const LoyaltyProgram = () => {
           viewport={{ once: true }}
         >
           <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Elite Membership Tiers</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Elite Membership Tiers
+            </h2>
             <p className="text-gray-600 max-w-3xl mx-auto">
-              As you fly more with SkyWays, you'll progress through our membership tiers, each offering 
-              increasingly valuable benefits and exclusive privileges.
+              As you fly more with SkyWays, you'll progress through our
+              membership tiers, each offering increasingly valuable benefits and
+              exclusive privileges.
             </p>
           </div>
 
@@ -177,8 +197,8 @@ const LoyaltyProgram = () => {
                   "Earn miles on flights",
                   "Online account management",
                   "Exclusive member promotions",
-                  "Digital membership card"
-                ]
+                  "Digital membership card",
+                ],
               },
               {
                 name: "Silver",
@@ -188,8 +208,8 @@ const LoyaltyProgram = () => {
                   "All Blue benefits",
                   "+25% bonus miles",
                   "Priority check-in",
-                  "Extra baggage allowance"
-                ]
+                  "Extra baggage allowance",
+                ],
               },
               {
                 name: "Gold",
@@ -200,8 +220,8 @@ const LoyaltyProgram = () => {
                   "+50% bonus miles",
                   "Lounge access",
                   "Priority boarding",
-                  "Guaranteed seat availability"
-                ]
+                  "Guaranteed seat availability",
+                ],
               },
               {
                 name: "Platinum",
@@ -213,9 +233,9 @@ const LoyaltyProgram = () => {
                   "Global lounge access",
                   "Fast track security",
                   "Complimentary upgrades",
-                  "Personal concierge service"
-                ]
-              }
+                  "Personal concierge service",
+                ],
+              },
             ].map((tier, index) => (
               <motion.div
                 key={index}
@@ -232,13 +252,20 @@ const LoyaltyProgram = () => {
                     <h3 className="text-xl font-bold">{tier.name}</h3>
                     <div className="flex">
                       {Array.from({ length: index + 1 }).map((_, i) => (
-                        <Star key={i} className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                        <Star
+                          key={i}
+                          className="h-4 w-4 text-yellow-500 fill-yellow-500"
+                        />
                       ))}
                     </div>
                   </div>
-                  <p className="text-sm text-gray-500 mb-6">Qualification: {tier.qualification}</p>
-                  
-                  <h4 className="text-sm font-semibold text-gray-700 mb-3">Key Benefits:</h4>
+                  <p className="text-sm text-gray-500 mb-6">
+                    Qualification: {tier.qualification}
+                  </p>
+
+                  <h4 className="text-sm font-semibold text-gray-700 mb-3">
+                    Key Benefits:
+                  </h4>
                   <ul className="space-y-2">
                     {tier.benefits.map((benefit, idx) => (
                       <li key={idx} className="flex items-start">
@@ -249,7 +276,10 @@ const LoyaltyProgram = () => {
                   </ul>
                 </div>
                 <div className="bg-gray-50 p-4 text-center">
-                  <Button variant="ghost" className="text-purple-700 hover:text-purple-800 hover:bg-gray-100">
+                  <Button
+                    variant="ghost"
+                    className="text-purple-700 hover:text-purple-800 hover:bg-gray-100"
+                  >
                     View Full Benefits
                   </Button>
                 </div>
@@ -259,7 +289,7 @@ const LoyaltyProgram = () => {
         </motion.div>
 
         {/* Ways to Earn & Redeem */}
-        <motion.div 
+        <motion.div
           className="mb-16"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -268,86 +298,98 @@ const LoyaltyProgram = () => {
         >
           <Tabs defaultValue="earn" className="w-full">
             <div className="text-center mb-8">
-              <h2 className="text-2xl md:text-3xl font-bold mb-4">Ways to Earn & Redeem</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                Ways to Earn & Redeem
+              </h2>
               <p className="text-gray-600 max-w-3xl mx-auto mb-6">
-                There are many ways to earn and use your SkyWays Elite miles. 
+                There are many ways to earn and use your SkyWays Elite miles.
                 Choose what works best for you.
               </p>
               <TabsList className="bg-gray-100 p-1">
-                <TabsTrigger value="earn" className="py-2 px-6">Earn Miles</TabsTrigger>
-                <TabsTrigger value="redeem" className="py-2 px-6">Redeem Miles</TabsTrigger>
+                <TabsTrigger value="earn" className="py-2 px-6">
+                  Earn Miles
+                </TabsTrigger>
+                <TabsTrigger value="redeem" className="py-2 px-6">
+                  Redeem Miles
+                </TabsTrigger>
               </TabsList>
             </div>
-            
+
             <TabsContent value="earn" className="mt-0">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {[
                   {
                     icon: Plane,
                     title: "Flights",
-                    description: "Earn miles on every SkyWays flight and with our alliance partner airlines.",
+                    description:
+                      "Earn miles on every SkyWays flight and with our alliance partner airlines.",
                     items: [
                       "Based on fare and distance",
                       "Bonus miles for premium cabins",
                       "Tier bonus for elite members",
-                      "Special promotions for extra miles"
-                    ]
+                      "Special promotions for extra miles",
+                    ],
                   },
                   {
                     icon: CreditCard,
                     title: "Co-branded Credit Cards",
-                    description: "Earn miles on everyday purchases with our banking partners' credit cards.",
+                    description:
+                      "Earn miles on everyday purchases with our banking partners' credit cards.",
                     items: [
                       "Miles for every dollar spent",
                       "Welcome bonuses up to 30,000 miles",
                       "Bonus categories for travel & dining",
-                      "Annual loyalty bonuses"
-                    ]
+                      "Annual loyalty bonuses",
+                    ],
                   },
                   {
                     icon: Hotel,
                     title: "Hotel Stays",
-                    description: "Earn miles when staying at our partner hotels worldwide.",
+                    description:
+                      "Earn miles when staying at our partner hotels worldwide.",
                     items: [
                       "500-2,000 miles per stay",
                       "Additional points at luxury partners",
                       "Bonus miles for hotel packages",
-                      "Special rates for Elite members"
-                    ]
+                      "Special rates for Elite members",
+                    ],
                   },
                   {
                     icon: ShoppingCart,
                     title: "Shopping",
-                    description: "Shop online through our portal and earn miles on your purchases.",
+                    description:
+                      "Shop online through our portal and earn miles on your purchases.",
                     items: [
                       "100+ retail partners",
                       "Up to 10 miles per dollar spent",
                       "Seasonal shopping bonuses",
-                      "Exclusive member-only deals"
-                    ]
+                      "Exclusive member-only deals",
+                    ],
                   },
                   {
                     icon: Car,
                     title: "Car Rentals",
-                    description: "Earn miles with every car rental from our partner agencies.",
+                    description:
+                      "Earn miles with every car rental from our partner agencies.",
                     items: [
                       "Up to 1,000 miles per rental",
                       "Bonus for premium vehicles",
                       "Special elite member offers",
-                      "Free upgrades with points"
-                    ]
+                      "Free upgrades with points",
+                    ],
                   },
                   {
                     icon: Gift,
                     title: "Promotions",
-                    description: "Take advantage of special offers and promotions for bonus miles.",
+                    description:
+                      "Take advantage of special offers and promotions for bonus miles.",
                     items: [
                       "Seasonal mile multipliers",
                       "Partner promotions",
                       "Transfer bonuses",
-                      "Anniversary bonuses"
-                    ]
-                  }
+                      "Anniversary bonuses",
+                    ],
+                  },
                 ].map((method, index) => {
                   const Icon = method.icon || Award;
                   return (
@@ -363,12 +405,19 @@ const LoyaltyProgram = () => {
                         <div className="bg-purple-100 p-2 rounded-lg mr-4">
                           <Icon className="h-6 w-6 text-purple-600" />
                         </div>
-                        <h3 className="text-lg font-semibold">{method.title}</h3>
+                        <h3 className="text-lg font-semibold">
+                          {method.title}
+                        </h3>
                       </div>
-                      <p className="text-gray-600 text-sm mb-4">{method.description}</p>
+                      <p className="text-gray-600 text-sm mb-4">
+                        {method.description}
+                      </p>
                       <ul className="space-y-2">
                         {method.items.map((item, idx) => (
-                          <li key={idx} className="flex items-start text-sm text-gray-600">
+                          <li
+                            key={idx}
+                            className="flex items-start text-sm text-gray-600"
+                          >
                             <div className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2 mt-1.5"></div>
                             {item}
                           </li>
@@ -379,76 +428,82 @@ const LoyaltyProgram = () => {
                 })}
               </div>
             </TabsContent>
-            
+
             <TabsContent value="redeem" className="mt-0">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {[
                   {
                     icon: Plane,
                     title: "Award Flights",
-                    description: "Use your miles to book flights on SkyWays and partner airlines.",
+                    description:
+                      "Use your miles to book flights on SkyWays and partner airlines.",
                     items: [
                       "One-way from 8,000 miles",
                       "Round-trip from 15,000 miles",
                       "Premium cabins available",
-                      "No blackout dates on SkyWays"
-                    ]
+                      "No blackout dates on SkyWays",
+                    ],
                   },
                   {
                     icon: ArrowUpCircle,
                     title: "Upgrades",
-                    description: "Use your miles to upgrade to premium cabins for a superior experience.",
+                    description:
+                      "Use your miles to upgrade to premium cabins for a superior experience.",
                     items: [
                       "From Economy to Business",
                       "From Business to First",
                       "Waitlist priority for elite members",
-                      "Last-minute upgrade opportunities"
-                    ]
+                      "Last-minute upgrade opportunities",
+                    ],
                   },
                   {
                     icon: Hotel,
                     title: "Hotel Stays",
-                    description: "Redeem miles for stays at partner hotels and resorts worldwide.",
+                    description:
+                      "Redeem miles for stays at partner hotels and resorts worldwide.",
                     items: [
                       "From 10,000 miles per night",
                       "Luxury properties available",
                       "Room upgrades with miles",
-                      "Hotel + flight packages"
-                    ]
+                      "Hotel + flight packages",
+                    ],
                   },
                   {
                     icon: Car,
                     title: "Car Rentals",
-                    description: "Use your miles to rent vehicles from economy to luxury.",
+                    description:
+                      "Use your miles to rent vehicles from economy to luxury.",
                     items: [
                       "From 8,000 miles per day",
                       "Premium vehicles available",
                       "Includes insurance coverage",
-                      "Worldwide availability"
-                    ]
+                      "Worldwide availability",
+                    ],
                   },
                   {
                     icon: ShoppingBag,
                     title: "Merchandise",
-                    description: "Redeem miles for electronics, fashion items, and more in our online store.",
+                    description:
+                      "Redeem miles for electronics, fashion items, and more in our online store.",
                     items: [
                       "Electronics from 15,000 miles",
                       "Travel accessories",
                       "Luxury brand products",
-                      "Exclusive member merchandise"
-                    ]
+                      "Exclusive member merchandise",
+                    ],
                   },
                   {
                     icon: TicketIcon,
                     title: "Experiences",
-                    description: "Use your miles for exclusive events, concerts, and special experiences.",
+                    description:
+                      "Use your miles for exclusive events, concerts, and special experiences.",
                     items: [
                       "Sporting events",
                       "Concert tickets",
                       "Culinary experiences",
-                      "VIP airport services"
-                    ]
-                  }
+                      "VIP airport services",
+                    ],
+                  },
                 ].map((method, index) => {
                   const Icon = method.icon || Gift;
                   return (
@@ -464,12 +519,19 @@ const LoyaltyProgram = () => {
                         <div className="bg-purple-100 p-2 rounded-lg mr-4">
                           <Icon className="h-6 w-6 text-purple-600" />
                         </div>
-                        <h3 className="text-lg font-semibold">{method.title}</h3>
+                        <h3 className="text-lg font-semibold">
+                          {method.title}
+                        </h3>
                       </div>
-                      <p className="text-gray-600 text-sm mb-4">{method.description}</p>
+                      <p className="text-gray-600 text-sm mb-4">
+                        {method.description}
+                      </p>
                       <ul className="space-y-2">
                         {method.items.map((item, idx) => (
-                          <li key={idx} className="flex items-start text-sm text-gray-600">
+                          <li
+                            key={idx}
+                            className="flex items-start text-sm text-gray-600"
+                          >
                             <div className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2 mt-1.5"></div>
                             {item}
                           </li>
@@ -484,7 +546,7 @@ const LoyaltyProgram = () => {
         </motion.div>
 
         {/* Mile Calculator */}
-        <motion.div 
+        <motion.div
           className="mb-16 bg-gray-50 p-8 rounded-xl"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -498,21 +560,28 @@ const LoyaltyProgram = () => {
                 <h2 className="text-2xl font-bold">Miles Calculator</h2>
               </div>
               <p className="text-gray-600 mb-6">
-                See how many miles you can earn on your next flight or how many miles you'll need 
-                for your dream destination. Our calculator helps you plan your rewards strategy.
+                See how many miles you can earn on your next flight or how many
+                miles you'll need for your dream destination. Our calculator
+                helps you plan your rewards strategy.
               </p>
               <div className="bg-white p-6 rounded-xl shadow-sm">
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">From</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      From
+                    </label>
                     <Input placeholder="Departure City" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">To</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      To
+                    </label>
                     <Input placeholder="Destination City" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Cabin Class</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Cabin Class
+                    </label>
                     <select className="w-full h-10 px-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none">
                       <option>Economy</option>
                       <option>Premium Economy</option>
@@ -521,7 +590,9 @@ const LoyaltyProgram = () => {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Fare Type</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Fare Type
+                    </label>
                     <select className="w-full h-10 px-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none">
                       <option>Flexible</option>
                       <option>Standard</option>
@@ -530,7 +601,9 @@ const LoyaltyProgram = () => {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Membership Tier</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Membership Tier
+                    </label>
                     <select className="w-full h-10 px-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none">
                       <option>Blue</option>
                       <option>Silver</option>
@@ -547,11 +620,14 @@ const LoyaltyProgram = () => {
             <div className="lg:w-1/2">
               <div className="flex items-center mb-4">
                 <Globe className="h-6 w-6 mr-3 text-purple-600" />
-                <h2 className="text-2xl font-bold">Popular Award Destinations</h2>
+                <h2 className="text-2xl font-bold">
+                  Popular Award Destinations
+                </h2>
               </div>
               <p className="text-gray-600 mb-6">
-                Discover how far your miles can take you with these popular redemption options.
-                All mileage amounts shown are for round-trip economy class tickets.
+                Discover how far your miles can take you with these popular
+                redemption options. All mileage amounts shown are for round-trip
+                economy class tickets.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
@@ -559,42 +635,55 @@ const LoyaltyProgram = () => {
                     from: "New York",
                     to: "London",
                     miles: "60,000",
-                    imgUrl: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                    imgUrl:
+                      "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
                   },
                   {
                     from: "Chicago",
                     to: "Tokyo",
                     miles: "80,000",
-                    imgUrl: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
+                    imgUrl:
+                      "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
                   },
                   {
                     from: "Los Angeles",
                     to: "Sydney",
                     miles: "100,000",
-                    imgUrl: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                    imgUrl:
+                      "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
                   },
                   {
                     from: "Miami",
                     to: "Paris",
                     miles: "70,000",
-                    imgUrl: "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
-                  }
+                    imgUrl:
+                      "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+                  },
                 ].map((destination, index) => (
-                  <div key={index} className="bg-white rounded-lg overflow-hidden shadow-sm relative group">
+                  <div
+                    key={index}
+                    className="bg-white rounded-lg overflow-hidden shadow-sm relative group"
+                  >
                     <div className="h-32 overflow-hidden">
-                      <img 
-                        src={destination.imgUrl} 
+                      <img
+                        src={destination.imgUrl}
                         alt={destination.to}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
                     </div>
                     <div className="p-4">
                       <div className="flex justify-between items-center">
-                        <span className="font-medium text-gray-800">{destination.from} → {destination.to}</span>
-                        <span className="text-purple-600 font-semibold">{destination.miles}</span>
+                        <span className="font-medium text-gray-800">
+                          {destination.from} → {destination.to}
+                        </span>
+                        <span className="text-purple-600 font-semibold">
+                          {destination.miles}
+                        </span>
                       </div>
                       <div className="flex justify-between items-center mt-2">
-                        <span className="text-xs text-gray-500">Round-trip Economy</span>
+                        <span className="text-xs text-gray-500">
+                          Round-trip Economy
+                        </span>
                         <span className="text-xs text-gray-500">miles</span>
                       </div>
                     </div>
@@ -602,7 +691,10 @@ const LoyaltyProgram = () => {
                 ))}
               </div>
               <div className="mt-4 text-center">
-                <Button variant="outline" className="border-purple-600 text-purple-600 hover:bg-purple-50">
+                <Button
+                  variant="outline"
+                  className="border-purple-600 text-purple-600 hover:bg-purple-50"
+                >
                   View All Destinations
                 </Button>
               </div>
@@ -611,7 +703,7 @@ const LoyaltyProgram = () => {
         </motion.div>
 
         {/* Partner Airlines */}
-        <motion.div 
+        <motion.div
           className="mb-16"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -619,9 +711,11 @@ const LoyaltyProgram = () => {
           viewport={{ once: true }}
         >
           <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Partner Airlines</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Partner Airlines
+            </h2>
             <p className="text-gray-600 max-w-3xl mx-auto">
-              Earn and redeem miles with our global network of airline partners, 
+              Earn and redeem miles with our global network of airline partners,
               expanding your travel possibilities worldwide.
             </p>
           </div>
@@ -629,7 +723,10 @@ const LoyaltyProgram = () => {
           <div className="bg-white p-8 rounded-xl shadow-sm">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
               {Array.from({ length: 12 }).map((_, index) => (
-                <div key={index} className="flex items-center justify-center h-20 bg-gray-50 rounded-lg">
+                <div
+                  key={index}
+                  className="flex items-center justify-center h-20 bg-gray-50 rounded-lg"
+                >
                   <div className="text-gray-400 text-center">
                     <p>Airline Logo</p>
                     <p className="text-xs">(Placeholder)</p>
@@ -638,7 +735,10 @@ const LoyaltyProgram = () => {
               ))}
             </div>
             <div className="mt-8 text-center">
-              <Button variant="outline" className="border-purple-600 text-purple-600 hover:bg-purple-50">
+              <Button
+                variant="outline"
+                className="border-purple-600 text-purple-600 hover:bg-purple-50"
+              >
                 View All Partners
               </Button>
             </div>
@@ -646,7 +746,7 @@ const LoyaltyProgram = () => {
         </motion.div>
 
         {/* App Promotion */}
-        <motion.div 
+        <motion.div
           className="mb-16 bg-gradient-to-r from-indigo-600 to-purple-700 rounded-xl overflow-hidden shadow-lg"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -655,19 +755,21 @@ const LoyaltyProgram = () => {
         >
           <div className="grid grid-cols-1 lg:grid-cols-2">
             <div className="p-8 lg:p-12 text-white">
-              <h2 className="text-2xl md:text-3xl font-bold mb-4">Download the SkyWays Mobile App</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                Download the SkyWays Mobile App
+              </h2>
               <p className="mb-6">
-                Manage your Elite rewards, track your miles, and access your digital membership card 
-                anytime, anywhere with our mobile app.
+                Manage your Elite rewards, track your miles, and access your
+                digital membership card anytime, anywhere with our mobile app.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                 {[
-                  'View and manage your miles',
-                  'Digital membership card',
-                  'Book flights with miles',
-                  'Real-time flight alerts',
-                  'Exclusive app-only offers',
-                  'Offline access to boarding passes'
+                  "View and manage your miles",
+                  "Digital membership card",
+                  "Book flights with miles",
+                  "Real-time flight alerts",
+                  "Exclusive app-only offers",
+                  "Offline access to boarding passes",
                 ].map((feature, index) => (
                   <div key={index} className="flex items-center">
                     <Check className="h-5 w-5 mr-2 text-green-300" />
@@ -676,10 +778,16 @@ const LoyaltyProgram = () => {
                 ))}
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button variant="secondary" className="bg-white text-purple-700 hover:bg-gray-100">
+                <Button
+                  variant="secondary"
+                  className="bg-white text-purple-700 hover:bg-gray-100"
+                >
                   Download for iOS
                 </Button>
-                <Button variant="secondary" className="bg-white text-purple-700 hover:bg-gray-100">
+                <Button
+                  variant="secondary"
+                  className="bg-white text-purple-700 hover:bg-gray-100"
+                >
                   Download for Android
                 </Button>
               </div>
@@ -696,7 +804,7 @@ const LoyaltyProgram = () => {
         </motion.div>
 
         {/* FAQ Section */}
-        <motion.div 
+        <motion.div
           className="mb-16"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -704,9 +812,12 @@ const LoyaltyProgram = () => {
           viewport={{ once: true }}
         >
           <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Frequently Asked Questions</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Frequently Asked Questions
+            </h2>
             <p className="text-gray-600 max-w-3xl mx-auto">
-              Have questions about our loyalty program? Find answers to commonly asked questions below.
+              Have questions about our loyalty program? Find answers to commonly
+              asked questions below.
             </p>
           </div>
 
@@ -714,28 +825,35 @@ const LoyaltyProgram = () => {
             {[
               {
                 question: "How do I join SkyWays Elite Rewards?",
-                answer: "Joining is free and easy. You can sign up online through our website, through the mobile app, or at any SkyWays check-in counter. You'll receive your membership number instantly and can start earning miles right away."
+                answer:
+                  "Joining is free and easy. You can sign up online through our website, through the mobile app, or at any SkyWays check-in counter. You'll receive your membership number instantly and can start earning miles right away.",
               },
               {
                 question: "When do my miles expire?",
-                answer: "For Blue members, miles expire after 24 months of inactivity. For Silver members and above, miles never expire as long as you maintain your elite status. Any qualifying activity (earning or redeeming miles) resets the expiration clock."
+                answer:
+                  "For Blue members, miles expire after 24 months of inactivity. For Silver members and above, miles never expire as long as you maintain your elite status. Any qualifying activity (earning or redeeming miles) resets the expiration clock.",
               },
               {
                 question: "Can I transfer miles to another member?",
-                answer: "Yes, you can transfer miles to other SkyWays Elite members. There is a small fee of $10 plus 1¢ per mile transferred. Gold and Platinum members receive one free transfer per year up to 50,000 miles."
+                answer:
+                  "Yes, you can transfer miles to other SkyWays Elite members. There is a small fee of $10 plus 1¢ per mile transferred. Gold and Platinum members receive one free transfer per year up to 50,000 miles.",
               },
               {
                 question: "How do I reach elite status?",
-                answer: "Elite status is based on either the number of miles earned or segments flown within a calendar year. You need 15,000 miles or 20 segments for Silver, 35,000 miles or 50 segments for Gold, and 75,000 miles or 90 segments for Platinum."
+                answer:
+                  "Elite status is based on either the number of miles earned or segments flown within a calendar year. You need 15,000 miles or 20 segments for Silver, 35,000 miles or 50 segments for Gold, and 75,000 miles or 90 segments for Platinum.",
               },
               {
                 question: "Can family members share benefits?",
-                answer: "Yes, through our Family Program, you can pool miles with up to 8 family members. Elite members can also nominate one family member annually to receive select elite benefits like priority check-in and extra baggage allowance."
+                answer:
+                  "Yes, through our Family Program, you can pool miles with up to 8 family members. Elite members can also nominate one family member annually to receive select elite benefits like priority check-in and extra baggage allowance.",
               },
               {
-                question: "What happens to my miles when I book an award flight and then cancel?",
-                answer: "If you cancel an award flight, the miles will be returned to your account. Cancellations made at least 72 hours before departure have no fee. Later cancellations incur a fee of $50 or 5,000 miles. Elite Gold and Platinum members have reduced or waived fees."
-              }
+                question:
+                  "What happens to my miles when I book an award flight and then cancel?",
+                answer:
+                  "If you cancel an award flight, the miles will be returned to your account. Cancellations made at least 72 hours before departure have no fee. Later cancellations incur a fee of $50 or 5,000 miles. Elite Gold and Platinum members have reduced or waived fees.",
+              },
             ].map((faq, index) => (
               <div key={index} className="bg-white p-6 rounded-xl shadow-sm">
                 <h3 className="font-semibold mb-2 flex items-center">
@@ -746,16 +864,19 @@ const LoyaltyProgram = () => {
               </div>
             ))}
           </div>
-          
+
           <div className="text-center mt-8">
-            <Button variant="outline" className="border-purple-800 text-purple-800 hover:bg-purple-50">
+            <Button
+              variant="outline"
+              className="border-purple-800 text-purple-800 hover:bg-purple-50"
+            >
               View All FAQs
             </Button>
           </div>
         </motion.div>
 
         {/* CTA Section */}
-        <motion.div 
+        <motion.div
           className="mb-8"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -764,16 +885,26 @@ const LoyaltyProgram = () => {
         >
           <div className="bg-gradient-to-br from-purple-700 to-indigo-800 rounded-xl overflow-hidden shadow-lg text-white p-8 text-center">
             <Award className="h-12 w-12 mx-auto mb-4 text-yellow-300" />
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to start earning rewards?</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Ready to start earning rewards?
+            </h2>
             <p className="max-w-2xl mx-auto mb-8">
-              Join SkyWays Elite Rewards today and start your journey towards premium travel experiences,
-              exclusive benefits, and extraordinary destinations.
+              Join SkyWays Elite Rewards today and start your journey towards
+              premium travel experiences, exclusive benefits, and extraordinary
+              destinations.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button variant="secondary" className="group bg-white text-purple-800 hover:bg-gray-100">
-                Join Now <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              <Button
+                variant="secondary"
+                className="group bg-white text-purple-800 hover:bg-gray-100"
+              >
+                Join Now{" "}
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white/10">
+              <Button
+                variant="outline"
+                className="bg-transparent border-white text-white hover:bg-white/10"
+              >
                 Learn More About Benefits
               </Button>
             </div>

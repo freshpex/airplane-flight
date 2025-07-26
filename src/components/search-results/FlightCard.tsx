@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
-import { Luggage, Wifi } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { cn } from '@/lib/utils';
-import type  { FlightOption } from '@/types/flight';
+import { motion } from "framer-motion";
+import { Luggage, Wifi } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+import type { FlightOption } from "@/types/flight";
 
 interface FlightCardProps {
   flight: FlightOption;
@@ -11,7 +11,11 @@ interface FlightCardProps {
   setSelectedFlight: (id: string) => void;
 }
 
-const FlightCard = ({ flight, selectedFlight, setSelectedFlight }: FlightCardProps) => {
+const FlightCard = ({
+  flight,
+  selectedFlight,
+  setSelectedFlight,
+}: FlightCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -19,15 +23,15 @@ const FlightCard = ({ flight, selectedFlight, setSelectedFlight }: FlightCardPro
       transition={{ duration: 0.3 }}
       className={cn(
         "bg-white rounded-lg shadow-lg overflow-hidden",
-        selectedFlight === flight.id && "ring-2 ring-purple-500"
+        selectedFlight === flight.id && "ring-2 ring-purple-500",
       )}
     >
       {/* Airline header */}
       <div className="bg-gray-50 p-4 flex justify-between items-center border-b">
         <div className="flex items-center">
           <div className="h-8 w-8 mr-3 relative">
-            <img 
-              src={flight.segments[0].airline.logo} 
+            <img
+              src={flight.segments[0].airline.logo}
               alt={flight.segments[0].airline.name}
               className="object-contain h-full w-full"
             />
@@ -35,7 +39,7 @@ const FlightCard = ({ flight, selectedFlight, setSelectedFlight }: FlightCardPro
           <div>
             <h3 className="font-semibold">{flight.segments[0].airline.name}</h3>
             <p className="text-sm text-gray-600">
-              {flight.segments.map(s => s.flightNumber).join(' · ')}
+              {flight.segments.map((s) => s.flightNumber).join(" · ")}
             </p>
           </div>
         </div>
@@ -46,7 +50,7 @@ const FlightCard = ({ flight, selectedFlight, setSelectedFlight }: FlightCardPro
           <div className="text-sm text-gray-600">per person</div>
         </div>
       </div>
-      
+
       <div className="p-4">
         {/* Flight route summary */}
         <div className="flex items-center justify-between mb-6">
@@ -58,7 +62,7 @@ const FlightCard = ({ flight, selectedFlight, setSelectedFlight }: FlightCardPro
               {flight.segments[0].departureAirport}
             </div>
           </div>
-          
+
           <div className="flex-grow mx-4">
             <div className="relative flex items-center">
               <div className="h-0.5 flex-grow bg-gray-300"></div>
@@ -69,10 +73,12 @@ const FlightCard = ({ flight, selectedFlight, setSelectedFlight }: FlightCardPro
               </div>
             </div>
             <div className="text-xs text-gray-500 text-center mt-1">
-              {flight.stops === 0 ? 'Direct' : `${flight.stops} stop${flight.stops !== 1 ? 's' : ''}`}
+              {flight.stops === 0
+                ? "Direct"
+                : `${flight.stops} stop${flight.stops !== 1 ? "s" : ""}`}
             </div>
           </div>
-          
+
           <div className="text-center">
             <div className="text-2xl font-bold">
               {flight.segments[flight.segments.length - 1].arrivalTime}
@@ -91,13 +97,17 @@ const FlightCard = ({ flight, selectedFlight, setSelectedFlight }: FlightCardPro
                 <Luggage className="h-4 w-4 mr-1" />
                 <span className="mr-3">{flight.baggageAllowance.checked}</span>
                 <Wifi className="h-4 w-4 mx-1" />
-                <span>{flight.features.includes('Wi-Fi') ? 'Wi-Fi Available' : 'No Wi-Fi'}</span>
+                <span>
+                  {flight.features.includes("Wi-Fi")
+                    ? "Wi-Fi Available"
+                    : "No Wi-Fi"}
+                </span>
               </div>
               <div className="text-sm text-purple-600 font-medium group-open:rotate-180 transition-transform">
                 ▼
               </div>
             </summary>
-            
+
             <div className="mt-4 pt-4 border-t border-gray-200">
               {flight.segments.map((segment, index) => (
                 <div key={index} className="mb-4">
@@ -106,20 +116,26 @@ const FlightCard = ({ flight, selectedFlight, setSelectedFlight }: FlightCardPro
                       Layover: {segment.layover} in {segment.departureAirport}
                     </div>
                   )}
-                  
+
                   <div className="flex justify-between items-start">
                     <div>
-                      <div className="font-semibold">{segment.departureTime} - {segment.arrivalTime}</div>
-                      <div className="text-sm text-gray-600">{segment.departureAirport} - {segment.arrivalAirport}</div>
+                      <div className="font-semibold">
+                        {segment.departureTime} - {segment.arrivalTime}
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        {segment.departureAirport} - {segment.arrivalAirport}
+                      </div>
                     </div>
                     <div className="text-right">
                       <div className="font-semibold">{segment.duration}</div>
-                      <div className="text-sm text-gray-600">{segment.aircraft}</div>
+                      <div className="text-sm text-gray-600">
+                        {segment.aircraft}
+                      </div>
                     </div>
                   </div>
                 </div>
               ))}
-              
+
               {/* Features and baggage */}
               <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -146,12 +162,12 @@ const FlightCard = ({ flight, selectedFlight, setSelectedFlight }: FlightCardPro
                     </li>
                     <li className="flex items-center">
                       <span className="inline-block h-1.5 w-1.5 bg-blue-500 rounded-full mr-2"></span>
-                      {flight.refundable ? 'Refundable' : 'Non-refundable'} fare
+                      {flight.refundable ? "Refundable" : "Non-refundable"} fare
                     </li>
                   </ul>
                 </div>
               </div>
-              
+
               {/* Flight info footer */}
               <div className="flex justify-between items-center mt-4 pt-3 border-t border-gray-200 text-sm">
                 <div className="flex items-center text-gray-600">
@@ -160,28 +176,37 @@ const FlightCard = ({ flight, selectedFlight, setSelectedFlight }: FlightCardPro
                 </div>
                 <div className="text-sm">
                   <span className="font-medium text-gray-800">
-                    {flight.seatsAvailable} {flight.seatsAvailable === 1 ? 'seat' : 'seats'} left
+                    {flight.seatsAvailable}{" "}
+                    {flight.seatsAvailable === 1 ? "seat" : "seats"} left
                   </span>
                 </div>
               </div>
             </div>
           </details>
         </div>
-        
+
         {/* Flight selection */}
         <div className="flex justify-between items-center pt-3 border-t">
           <div>
-            <Badge variant={flight.fareType === 'Economy' ? 'outline' : flight.fareType === 'Economy Plus' ? 'secondary' : 'default'}>
+            <Badge
+              variant={
+                flight.fareType === "Economy"
+                  ? "outline"
+                  : flight.fareType === "Economy Plus"
+                    ? "secondary"
+                    : "default"
+              }
+            >
               {flight.fareType}
             </Badge>
           </div>
           <div className="flex items-center gap-3">
-            <Button 
+            <Button
               variant={selectedFlight === flight.id ? "default" : "outline"}
               onClick={() => setSelectedFlight(flight.id)}
               className="min-w-[100px]"
             >
-              {selectedFlight === flight.id ? 'Selected' : 'Select'}
+              {selectedFlight === flight.id ? "Selected" : "Select"}
             </Button>
           </div>
         </div>

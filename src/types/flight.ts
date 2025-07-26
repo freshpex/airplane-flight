@@ -30,7 +30,7 @@ export interface FlightOption {
   stops: number;
   cabinClass: string;
   seatsAvailable: number;
-  fareType: 'Economy' | 'Economy Plus' | 'Business' | 'First';
+  fareType: "Economy" | "Economy Plus" | "Business" | "First";
   refundable: boolean;
   baggageAllowance: {
     carryOn: string;

@@ -1,4 +1,4 @@
-import { toast } from 'sonner';
+import { toast } from "sonner";
 
 /**
  * Display a success notification
@@ -40,7 +40,7 @@ export function notifyWarning(message: string): void {
 export function notifyLoading(message: string): () => void {
   const id = crypto.randomUUID();
   toast.loading(message, { id });
-  
+
   return () => toast.dismiss(id);
 }
 
@@ -50,12 +50,12 @@ export function notifyLoading(message: string): () => void {
  * @param messages Object containing loading, success, and error messages
  */
 export function notifyPromise<T>(
-  promise: Promise<T>, 
+  promise: Promise<T>,
   messages: {
     loading: string;
     success: string;
     error: string;
-  }
+  },
 ): Promise<T> {
   toast.promise(promise, {
     loading: messages.loading,

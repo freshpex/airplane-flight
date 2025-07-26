@@ -1,5 +1,5 @@
-import axios from 'axios';
-import type { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios from "axios";
+import type { AxiosRequestConfig, AxiosResponse } from "axios";
 
 // Define a consistent API response structure
 export interface ApiResponse<T = any> {
@@ -14,22 +14,22 @@ class ApiService {
   private baseUrl: string;
   private defaultHeaders: Record<string, string>;
 
-  constructor(baseUrl: string = '') {
+  constructor(baseUrl: string = "") {
     this.baseUrl = baseUrl;
     this.defaultHeaders = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
+      "Content-Type": "application/json",
+      Accept: "application/json",
     };
   }
 
   // Set authentication token
   setAuthToken(token: string): void {
-    this.defaultHeaders['Authorization'] = `Bearer ${token}`;
+    this.defaultHeaders["Authorization"] = `Bearer ${token}`;
   }
 
   // Remove authentication token
   removeAuthToken(): void {
-    delete this.defaultHeaders['Authorization'];
+    delete this.defaultHeaders["Authorization"];
   }
 
   // Helper method to create request config
@@ -45,23 +45,23 @@ class ApiService {
 
   // Generic GET request
   async get<T = any>(
-    endpoint: string, 
-    params?: any, 
-    config?: AxiosRequestConfig
+    endpoint: string,
+    params?: any,
+    config?: AxiosRequestConfig,
   ): Promise<ApiResponse<T>> {
     try {
       const response: AxiosResponse<T> = await axios.get(
         `${this.baseUrl}${endpoint}`,
-        this.createRequestConfig({ 
-          ...config, 
-          params 
-        })
+        this.createRequestConfig({
+          ...config,
+          params,
+        }),
       );
 
       return {
         data: response.data,
         status: response.status,
-        message: 'Success',
+        message: "Success",
         success: true,
       };
     } catch (error: any) {
@@ -71,21 +71,21 @@ class ApiService {
 
   // Generic POST request
   async post<T = any>(
-    endpoint: string, 
-    data?: any, 
-    config?: AxiosRequestConfig
+    endpoint: string,
+    data?: any,
+    config?: AxiosRequestConfig,
   ): Promise<ApiResponse<T>> {
     try {
       const response: AxiosResponse<T> = await axios.post(
         `${this.baseUrl}${endpoint}`,
         data,
-        this.createRequestConfig(config)
+        this.createRequestConfig(config),
       );
 
       return {
         data: response.data,
         status: response.status,
-        message: 'Success',
+        message: "Success",
         success: true,
       };
     } catch (error: any) {
@@ -95,21 +95,21 @@ class ApiService {
 
   // Generic PUT request
   async put<T = any>(
-    endpoint: string, 
-    data?: any, 
-    config?: AxiosRequestConfig
+    endpoint: string,
+    data?: any,
+    config?: AxiosRequestConfig,
   ): Promise<ApiResponse<T>> {
     try {
       const response: AxiosResponse<T> = await axios.put(
         `${this.baseUrl}${endpoint}`,
         data,
-        this.createRequestConfig(config)
+        this.createRequestConfig(config),
       );
 
       return {
         data: response.data,
         status: response.status,
-        message: 'Success',
+        message: "Success",
         success: true,
       };
     } catch (error: any) {
@@ -119,19 +119,19 @@ class ApiService {
 
   // Generic DELETE request
   async delete<T = any>(
-    endpoint: string, 
-    config?: AxiosRequestConfig
+    endpoint: string,
+    config?: AxiosRequestConfig,
   ): Promise<ApiResponse<T>> {
     try {
       const response: AxiosResponse<T> = await axios.delete(
         `${this.baseUrl}${endpoint}`,
-        this.createRequestConfig(config)
+        this.createRequestConfig(config),
       );
 
       return {
         data: response.data,
         status: response.status,
-        message: 'Success',
+        message: "Success",
         success: true,
       };
     } catch (error: any) {
@@ -141,11 +141,14 @@ class ApiService {
 
   // Handle API errors
   private handleApiError(error: any): ApiResponse {
-    const message = error.response?.data?.message || error.message || 'Unknown error occurred';
+    const message =
+      error.response?.data?.message ||
+      error.message ||
+      "Unknown error occurred";
     const status = error.response?.status || 500;
-    
-    console.error('API Error:', message);
-    
+
+    console.error("API Error:", message);
+
     return {
       data: null,
       status,

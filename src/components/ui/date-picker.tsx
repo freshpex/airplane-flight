@@ -1,23 +1,28 @@
-import { format } from "date-fns"
-import { Calendar as CalendarIcon } from "lucide-react"
+import { format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
 
 interface DatePickerProps {
-  date: Date | undefined
-  setDate: (date: Date | undefined) => void
-  className?: string
-  placeholder?: string
+  date: Date | undefined;
+  setDate: (date: Date | undefined) => void;
+  className?: string;
+  placeholder?: string;
 }
 
-export function DatePicker({ date, setDate, className, placeholder = "Pick a date" }: DatePickerProps) {
+export function DatePicker({
+  date,
+  setDate,
+  className,
+  placeholder = "Pick a date",
+}: DatePickerProps) {
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -26,7 +31,7 @@ export function DatePicker({ date, setDate, className, placeholder = "Pick a dat
           className={cn(
             "w-full justify-start text-left font-normal",
             !date && "text-muted-foreground",
-            className
+            className,
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
@@ -42,5 +47,5 @@ export function DatePicker({ date, setDate, className, placeholder = "Pick a dat
         />
       </PopoverContent>
     </Popover>
-  )
+  );
 }

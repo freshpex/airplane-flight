@@ -1,13 +1,13 @@
-import { ArrowRight, Check, Star } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ArrowRight, Check, Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const features = [
-  'Premium in-flight dining experience',
-  'Spacious and comfortable seating',
-  'Personal entertainment systems',
-  'Free Wi-Fi on select routes',
-  'Priority boarding and check-in',
-  'Generous baggage allowance',
+  "Premium in-flight dining experience",
+  "Spacious and comfortable seating",
+  "Personal entertainment systems",
+  "Free Wi-Fi on select routes",
+  "Priority boarding and check-in",
+  "Generous baggage allowance",
 ];
 
 export function Experience() {
@@ -21,11 +21,14 @@ export function Experience() {
               <Star className="h-4 w-4 mr-1 fill-qatar-gold stroke-qatar-gold" />
               Premium Travel Experience
             </div>
-            
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Experience Luxury at 30,000 Feet</h2>
+
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Experience Luxury at 30,000 Feet
+            </h2>
             <p className="text-lg text-neutral-700 mb-8">
-              Our award-winning service ensures every journey is as memorable as the destination. 
-              Enjoy world-class amenities, gourmet dining, and personalized attention that sets us apart.
+              Our award-winning service ensures every journey is as memorable as
+              the destination. Enjoy world-class amenities, gourmet dining, and
+              personalized attention that sets us apart.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
@@ -49,15 +52,15 @@ export function Experience() {
           <div className="grid grid-cols-2 gap-4 animate-fade-left animate-once animate-duration-1000">
             <div className="space-y-4">
               <div className="aspect-square rounded-xl overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1583915587649-a6bf6f1c1148?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                <img
+                  src="https://images.unsplash.com/photo-1583915587649-a6bf6f1c1148?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Premium dining"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-[4/3] rounded-xl overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1562071707-7249ab429b2a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                <img
+                  src="https://images.unsplash.com/photo-1562071707-7249ab429b2a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="First class cabin"
                   className="w-full h-full object-cover"
                 />
@@ -65,15 +68,15 @@ export function Experience() {
             </div>
             <div className="mt-8 space-y-4">
               <div className="aspect-[4/3] rounded-xl overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1610642434633-7e7ea32bb762?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                <img
+                  src="https://images.unsplash.com/photo-1610642434633-7e7ea32bb762?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Cabin service"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-square rounded-xl overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1540339832862-474599807836?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                <img
+                  src="https://images.unsplash.com/photo-1540339832862-474599807836?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Business lounge"
                   className="w-full h-full object-cover"
                 />

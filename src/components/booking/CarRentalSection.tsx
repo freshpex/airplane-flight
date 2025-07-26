@@ -1,7 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Calendar } from 'lucide-react';
-import { Input } from '../ui/input';
+import React from "react";
+import { motion } from "framer-motion";
+import { Calendar } from "lucide-react";
+import { Input } from "../ui/input";
 
 interface CarRentalSectionProps {
   carPickupDate: string;
@@ -22,12 +22,12 @@ const CarRentalSection = ({
   carType,
   setCarType,
   driverAge,
-  setDriverAge
+  setDriverAge,
 }: CarRentalSectionProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, height: 0 }}
-      animate={{ opacity: 1, height: 'auto' }}
+      animate={{ opacity: 1, height: "auto" }}
       exit={{ opacity: 0, height: 0 }}
       transition={{ duration: 0.3 }}
       className="mt-6 pt-6 border-t border-gray-200"
@@ -48,7 +48,7 @@ const CarRentalSection = ({
             />
           </div>
         </div>
-        
+
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Drop-off Date
@@ -63,7 +63,7 @@ const CarRentalSection = ({
             />
           </div>
         </div>
-        
+
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Car Type
@@ -83,7 +83,7 @@ const CarRentalSection = ({
             </select>
           </div>
         </div>
-        
+
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Driver Age
@@ -94,8 +94,10 @@ const CarRentalSection = ({
               value={driverAge}
               onChange={(e) => setDriverAge(parseInt(e.target.value))}
             >
-              {Array.from({ length: 60 }, (_, i) => i + 21).map(age => (
-                <option key={age} value={age}>{age} years</option>
+              {Array.from({ length: 60 }, (_, i) => i + 21).map((age) => (
+                <option key={age} value={age}>
+                  {age} years
+                </option>
               ))}
             </select>
           </div>

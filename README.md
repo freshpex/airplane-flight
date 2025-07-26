@@ -1,4 +1,5 @@
 # About
+
 This project is a fully functional web application inspired by leading airline websites like Qatar Airways. It allows users to:
 
 - **Book Flights:** Search for and book flights to destinations worldwide with real-time availability and pricing.
@@ -12,11 +13,11 @@ This project is a fully functional web application inspired by leading airline w
 The website is built with modern technologies including React, TailwindCSS, and React Query for state management, ensuring a fast, responsive, and user-friendly experience.
 
 ## Styling
+
 We are using tailwindcss for styling and shadcdn for prebuild components below is the link to shadcdn documentation
 [shadcdn](https://ui.shadcn.com/docs)
 
 ## State management
+
 We are using react query for state management
 you can take a look at there documentation here [React query](https://tanstack.com/query/latest/docs/framework/react/overview)
-
-

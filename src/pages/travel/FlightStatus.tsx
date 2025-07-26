@@ -1,27 +1,29 @@
-import { useState } from 'react';
-import PageLayout from '@/components/layout/PageLayout';
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Label } from '@/components/ui/label';
-import { 
-  Plane, 
-  Calendar, 
-  Search, 
-  Clock, 
+import { useState } from "react";
+import PageLayout from "@/components/layout/PageLayout";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Label } from "@/components/ui/label";
+import {
+  Plane,
+  Calendar,
+  Search,
+  Clock,
   ArrowRight,
   LocateFixed,
   AlertCircle,
-  Calendar as CalendarIcon
-} from 'lucide-react';
+  Calendar as CalendarIcon,
+} from "lucide-react";
 
 const FlightStatus = () => {
-  const [searchType, setSearchType] = useState<'flight-number' | 'route'>('flight-number');
-  const [flightNumber, setFlightNumber] = useState('');
-  const [date, setDate] = useState('');
-  const [origin, setOrigin] = useState('');
-  const [destination, setDestination] = useState('');
+  const [searchType, setSearchType] = useState<"flight-number" | "route">(
+    "flight-number",
+  );
+  const [flightNumber, setFlightNumber] = useState("");
+  const [date, setDate] = useState("");
+  const [origin, setOrigin] = useState("");
+  const [destination, setDestination] = useState("");
   const [searchResults, setSearchResults] = useState<null | any[]>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -29,47 +31,47 @@ const FlightStatus = () => {
   // Mock flight data
   const mockFlights = [
     {
-      flightNumber: 'SW 1234',
-      route: 'London (LHR) to New York (JFK)',
-      date: '2025-07-20',
-      scheduledDeparture: '10:30',
-      actualDeparture: '10:45',
-      scheduledArrival: '13:45',
-      actualArrival: '13:50',
-      status: 'In Air',
-      gate: 'A12',
-      terminal: 'Terminal 5',
-      aircraft: 'Boeing 787-9',
-      progress: 65
+      flightNumber: "SW 1234",
+      route: "London (LHR) to New York (JFK)",
+      date: "2025-07-20",
+      scheduledDeparture: "10:30",
+      actualDeparture: "10:45",
+      scheduledArrival: "13:45",
+      actualArrival: "13:50",
+      status: "In Air",
+      gate: "A12",
+      terminal: "Terminal 5",
+      aircraft: "Boeing 787-9",
+      progress: 65,
     },
     {
-      flightNumber: 'SW 5678',
-      route: 'Paris (CDG) to Dubai (DXB)',
-      date: '2025-07-20',
-      scheduledDeparture: '09:00',
-      actualDeparture: '09:10',
-      scheduledArrival: '18:30',
-      actualArrival: '18:25',
-      status: 'Landed',
-      gate: 'B22',
-      terminal: 'Terminal 2',
-      aircraft: 'Airbus A350-900',
-      progress: 100
+      flightNumber: "SW 5678",
+      route: "Paris (CDG) to Dubai (DXB)",
+      date: "2025-07-20",
+      scheduledDeparture: "09:00",
+      actualDeparture: "09:10",
+      scheduledArrival: "18:30",
+      actualArrival: "18:25",
+      status: "Landed",
+      gate: "B22",
+      terminal: "Terminal 2",
+      aircraft: "Airbus A350-900",
+      progress: 100,
     },
     {
-      flightNumber: 'SW 9012',
-      route: 'Singapore (SIN) to Sydney (SYD)',
-      date: '2025-07-20',
-      scheduledDeparture: '22:45',
-      actualDeparture: '',
-      scheduledArrival: '08:30',
-      actualArrival: '',
-      status: 'Scheduled',
-      gate: 'C15',
-      terminal: 'Terminal 3',
-      aircraft: 'Boeing 777-300ER',
-      progress: 0
-    }
+      flightNumber: "SW 9012",
+      route: "Singapore (SIN) to Sydney (SYD)",
+      date: "2025-07-20",
+      scheduledDeparture: "22:45",
+      actualDeparture: "",
+      scheduledArrival: "08:30",
+      actualArrival: "",
+      status: "Scheduled",
+      gate: "C15",
+      terminal: "Terminal 3",
+      aircraft: "Boeing 777-300ER",
+      progress: 0,
+    },
   ];
 
   const handleSearch = (e: React.FormEvent) => {
@@ -82,21 +84,25 @@ const FlightStatus = () => {
     setTimeout(() => {
       // Simple mock search logic
       let results;
-      if (searchType === 'flight-number') {
-        results = mockFlights.filter(flight => 
-          flight.flightNumber.toLowerCase().includes(flightNumber.toLowerCase()) && 
-          (!date || flight.date === date)
+      if (searchType === "flight-number") {
+        results = mockFlights.filter(
+          (flight) =>
+            flight.flightNumber
+              .toLowerCase()
+              .includes(flightNumber.toLowerCase()) &&
+            (!date || flight.date === date),
         );
       } else {
-        results = mockFlights.filter(flight => 
-          flight.route.toLowerCase().includes(origin.toLowerCase()) && 
-          flight.route.toLowerCase().includes(destination.toLowerCase()) && 
-          (!date || flight.date === date)
+        results = mockFlights.filter(
+          (flight) =>
+            flight.route.toLowerCase().includes(origin.toLowerCase()) &&
+            flight.route.toLowerCase().includes(destination.toLowerCase()) &&
+            (!date || flight.date === date),
         );
       }
 
       if (results.length === 0) {
-        setError('No flights found matching your search criteria.');
+        setError("No flights found matching your search criteria.");
       } else {
         setSearchResults(results);
       }
@@ -107,21 +113,27 @@ const FlightStatus = () => {
   // Get status color based on flight status
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'Scheduled': return 'text-blue-600';
-      case 'Delayed': return 'text-amber-600';
-      case 'In Air': return 'text-green-600';
-      case 'Landed': return 'text-purple-600';
-      case 'Cancelled': return 'text-red-600';
-      default: return 'text-gray-600';
+      case "Scheduled":
+        return "text-blue-600";
+      case "Delayed":
+        return "text-amber-600";
+      case "In Air":
+        return "text-green-600";
+      case "Landed":
+        return "text-purple-600";
+      case "Cancelled":
+        return "text-red-600";
+      default:
+        return "text-gray-600";
     }
   };
 
   // Get progress bar color based on flight progress
   const getProgressColor = (progress: number) => {
-    if (progress === 100) return 'bg-purple-600';
-    if (progress > 75) return 'bg-green-600';
-    if (progress > 25) return 'bg-blue-600';
-    return 'bg-amber-600';
+    if (progress === 100) return "bg-purple-600";
+    if (progress > 75) return "bg-green-600";
+    if (progress > 25) return "bg-blue-600";
+    return "bg-amber-600";
   };
 
   return (
@@ -132,18 +144,25 @@ const FlightStatus = () => {
     >
       <div className="max-w-7xl mx-auto">
         {/* Search Form */}
-        <motion.div 
+        <motion.div
           className="bg-white rounded-xl p-6 shadow-lg mb-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Tabs value={searchType} onValueChange={(value) => setSearchType(value as 'flight-number' | 'route')}>
+          <Tabs
+            value={searchType}
+            onValueChange={(value) =>
+              setSearchType(value as "flight-number" | "route")
+            }
+          >
             <TabsList className="grid w-full grid-cols-2 mb-6">
-              <TabsTrigger value="flight-number">Search by Flight Number</TabsTrigger>
+              <TabsTrigger value="flight-number">
+                Search by Flight Number
+              </TabsTrigger>
               <TabsTrigger value="route">Search by Route</TabsTrigger>
             </TabsList>
-            
+
             <form onSubmit={handleSearch}>
               <TabsContent value="flight-number" className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -151,9 +170,9 @@ const FlightStatus = () => {
                     <Label htmlFor="flight-number">Flight Number</Label>
                     <div className="relative mt-1.5">
                       <Plane className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-5 w-5" />
-                      <Input 
+                      <Input
                         id="flight-number"
-                        className="pl-10" 
+                        className="pl-10"
                         placeholder="e.g. SW 1234"
                         value={flightNumber}
                         onChange={(e) => setFlightNumber(e.target.value)}
@@ -165,9 +184,9 @@ const FlightStatus = () => {
                     <Label htmlFor="flight-date">Date (Optional)</Label>
                     <div className="relative mt-1.5">
                       <CalendarIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-5 w-5" />
-                      <Input 
+                      <Input
                         id="flight-date"
-                        className="pl-10" 
+                        className="pl-10"
                         type="date"
                         value={date}
                         onChange={(e) => setDate(e.target.value)}
@@ -176,16 +195,16 @@ const FlightStatus = () => {
                   </div>
                 </div>
               </TabsContent>
-              
+
               <TabsContent value="route" className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
                     <Label htmlFor="origin">Origin</Label>
                     <div className="relative mt-1.5">
                       <LocateFixed className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-5 w-5" />
-                      <Input 
+                      <Input
                         id="origin"
-                        className="pl-10" 
+                        className="pl-10"
                         placeholder="City or Airport Code"
                         value={origin}
                         onChange={(e) => setOrigin(e.target.value)}
@@ -197,9 +216,9 @@ const FlightStatus = () => {
                     <Label htmlFor="destination">Destination</Label>
                     <div className="relative mt-1.5">
                       <LocateFixed className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-5 w-5" />
-                      <Input 
+                      <Input
                         id="destination"
-                        className="pl-10" 
+                        className="pl-10"
                         placeholder="City or Airport Code"
                         value={destination}
                         onChange={(e) => setDestination(e.target.value)}
@@ -211,9 +230,9 @@ const FlightStatus = () => {
                     <Label htmlFor="route-date">Date (Optional)</Label>
                     <div className="relative mt-1.5">
                       <CalendarIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-5 w-5" />
-                      <Input 
+                      <Input
                         id="route-date"
-                        className="pl-10" 
+                        className="pl-10"
                         type="date"
                         value={date}
                         onChange={(e) => setDate(e.target.value)}
@@ -222,11 +241,11 @@ const FlightStatus = () => {
                   </div>
                 </div>
               </TabsContent>
-              
+
               <div className="mt-6">
-                <Button 
-                  type="submit" 
-                  variant="qatar" 
+                <Button
+                  type="submit"
+                  variant="qatar"
                   className="w-full sm:w-auto"
                   disabled={loading}
                 >
@@ -235,14 +254,26 @@ const FlightStatus = () => {
                       <span className="mr-2">Searching</span>
                       <span className="animate-spin">
                         <svg className="h-4 w-4" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                            fill="none"
+                          ></circle>
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          ></path>
                         </svg>
                       </span>
                     </>
                   ) : (
                     <>
-                      <Search className="mr-2 h-4 w-4" /> 
+                      <Search className="mr-2 h-4 w-4" />
                       Search Flights
                     </>
                   )}
@@ -266,7 +297,10 @@ const FlightStatus = () => {
               <div>
                 <h3 className="text-lg font-semibold mb-1">No Results Found</h3>
                 <p className="text-gray-600">{error}</p>
-                <p className="text-gray-600 mt-2">Please try different search criteria or contact our customer service for assistance.</p>
+                <p className="text-gray-600 mt-2">
+                  Please try different search criteria or contact our customer
+                  service for assistance.
+                </p>
               </div>
             </div>
           )}
@@ -274,7 +308,7 @@ const FlightStatus = () => {
           {searchResults && searchResults.length > 0 && (
             <div className="space-y-6">
               {searchResults.map((flight, index) => (
-                <motion.div 
+                <motion.div
                   key={index}
                   className="bg-white rounded-xl overflow-hidden shadow-lg"
                   initial={{ opacity: 0, y: 20 }}
@@ -286,40 +320,53 @@ const FlightStatus = () => {
                     <div className="flex items-center gap-4">
                       <Plane className="h-6 w-6 text-purple-600" />
                       <div>
-                        <span className="font-bold text-lg">{flight.flightNumber}</span>
+                        <span className="font-bold text-lg">
+                          {flight.flightNumber}
+                        </span>
                         <span className="text-gray-500 ml-3">|</span>
-                        <span className="ml-3 text-gray-700">{flight.date}</span>
+                        <span className="ml-3 text-gray-700">
+                          {flight.date}
+                        </span>
                       </div>
                     </div>
-                    <div className={`font-semibold ${getStatusColor(flight.status)}`}>
+                    <div
+                      className={`font-semibold ${getStatusColor(flight.status)}`}
+                    >
                       {flight.status}
                     </div>
                   </div>
-                  
+
                   {/* Flight Body */}
                   <div className="p-4">
                     <div className="flex flex-wrap justify-between mb-6">
                       <div className="w-full md:w-auto mb-4 md:mb-0">
-                        <h3 className="text-lg font-semibold">{flight.route}</h3>
+                        <h3 className="text-lg font-semibold">
+                          {flight.route}
+                        </h3>
                         <div className="text-gray-500 text-sm mt-1">
-                          {flight.terminal} • Gate {flight.gate} • {flight.aircraft}
+                          {flight.terminal} • Gate {flight.gate} •{" "}
+                          {flight.aircraft}
                         </div>
                       </div>
-                      <Button variant="outline" size="sm" className="border-purple-600 text-purple-600">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="border-purple-600 text-purple-600"
+                      >
                         Flight Details
                       </Button>
                     </div>
-                    
+
                     {/* Progress */}
                     <div className="mb-6">
                       <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                        <div 
+                        <div
                           className={`h-full ${getProgressColor(flight.progress)}`}
                           style={{ width: `${flight.progress}%` }}
                         ></div>
                       </div>
                     </div>
-                    
+
                     {/* Flight Times */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="flex items-start gap-4">
@@ -327,28 +374,40 @@ const FlightStatus = () => {
                           <Clock className="text-blue-600 h-5 w-5" />
                         </div>
                         <div>
-                          <div className="text-sm text-gray-500 mb-1">Scheduled Departure</div>
-                          <div className="text-lg font-semibold">{flight.scheduledDeparture}</div>
-                          {flight.actualDeparture && flight.actualDeparture !== flight.scheduledDeparture && (
-                            <div className="text-sm text-blue-600 mt-1">
-                              Actual: {flight.actualDeparture}
-                            </div>
-                          )}
+                          <div className="text-sm text-gray-500 mb-1">
+                            Scheduled Departure
+                          </div>
+                          <div className="text-lg font-semibold">
+                            {flight.scheduledDeparture}
+                          </div>
+                          {flight.actualDeparture &&
+                            flight.actualDeparture !==
+                              flight.scheduledDeparture && (
+                              <div className="text-sm text-blue-600 mt-1">
+                                Actual: {flight.actualDeparture}
+                              </div>
+                            )}
                         </div>
                       </div>
-                      
+
                       <div className="flex items-start gap-4">
                         <div className="bg-purple-50 p-2 rounded-full">
                           <Clock className="text-purple-600 h-5 w-5" />
                         </div>
                         <div>
-                          <div className="text-sm text-gray-500 mb-1">Scheduled Arrival</div>
-                          <div className="text-lg font-semibold">{flight.scheduledArrival}</div>
-                          {flight.actualArrival && flight.actualArrival !== flight.scheduledArrival && (
-                            <div className="text-sm text-purple-600 mt-1">
-                              Actual: {flight.actualArrival}
-                            </div>
-                          )}
+                          <div className="text-sm text-gray-500 mb-1">
+                            Scheduled Arrival
+                          </div>
+                          <div className="text-lg font-semibold">
+                            {flight.scheduledArrival}
+                          </div>
+                          {flight.actualArrival &&
+                            flight.actualArrival !==
+                              flight.scheduledArrival && (
+                              <div className="text-sm text-purple-600 mt-1">
+                                Actual: {flight.actualArrival}
+                              </div>
+                            )}
                         </div>
                       </div>
                     </div>
@@ -357,7 +416,7 @@ const FlightStatus = () => {
               ))}
             </div>
           )}
-          
+
           {/* No search yet state */}
           {!searchResults && !error && (
             <div className="bg-white rounded-xl p-8 shadow-lg mb-6 text-center">
@@ -367,9 +426,12 @@ const FlightStatus = () => {
                 transition={{ duration: 0.5 }}
               >
                 <Plane className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Track Your Flight</h3>
+                <h3 className="text-xl font-semibold mb-2">
+                  Track Your Flight
+                </h3>
                 <p className="text-gray-600 max-w-md mx-auto">
-                  Enter your flight number or search by route to check the latest status and information about your flight.
+                  Enter your flight number or search by route to check the
+                  latest status and information about your flight.
                 </p>
               </motion.div>
             </div>
@@ -377,25 +439,27 @@ const FlightStatus = () => {
         </motion.div>
 
         {/* Additional Information */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
           <div className="bg-white rounded-xl p-6 shadow-sm">
-            <h3 className="text-xl font-semibold mb-4">Flight Status Information</h3>
+            <h3 className="text-xl font-semibold mb-4">
+              Flight Status Information
+            </h3>
             <p className="text-gray-600 mb-4">
-              Our flight status tool provides real-time information about SkyWays flights. 
-              Status updates include:
+              Our flight status tool provides real-time information about
+              SkyWays flights. Status updates include:
             </p>
             <ul className="space-y-2">
               {[
-                'Scheduled and actual departure and arrival times',
-                'Current flight status (scheduled, in air, landed, etc.)',
-                'Gate and terminal information',
-                'Aircraft type',
-                'Flight progress'
+                "Scheduled and actual departure and arrival times",
+                "Current flight status (scheduled, in air, landed, etc.)",
+                "Gate and terminal information",
+                "Aircraft type",
+                "Flight progress",
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <div className="bg-purple-50 p-1 rounded-full mt-0.5">
@@ -406,19 +470,19 @@ const FlightStatus = () => {
               ))}
             </ul>
           </div>
-          
+
           <div className="bg-white rounded-xl p-6 shadow-sm">
             <h3 className="text-xl font-semibold mb-4">Get Updates via SMS</h3>
             <p className="text-gray-600 mb-4">
-              Stay informed about your flight with our automatic SMS notifications. 
-              We'll send you updates about:
+              Stay informed about your flight with our automatic SMS
+              notifications. We'll send you updates about:
             </p>
             <ul className="space-y-2 mb-6">
               {[
-                'Changes to departure or arrival times',
-                'Gate changes',
-                'Flight delays or cancellations',
-                'Baggage claim information'
+                "Changes to departure or arrival times",
+                "Gate changes",
+                "Flight delays or cancellations",
+                "Baggage claim information",
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <div className="bg-purple-50 p-1 rounded-full mt-0.5">
@@ -435,7 +499,7 @@ const FlightStatus = () => {
         </motion.div>
 
         {/* Related Links */}
-        <motion.div 
+        <motion.div
           className="mt-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -445,27 +509,27 @@ const FlightStatus = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {[
               {
-                title: 'Manage Booking',
-                description: 'Make changes to your reservation',
-                link: '/travel/manage-booking',
-                icon: Calendar
+                title: "Manage Booking",
+                description: "Make changes to your reservation",
+                link: "/travel/manage-booking",
+                icon: Calendar,
               },
               {
-                title: 'Online Check-in',
-                description: 'Check in online and save time at the airport',
-                link: '/travel/check-in',
-                icon: LocateFixed
+                title: "Online Check-in",
+                description: "Check in online and save time at the airport",
+                link: "/travel/check-in",
+                icon: LocateFixed,
               },
               {
-                title: 'Baggage Information',
-                description: 'Learn about our baggage policy',
-                link: '/travel/baggage-info',
-                icon: Plane
-              }
+                title: "Baggage Information",
+                description: "Learn about our baggage policy",
+                link: "/travel/baggage-info",
+                icon: Plane,
+              },
             ].map((item, index) => {
               const Icon = item.icon;
               return (
-                <motion.div 
+                <motion.div
                   key={index}
                   className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow border border-gray-100"
                   whileHover={{ y: -3, transition: { duration: 0.2 } }}
@@ -476,8 +540,15 @@ const FlightStatus = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold mb-1">{item.title}</h4>
-                      <p className="text-sm text-gray-600 mb-3">{item.description}</p>
-                      <Button asChild size="sm" variant="link" className="p-0 h-auto text-purple-600">
+                      <p className="text-sm text-gray-600 mb-3">
+                        {item.description}
+                      </p>
+                      <Button
+                        asChild
+                        size="sm"
+                        variant="link"
+                        className="p-0 h-auto text-purple-600"
+                      >
                         <a href={item.link}>Learn more</a>
                       </Button>
                     </div>

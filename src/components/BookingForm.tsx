@@ -1,92 +1,100 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useCallback, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
-import { Card, CardContent } from './ui/card';
-import { cn } from '../lib/utils';
-import { amadeusService } from '../utils/amadeus';
-import type { AirportLocation } from '../utils/amadeus';
+import { Card, CardContent } from "./ui/card";
+import { cn } from "../lib/utils";
+import { amadeusService } from "../utils/amadeus";
+import type { AirportLocation } from "../utils/amadeus";
 
 // Import sub-components
-import TripTypeSelector from './booking/TripTypeSelector';
-import AirportSearchInput, { formatAirportDisplay } from './booking/AirportSearchInput';
-import DateSelector from './booking/DateSelector';
-import PassengerSelector from './booking/PassengerSelector';
-import CabinClassSelector from './booking/CabinClassSelector';
-import HotelSection from './booking/HotelSection';
-import CarRentalSection from './booking/CarRentalSection';
-import ActivitiesSection from './booking/ActivitiesSection';
-import QuickOptions from './booking/QuickOptions';
-import SearchButton from './booking/SearchButton';
+import TripTypeSelector from "./booking/TripTypeSelector";
+import AirportSearchInput, {
+  formatAirportDisplay,
+} from "./booking/AirportSearchInput";
+import DateSelector from "./booking/DateSelector";
+import PassengerSelector from "./booking/PassengerSelector";
+import CabinClassSelector from "./booking/CabinClassSelector";
+import HotelSection from "./booking/HotelSection";
+import CarRentalSection from "./booking/CarRentalSection";
+import ActivitiesSection from "./booking/ActivitiesSection";
+import QuickOptions from "./booking/QuickOptions";
+import SearchButton from "./booking/SearchButton";
 
 const BookingForm = () => {
-  const [tripType, setTripType] = useState<'roundtrip' | 'oneway' | 'multicity'>('roundtrip');
-  
+  const [tripType, setTripType] = useState<
+    "roundtrip" | "oneway" | "multicity"
+  >("roundtrip");
+
   // Date selection state
-  const [departureDate, setDepartureDate] = useState('');
-  const [returnDate, setReturnDate] = useState('');
-  
+  const [departureDate, setDepartureDate] = useState("");
+  const [returnDate, setReturnDate] = useState("");
+
   // Cabin class selection
-  const [cabinClass, setCabinClass] = useState('Economy');
-  
+  const [cabinClass, setCabinClass] = useState("Economy");
+
   // Airport search state
-  const [departureQuery, setDepartureQuery] = useState('');
-  const [departureResults, setDepartureResults] = useState<AirportLocation[]>([]);
-  const [selectedDeparture, setSelectedDeparture] = useState<AirportLocation | null>(null);
-  
-  const [arrivalQuery, setArrivalQuery] = useState('');
+  const [departureQuery, setDepartureQuery] = useState("");
+  const [departureResults, setDepartureResults] = useState<AirportLocation[]>(
+    [],
+  );
+  const [selectedDeparture, setSelectedDeparture] =
+    useState<AirportLocation | null>(null);
+
+  const [arrivalQuery, setArrivalQuery] = useState("");
   const [arrivalResults, setArrivalResults] = useState<AirportLocation[]>([]);
-  const [selectedArrival, setSelectedArrival] = useState<AirportLocation | null>(null);
-  
+  const [selectedArrival, setSelectedArrival] =
+    useState<AirportLocation | null>(null);
+
   // Loading states
   const [isDepartureLoading, setIsDepartureLoading] = useState(false);
   const [isArrivalLoading, setIsArrivalLoading] = useState(false);
-  
+
   // Passengers state
   const [passengers, setPassengers] = useState({
     adults: 1,
     children: 0,
     infants: 0,
   });
-  
+
   // Add-on sections visibility
   const [showHotelSection, setShowHotelSection] = useState(false);
   const [showCarRentalSection, setShowCarRentalSection] = useState(false);
   const [showActivitiesSection, setShowActivitiesSection] = useState(false);
-  
+
   // Hotel state
-  const [hotelCheckIn, setHotelCheckIn] = useState('');
-  const [hotelCheckOut, setHotelCheckOut] = useState('');
+  const [hotelCheckIn, setHotelCheckIn] = useState("");
+  const [hotelCheckOut, setHotelCheckOut] = useState("");
   const [rooms, setRooms] = useState(1);
   const [hotelRating, setHotelRating] = useState(0);
-  
+
   // Car rental state
-  const [carPickupDate, setCarPickupDate] = useState('');
-  const [carDropoffDate, setCarDropoffDate] = useState('');
-  const [carType, setCarType] = useState('any');
+  const [carPickupDate, setCarPickupDate] = useState("");
+  const [carDropoffDate, setCarDropoffDate] = useState("");
+  const [carType, setCarType] = useState("any");
   const [driverAge, setDriverAge] = useState(25);
-  
+
   // Activities state
-  const [activityDate, setActivityDate] = useState('');
-  const [activityType, setActivityType] = useState('any');
+  const [activityDate, setActivityDate] = useState("");
+  const [activityType, setActivityType] = useState("any");
   const [activityParticipants, setActivityParticipants] = useState(2);
-  
+
   // Search state
   const [isSearching, setIsSearching] = useState(false);
-  
+
   // Import useNavigate hook from React Router
   const navigate = useNavigate();
 
   // Handle search functionality
   const handleSearch = (e: React.MouseEvent) => {
     e.preventDefault();
-    
+
     if (!selectedDeparture || !selectedArrival) {
       return;
     }
-    
+
     setIsSearching(true);
-    
+
     // Prepare search parameters
     const searchParams = {
       from: formatAirportDisplay(selectedDeparture),
@@ -96,7 +104,7 @@ const BookingForm = () => {
       passengers: {
         adults: passengers.adults,
         children: passengers.children,
-        infants: passengers.infants
+        infants: passengers.infants,
       },
       cabinClass: cabinClass,
       tripType: tripType,
@@ -104,32 +112,38 @@ const BookingForm = () => {
       includeCarRentals: showCarRentalSection,
       includeActivities: showActivitiesSection,
       // Additional details
-      hotel: showHotelSection ? {
-        checkIn: hotelCheckIn,
-        checkOut: hotelCheckOut,
-        rooms,
-        rating: hotelRating
-      } : null,
-      car: showCarRentalSection ? {
-        pickupDate: carPickupDate,
-        dropoffDate: carDropoffDate,
-        type: carType,
-        driverAge
-      } : null,
-      activities: showActivitiesSection ? {
-        date: activityDate,
-        type: activityType,
-        participants: activityParticipants
-      } : null
+      hotel: showHotelSection
+        ? {
+            checkIn: hotelCheckIn,
+            checkOut: hotelCheckOut,
+            rooms,
+            rating: hotelRating,
+          }
+        : null,
+      car: showCarRentalSection
+        ? {
+            pickupDate: carPickupDate,
+            dropoffDate: carDropoffDate,
+            type: carType,
+            driverAge,
+          }
+        : null,
+      activities: showActivitiesSection
+        ? {
+            date: activityDate,
+            type: activityType,
+            participants: activityParticipants,
+          }
+        : null,
     };
-    
-    console.log('Search parameters:', searchParams);
-    
+
+    console.log("Search parameters:", searchParams);
+
     // Simulate a small delay for better user experience
     setTimeout(() => {
       setIsSearching(false);
       // Navigate to search results with search parameters
-      navigate('/search-results', { state: searchParams });
+      navigate("/search-results", { state: searchParams });
     }, 1000);
   };
 
@@ -140,11 +154,11 @@ const BookingForm = () => {
     try {
       const results = await amadeusService.searchAirports(query);
       if (results.length === 0) {
-        console.log('No departure airports found for query:', query);
+        console.log("No departure airports found for query:", query);
       }
       setDepartureResults(results);
     } catch (error) {
-      console.error('Error searching departure airports:', error);
+      console.error("Error searching departure airports:", error);
       // The amadeusService now handles errors internally and returns mock data
     } finally {
       setIsDepartureLoading(false);
@@ -158,11 +172,11 @@ const BookingForm = () => {
     try {
       const results = await amadeusService.searchAirports(query);
       if (results.length === 0) {
-        console.log('No arrival airports found for query:', query);
+        console.log("No arrival airports found for query:", query);
       }
       setArrivalResults(results);
     } catch (error) {
-      console.error('Error searching arrival airports:', error);
+      console.error("Error searching arrival airports:", error);
       // The amadeusService now handles errors internally and returns mock data
     } finally {
       setIsArrivalLoading(false);
@@ -250,7 +264,7 @@ const BookingForm = () => {
                 </div>
 
                 {/* Return Date - only show if roundtrip */}
-                {tripType === 'roundtrip' && (
+                {tripType === "roundtrip" && (
                   <div className="lg:col-span-2">
                     <DateSelector
                       label="Return"
@@ -261,10 +275,14 @@ const BookingForm = () => {
                 )}
 
                 {/* Passengers */}
-                <div className={cn(
-                  tripType === 'roundtrip' ? 'lg:col-span-2' : 'lg:col-span-4'
-                )}>
-                  <PassengerSelector 
+                <div
+                  className={cn(
+                    tripType === "roundtrip"
+                      ? "lg:col-span-2"
+                      : "lg:col-span-4",
+                  )}
+                >
+                  <PassengerSelector
                     passengers={passengers}
                     setPassengers={setPassengers}
                   />

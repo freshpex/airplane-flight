@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { ArrowRight, Play } from 'lucide-react';
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Play } from "lucide-react";
 
 const HeroSection = () => {
   return (
@@ -13,12 +13,12 @@ const HeroSection = () => {
           title="Background Video"
           className="w-full h-full object-cover scale-150"
           style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%) scale(1.5)',
-            minWidth: '100%',
-            minHeight: '100%',
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%) scale(1.5)",
+            minWidth: "100%",
+            minHeight: "100%",
           }}
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -78,8 +78,8 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            Experience world-class service, luxury amenities, and seamless travel
-            to over 160 destinations worldwide with SkyWays.
+            Experience world-class service, luxury amenities, and seamless
+            travel to over 160 destinations worldwide with SkyWays.
           </motion.p>
 
           <motion.div
